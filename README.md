@@ -1,4 +1,8 @@
 # 前端框架使用说明
+[帮助索引](https://www.jianshu.com/p/e2d4957993dd)
+由于fork后没有issue, 不再fork开发, 请大家勤`git pull`
+
+
 ## 配置 yarn
 可以通过以下代码检验是否安装了yarn
 `yarn -v` or `yarn --version`
@@ -21,20 +25,9 @@ brew install yarn
 
 `yarn install --registry=https://registry.npm.taobao.org`
 
-或
-
-`cnpm install --registry=https://registry.npm.taobao.org`
-
-或
-
-`npm install --registry=https://registry.npm.taobao.org`
-
 ## 运行
 `yarn run serve`
 
-或
-
-`npm run serve`
 
 ## 使用的UI
 

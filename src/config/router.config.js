@@ -13,7 +13,7 @@ export const asyncRouterMap = [
       {
         path: '/problem/list',
         name: '题目',
-        component: () => import('@/views/problem/ProblemList'),
+        component: BlankLayout,
         meta: { title: '题目', icon: 'dashboard', permission: [ 'dashboard' ] },
         children: [{
           path: '/problem/list', // todo
@@ -31,7 +31,7 @@ export const asyncRouterMap = [
       {
         path: '/center/achievement',
         name: '个人中心',
-        component: () => import('@/views/center/CenterAchievement'),
+        component: BlankLayout,
         meta: { title: '个人中心', icon: 'dashboard', permission: [ 'dashboard' ] },
         children: [{
           path: 'center/achievement', // todo
@@ -67,7 +67,7 @@ export const asyncRouterMap = [
       {
         path: 'course/announcement',
         name: '课程中心',
-        component: () => import('@/views/course/CourseAnnouncement'),
+        component: () => BlankLayout,
         meta: { title: '课程中心', icon: 'dashboard', permission: [ 'dashboard' ] },
         children: [{
           path: '/course/announcement', // todo
