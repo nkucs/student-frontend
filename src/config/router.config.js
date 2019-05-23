@@ -11,9 +11,10 @@ export const asyncRouterMap = [
     redirect: '/problem/list',
     children: [
       {
-        path: '/problem/list',
+        path: '/problem',
         name: '题目',
-        component: BlankLayout,
+        component: PageView,
+        redirect: '/problem/list',
         meta: { title: '题目', icon: 'dashboard', permission: [ 'dashboard' ] },
         children: [{
           path: '/problem/list', // todo
@@ -29,12 +30,13 @@ export const asyncRouterMap = [
         }]
       },
       {
-        path: '/center/achievement',
+        path: '/center',
         name: '个人中心',
-        component: BlankLayout,
+        component: PageView,
+        redirect: '/center/achievement',
         meta: { title: '个人中心', icon: 'dashboard', permission: [ 'dashboard' ] },
         children: [{
-          path: 'center/achievement', // todo
+          path: '/center/achievement', // todo
           name: '个人成就',
           component: () => import('@/views/center/CenterAchievement'),
           meta: { title: '个人成就', permission: [ 'dashboard' ] }
@@ -65,9 +67,10 @@ export const asyncRouterMap = [
         }]
       },
       {
-        path: 'course/announcement',
+        path: '/course',
         name: '课程中心',
-        component: () => BlankLayout,
+        component: PageView,
+        redirect: '/course/announcement',
         meta: { title: '课程中心', icon: 'dashboard', permission: [ 'dashboard' ] },
         children: [{
           path: '/course/announcement', // todo
@@ -132,7 +135,7 @@ export const constantRouterMap = [
 
   {
     path: '/test',
-    component: BlankLayout,
+    component: PageView,
     redirect: '/test/home',
     children: [
       {
