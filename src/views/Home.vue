@@ -9,7 +9,28 @@
       <h3 style="margin-top: 1rem">王大毛，欢迎来到NKU-OPEP</h3>
     </div>
 
+<div align="center">
+  <h2  align="left">个人信息</h2>
+<h2  align="right"></h2>
+
+<table border="1" align="left">
+<tr>
+<tr><td>姓名：</td><td>王大毛</td></tr>
+<tr><td>学号：</td><td>1231231</td></tr>
+<tr><td>邮箱：</td><td>kkk@123.com</td></tr>
+</tr>
+</table>
+<table border="1" align="right">
+<tr>
+<tr><td>老王</td><td>取消关注</td></tr>
+<tr><td>老张</td><td>取消关注</td></tr>
+<tr><td>老李</td><td>取消关注</td></tr>
+</tr>
+</table>
+</div>
+
 <h2  align="center">新闻</h2>
+
 <table border="1" align="center">
 <tr>
 <tr><td>张芳芳：10分钟之前提交了大数求和</td><td>查看详情</td></tr>
