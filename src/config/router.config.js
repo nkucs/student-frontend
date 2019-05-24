@@ -147,6 +147,13 @@ export const constantRouterMap = [
   },
 
   {
+    path: '/course/ExperimentDetail', // todo
+    name: '查看详情',
+    component: () => import('@/views/course/ExperimentDetail'),
+    meta: { title: '查看详情', permission: [ 'dashboard' ] }
+  },
+
+  {
     path: '/404',
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
   },
