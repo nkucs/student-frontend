@@ -1,111 +1,143 @@
 <template>
   <div class="home">
+    <div class="top-banner">
+      <div align="center"><h1>NKCS-OPEP</h1> </div>
+      <div align="right">首页 | 消息 | 个人中心</div>
+    </div>
     <div class="banner">
       <img alt="Vue logo" style="width: 64px; height: 64px" src="../assets/logo.png">
-      <h3 style="margin-top: 1rem">Welcome to Your Vue.js App</h3>
+      <h3 style="margin-top: 1rem">王大毛，欢迎来到NKU-OPEP</h3>
     </div>
 
-    <br/>
+<h2  align="center">新闻</h2>
+<table border="1" align="center">
+<tr>
+<tr><td>张芳芳：10分钟之前提交了大数求和</td><td>查看详情</td></tr>
+<tr><td>陈小小：20分钟之前获得了“解题小能手勋章”</td><td>查看详情</td></tr>
+<tr><td>李大大：1天前成为排行棒第一的“霸主”，快来膜拜他！</td><td>查看详情</td></tr>
+<tr><td>陈小小：1周前提交了B树实验</td><td>查看详情</td></tr>
+<tr><td>周胖胖：2周前获得了“提交次数最多”勋章</td><td>查看详情</td></tr>
+</tr>
+</table>
+<br/>
+<h2> 课程 </h2>
+    <a-breadcrumb>
+      <a-breadcrumb-item>正在进行</a-breadcrumb-item>
+      <a-breadcrumb-item><a href="">全部</a></a-breadcrumb-item>
+    </a-breadcrumb>
 
-    <h2># Trend 组件 </h2>
+    <div style="background-color: #ececec; padding: 20px;">
+      <a-row :gutter="16">
+        <a-col :span="8">
+          <a-card
+            hoverable
+            style="width: 300px"
+          >
+        <img
+          alt="example"
+          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          slot="cover"
+        />
+        <a-card-meta
+          title="C++"
+          description="This is the description">
+        </a-card-meta>
+        </a-card>
+        </a-col>
 
-    <a-divider> 正常 </a-divider>
 
-    <a-card>
+        <a-col :span="8">
+          <a-card
+            hoverable
+            style="width: 300px"
+          >
+        <img
+          alt="example"
+          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          slot="cover"
+        />
+        <a-card-meta
+          title="C++加强版"
+          description="This is the description">
+        </a-card-meta>
+        </a-card>
 
-      <trend flag="up" style="margin-right: 16px;">
-        <span slot="term">工资</span>
-        5%
-      </trend>
-      <trend flag="up" style="margin-right: 16px;">
-        <span slot="term">工作量</span>
-        50%
-      </trend>
-      <trend flag="down">
-        <span slot="term">身体状态</span>
-        50%
-      </trend>
 
-    </a-card>
+        </a-col>
+        <a-col :span="8">
+          <a-card
+            hoverable
+            style="width: 300px"
+          >
+        <img
+          alt="example"
+          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          slot="cover"
+        />
+        <a-card-meta
+          title="面向对象编程"
+          description="This is the description">
+        </a-card-meta>
+        </a-card>  
+        </a-col>
+      </a-row>
+    </div>
 
-    <a-divider> 颜色反转 </a-divider>
+    <div style="background-color: #ececec; padding: 20px;">
+      <a-row :gutter="16">
+        <a-col :span="8">
+          <a-card
+            hoverable
+            style="width: 300px"
+          >
+        <img
+          alt="example"
+          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          slot="cover"
+        />
+        <a-card-meta
+          title="Java"
+          description="This is the description">
+        </a-card-meta>
+        </a-card>
+        </a-col>
+        
+        <a-col :span="8">
+          <a-card
+            hoverable
+            style="width: 300px"
+          >
+        <img
+          alt="example"
+          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          slot="cover"
+        />
+        <a-card-meta
+          title="Python"
+          description="This is the description">
+        </a-card-meta>
+        </a-card>
+        </a-col>
 
-    <a-card style="margin-bottom: 3rem">
 
-      <trend flag="up" :reverse-color="true" style="margin-right: 16px;">
-        <span slot="term">工资</span>
-        5%
-      </trend>
-      <trend flag="down" :reverse-color="true" style="margin-right: 16px;">
-        <span slot="term">工作量</span>
-        50%
-      </trend>
-
-    </a-card>
-
-    <h2># AvatarList 组件 </h2>
-
-    <a-divider> AvatarList </a-divider>
-    <a-card style="margin-bottom: 3rem">
-      <avatar-list :max-length="3">
-        <avatar-list-item tips="Jake" src="https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png" />
-        <avatar-list-item tips="Andy" src="https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-
-      </avatar-list>
-
-      <a-divider type="vertical" style="margin: 0 16px" />
-
-      <avatar-list size="mini">
-        <avatar-list-item tips="Jake" src="https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png" />
-        <avatar-list-item tips="Andy" src="https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-      </avatar-list>
-    </a-card>
-
-    <h2># CountDown 组件 </h2>
-
-    <a-divider> CountDown </a-divider>
-    <a-card style="margin-bottom: 3rem">
-      <count-down
-        style="font-size: 2rem"
-        :target="new Date().getTime() + 3000000"
-        :on-end="onEndHandle">
-      </count-down>
-
-      <a-divider type="vertical" style="margin: 0 16px" />
-
-      <count-down
-        style="font-size: 2rem"
-        :target="new Date().getTime() + 10000"
-        :on-end="onEndHandle2">
-      </count-down>
-    </a-card>
-
-    <h2># Ellipsis 组件 </h2>
-
-    <a-divider> Ellipsis </a-divider>
-    <a-card style="margin-bottom: 3rem">
-      <ellipsis :length="100" tooltip>
-        There were injuries alleged in three cases in 2015, and a
-        fourth incident in September, according to the safety recall report. After meeting with US regulators in October, the firm decided to issue a voluntary recall.
-      </ellipsis>
-    </a-card>
-
-    <h2># NumberInfo 组件 </h2>
-
-    <a-divider> NumberInfo </a-divider>
-    <a-card>
-      <number-info
-        :sub-title="() => { return 'Visits this week' }"
-        :total="12321"
-        status="up"
-        :sub-total="17.1"></number-info>
-    </a-card>
+        <a-col :span="8">
+          <a-card
+            hoverable
+            style="width: 300px"
+          >
+        <img
+          alt="example"
+          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          slot="cover"
+        />
+        <a-card-meta
+          title="并行"
+          description="This is the description">
+        </a-card-meta>
+        </a-card> 
+        </a-col>
+      </a-row>
+    </div>
   </div>
 </template>
 
@@ -159,5 +191,15 @@
     text-align: center;
     padding: 25px 0;
     margin: 25px 0;
+  }
+  .top-banner{
+      width: 960px;
+      height: 70px;
+      background-color: #99CCFF;
+      position: fixed;
+      left: 50%;
+   
+      top: 0;
+      margin-left: -480px;
   }
 </style>
