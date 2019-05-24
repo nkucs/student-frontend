@@ -1,113 +1,81 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
-  </div>
+  <body>
+    <h1>提交记录</h1>
+    <a-table :columns="columns" :dataSource="data" bordered>
+    </a-table>
+  </body>
 </template>
-
 <script>
+const columns = [{
+  title: '题目编号',
+  dataIndex: 'question_id',
+}, {
+  title: '提交时间',
+  dataIndex: 'create_at',
+}, {
+  title: '通过情况',
+  dataIndex: 'isAC',
+},{
+  title: '分数',
+  dataIndex: 'score',
+},{
+  title: '代码长度',
+  dataIndex: 'length',
+},{
+  title: '语言',
+  dataIndex: 'language',
+},{
+  title: '运行用时',
+  dataIndex: 'runtime',
+},{
+  title: '使用内存',
+  dataIndex: 'memory',
+},{
+  title: '状态',
+  dataIndex: 'status',
+}]
+
+const data = [{
+  key: '1',
+  question_id: '1001',
+  create_at: '2019-01-01 23:23:23',
+  isAC: '1/5',
+  score:'20',
+  length:'936B',
+  language:'C++',
+  runtime:'123ms',
+  memory:'2.4MB',
+  status:'内存超限(TLB)',
+}, {
+  key: '2',
+  question_id: '1001',
+  create_at: '2019-01-01 23:23:23',
+  isAC: '1/5',
+  score:'20',
+  length:'936B',
+  language:'C++',
+  runtime:'123ms',
+  memory:'2.4MB',
+  status:'内存超限(TLB)',
+}, {
+  key: '3',
+  question_id: '1001',
+  create_at: '2019-01-01 23:23:23',
+  isAC: '1/5',
+  score:'20',
+  length:'936B',
+  language:'C++',
+  runtime:'123ms',
+  memory:'2.4MB',
+  status:'内存超限(TLB)',
+}]
+
 export default {
-  name: 'HelloWorld',
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      data,
+      columns,
     }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
