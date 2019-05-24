@@ -19,7 +19,13 @@ brew install yarn
 #### windows
 可以通过[安装程序](https://yarnpkg.com/latest.msi)安装
 
-
+#### [Ubuntu](https://yarnpkg.com/zh-Hans/docs/install#debian-stable)
+```
+sudo apt remove cmdtest
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+```
 
 ## 安装
 
