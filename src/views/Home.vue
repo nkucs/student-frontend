@@ -11,7 +11,7 @@
 
 <div align="center">
   <h2  align="left">个人信息</h2>
-<h2  align="right"></h2>
+<h2  align="right">关注</h2>
 
 <table border="1" align="left">
 <tr>
