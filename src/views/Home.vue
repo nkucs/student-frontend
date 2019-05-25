@@ -5,199 +5,195 @@
       <div align="right">首页 | 消息 | 个人中心</div>
     </div>
     <div class="banner">
-      <img alt="Vue logo" style="width: 64px; height: 64px" src="../assets/logo.png">
-      <h3 style="margin-top: 1rem">王大毛，欢迎来到NKU-OPEP</h3>
+      <img alt="Vue logo" style="width: 120px; height: 120px" src="../assets/logo.png">
+      <h1 style="margin-top: 1rem">南开OJ系统</h1>
     </div>
 
-<h2  align="center">新闻</h2>
-<table border="1" align="center">
-<tr><td>张芳芳：10分钟之前提交了大数求和</td><td>查看详情</td></tr>
-<tr><td>陈小小：20分钟之前获得了“解题小能手勋章”</td><td>查看详情</td></tr>
-<tr><td>李大大：1天前成为排行棒第一的“霸主”，快来膜拜他！</td><td>查看详情</td></tr>
-<tr><td>陈小小：1周前提交了B树实验</td><td>查看详情</td></tr>
-<tr><td>周胖胖：2周前获得了“提交次数最多”勋章</td><td>查看详情</td></tr>
-</table>
-<br/>
-<h2> 课程 </h2>
+    <br>
+
+    
+    <h2>课程</h2>
     <a-breadcrumb>
       <a-breadcrumb-item>正在进行</a-breadcrumb-item>
-      <a-breadcrumb-item><a href="">全部</a></a-breadcrumb-item>
+      <a-breadcrumb-item>
+        <a href>全部</a>
+      </a-breadcrumb-item>
     </a-breadcrumb>
 
-    <div style="background-color: #ececec; padding: 20px;">
+    <div style="background-color: #ececec; padding: 20px 15px 20px 10px;">
       <a-row :gutter="16">
         <a-col :span="8">
-          <a-card
-            hoverable
-            style="width: 300px"
-          >
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-        <a-card-meta
-          title="C++"
-          description="This is the description">
-        </a-card-meta>
-        </a-card>
+          <a-card hoverable style="width: 280px">
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              slot="cover"
+            >
+            <a-card-meta title="C++" description="This is the description"></a-card-meta>
+          </a-card>
         </a-col>
 
-
         <a-col :span="8">
-          <a-card
-            hoverable
-            style="width: 300px"
-          >
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-        <a-card-meta
-          title="C++加强版"
-          description="This is the description">
-        </a-card-meta>
-        </a-card>
-
-
+          <a-card hoverable style="width: 280px">
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              slot="cover"
+            >
+            <a-card-meta title="C++加强版" description="This is the description"></a-card-meta>
+          </a-card>
         </a-col>
         <a-col :span="8">
-          <a-card
-            hoverable
-            style="width: 300px"
-          >
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-        <a-card-meta
-          title="面向对象编程"
-          description="This is the description">
-        </a-card-meta>
-        </a-card>  
+          <a-card hoverable style="width: 280px">
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              slot="cover"
+            >
+            <a-card-meta title="面向对象编程" description="This is the description"></a-card-meta>
+          </a-card>
         </a-col>
       </a-row>
     </div>
 
-    <div style="background-color: #ececec; padding: 20px;">
+    <div style="background-color: #ececec; padding: 20px 15px 20px 10px;">
       <a-row :gutter="16">
         <a-col :span="8">
-          <a-card
-            hoverable
-            style="width: 300px"
-          >
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-        <a-card-meta
-          title="Java"
-          description="This is the description">
-        </a-card-meta>
-        </a-card>
-        </a-col>
-        
-        <a-col :span="8">
-          <a-card
-            hoverable
-            style="width: 300px"
-          >
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-        <a-card-meta
-          title="Python"
-          description="This is the description">
-        </a-card-meta>
-        </a-card>
+          <a-card hoverable style="width: 280px">
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              slot="cover"
+            >
+            <a-card-meta title="Java" description="This is the description"></a-card-meta>
+          </a-card>
         </a-col>
 
+        <a-col :span="8">
+          <a-card hoverable style="width: 280px">
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              slot="cover"
+            >
+            <a-card-meta title="Python" description="This is the description"></a-card-meta>
+          </a-card>
+        </a-col>
 
         <a-col :span="8">
-          <a-card
-            hoverable
-            style="width: 300px"
-          >
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-        <a-card-meta
-          title="并行"
-          description="This is the description">
-        </a-card-meta>
-        </a-card> 
+          <a-card hoverable style="width: 280px">
+            <img
+              alt="example"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              slot="cover"
+            >
+            <a-card-meta title="并行" description="This is the description"></a-card-meta>
+          </a-card>
         </a-col>
       </a-row>
     </div>
+
+    <template>
+      <div style="background-color: #ececec;text-align: center;padding:20px;margin-bottom: 3rem">
+    <a-pagination v-model="current" :total="50" />
+    </div>
+    </template>
+
+
+    <h2>个人统计</h2>
+    <a-divider> 提交记录 </a-divider>
+    <template>
+      <ve-pie :data="chartData"></ve-pie>
+    </template>
+
+    <a-divider> 每日提交情况 </a-divider>
+    <template>
+      <ve-line :data="chartData2" :settings="chartSettings"></ve-line>
+    </template>
+
+
+
+    
   </div>
 </template>
 
 <script>
-  // @ is an alias to /src
+// @ is an alias to /src
 
-  import Trend from '@/components/Trend'
-  import AvatarList from '@/components/AvatarList'
-  import CountDown from '@/components/CountDown/CountDown'
-  import Ellipsis from '@/components/Ellipsis'
-  import NumberInfo from '@/components/NumberInfo'
+import Trend from '@/components/Trend'
+import AvatarList from '@/components/AvatarList'
+import CountDown from '@/components/CountDown/CountDown'
+import Ellipsis from '@/components/Ellipsis'
+import NumberInfo from '@/components/NumberInfo'
 
-  const AvatarListItem = AvatarList.AvatarItem
+const AvatarListItem = AvatarList.AvatarItem
 
-  export default {
-    name: 'Home',
-    components: {
-      NumberInfo,
-      Ellipsis,
-      CountDown,
-      Trend,
-      AvatarList,
-      AvatarListItem
+export default {
+  name: 'Home',
+  components: {
+    NumberInfo,
+    Ellipsis,
+    CountDown,
+    Trend,
+    AvatarList,
+    AvatarListItem
+  },
+  
+  data() {
+    return {
+      targetTime: new Date().getTime() + 3900000,
+      current: 2,
+      chartData: {
+          columns: ['日期', '访问用户'],
+          rows: [
+            { '日期': 'Accept', '访问用户': 1393 },
+            { '日期': '其他', '访问用户': 3530 },
+            { '日期': '答案错误', '访问用户': 2923 },
+            { '日期': '编译错误', '访问用户': 1723 },
+            { '日期': '时间或空间超限', '访问用户': 4593 }
+          ]
+        },
+      chartData2: {
+          columns: ['日期', '提交次数'],
+          rows: [
+            { '日期': '1', '提交次数': 1393},
+            { '日期': '2', '提交次数': 3530},
+            { '日期': '3', '提交次数': 2923},
+            { '日期': '4', '提交次数': 1723},
+            { '日期': '5', '提交次数': 3792},
+            { '日期': '6', '提交次数': 4593},
+            { '日期': '7', '提交次数': 4593}
+          ]
+        }
+    }
+  },
+  methods: {
+    onEndHandle() {
+      this.$message.success('CountDown callback!!!')
     },
-    data () {
-      return {
-        targetTime: new Date().getTime() + 3900000
-      }
-    },
-    methods: {
-      onEndHandle () {
-        this.$message.success('CountDown callback!!!')
-      },
-      onEndHandle2 () {
-        this.$notification.open({
-          message: 'Notification Title',
-          description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-        })
-      }
+    onEndHandle2() {
+      this.$notification.open({
+        message: 'Notification Title',
+        description:
+          'This is the content of the notification. This is the content of the notification. This is the content of the notification.'
+      })
     }
   }
+}
 </script>
 
+
+
+
 <style scoped>
-  .home {
-    width: 900px;
-    margin: 0 auto;
-    padding: 25px 0;
-  }
-  .home > .banner {
-    text-align: center;
-    padding: 25px 0;
-    margin: 25px 0;
-  }
-  .top-banner{
-      width: 960px;
-      height: 70px;
-      background-color: #99CCFF;
-      position: fixed;
-      left: 50%;
-   
-      top: 0;
-      margin-left: -480px;
-  }
+.home {
+  width: 900px;
+  margin: 0 auto;
+  padding: 25px 0;
+}
+.home > .banner {
+  text-align: center;
+  padding: 25px 0;
+  margin: 25px 0;
+}
 </style>

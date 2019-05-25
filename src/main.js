@@ -4,6 +4,8 @@ import Storage from 'vue-ls'
 import router from './router'
 import store from './store/'
 import i18n from './lang'
+import VCharts from 'v-charts'
+
 
 import { VueAxios } from '@/utils/request'
 
@@ -40,6 +42,7 @@ Vue.use(VueAxios, router)
 Vue.use(Viser)
 Vue.use(VueClipboard)
 Vue.use(PermissionHelper)
+Vue.use(VCharts)
 
 new Vue({
   router,
