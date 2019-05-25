@@ -5,18 +5,18 @@
     <ul>
       <li>
         <a
-          href="https://vuejs.org"
+          href="/course/CoursePractice/CoursePracticeSummit/1"
           target="_blank"
         >
-          Core Docs
+          练习题目提交结果查看入口（包括查看测试用例页面）
         </a>
       </li>
       <li>
         <a
-          href="https://forum.vuejs.org"
+          href="/course/CoursePractice/CoursePracticeSummit/0"
           target="_blank"
         >
-          Forum
+          练习题目提交结果无数据入口
         </a>
       </li>
       <li>

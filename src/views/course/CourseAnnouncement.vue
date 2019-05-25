@@ -5,10 +5,10 @@
     <ul>
       <li>
         <a
-          href="https://vuejs.org"
+          href="/course/CoursePractice"
           target="_blank"
         >
-          Core Docs
+          woshinibaba
         </a>
       </li>
       <li>
