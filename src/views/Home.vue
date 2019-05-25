@@ -11,13 +11,11 @@
 
 <h2  align="center">新闻</h2>
 <table border="1" align="center">
-<tr>
 <tr><td>张芳芳：10分钟之前提交了大数求和</td><td>查看详情</td></tr>
 <tr><td>陈小小：20分钟之前获得了“解题小能手勋章”</td><td>查看详情</td></tr>
 <tr><td>李大大：1天前成为排行棒第一的“霸主”，快来膜拜他！</td><td>查看详情</td></tr>
 <tr><td>陈小小：1周前提交了B树实验</td><td>查看详情</td></tr>
 <tr><td>周胖胖：2周前获得了“提交次数最多”勋章</td><td>查看详情</td></tr>
-</tr>
 </table>
 <br/>
 <h2> 课程 </h2>
