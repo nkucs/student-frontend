@@ -15,7 +15,7 @@
           {{ item.date }}
         </p>
       </div>
-      <a-button type="primary" class="detail-btn">查看详情</a-button>
+      <a-button type="primary" class="detail-btn" @click="checkDetail">查看详情</a-button>
     </a-list-item>
 
   </a-list>
@@ -40,6 +40,12 @@ export default {
       },
     }
   },
+
+  methods: {
+    checkDetail () {
+      this.$router.push({ path:'/course/ExperimentDetail'  })
+    }
+  }
 }
 </script>
 

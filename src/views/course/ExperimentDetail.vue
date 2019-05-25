@@ -16,7 +16,7 @@
       </ul>
       <div class="additional-title">
         <div>附件上传：</div>
-        <a-button shape="circle" icon="plus" />
+        <input shape="circle" icon="plus" type="file"/>
       </div>
       <ol class="upload-file">
         <li v-for="file in upload_files" :key="file.file_name" style="list-style-type:none;">
