@@ -1,6 +1,6 @@
 // Dashboard 1 Morris-chart
 $( function () {
-	"use strict";
+	'use strict'
 	// Morris bar chart
 	Morris.Bar( {
 		element: 'morris-bar-chart',
@@ -40,7 +40,7 @@ $( function () {
 		hideHover: 'auto',
 		gridLineColor: '#eef0f2',
 		resize: true
-	} );
+	} )
 
 	// LINE CHART
 	var line = new Morris.Line( {
@@ -95,25 +95,25 @@ $( function () {
 		lineColors: [ '#007BFF' ],
 		lineWidth: 1,
 		hideHover: 'auto'
-	} );
+	} )
 	// Morris donut chart
 
 	Morris.Donut( {
 		element: 'morris-donut-chart',
 		data: [ {
-			label: "Download Sales",
+			label: 'Download Sales',
 			value: 12,
 
         }, {
-			label: "In-Store Sales",
+			label: 'In-Store Sales',
 			value: 30
         }, {
-			label: "Mail-Order Sales",
+			label: 'Mail-Order Sales',
 			value: 20
         } ],
 		resize: true,
 		colors: [ '#007BFF', '#28A745', '#DC3545' ]
-	} );
+	} )
 
 
 	// Extra chart
@@ -170,7 +170,7 @@ $( function () {
 		gridLineColor: '#e0e0e0',
 		hideHover: 'auto'
 
-	} );
+	} )
 	Morris.Area( {
 		element: 'morris-area-chart',
 		data: [ {
@@ -225,7 +225,7 @@ $( function () {
 		lineColors: [ '#28A745', '#007BFF', '#DC3545' ],
 		resize: true
 
-	} );
+	} )
 
 	Morris.Area( {
 		element: 'morris-area-chart2',
@@ -280,7 +280,7 @@ $( function () {
 		lineColors: [ '#b4becb', '#007BFF' ],
 		resize: true
 
-	} );
+	} )
 
 
-} );
+} )

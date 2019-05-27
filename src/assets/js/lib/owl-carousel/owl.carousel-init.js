@@ -1,5 +1,5 @@
 (function ($) {
-    "use strict";
+    'use strict'
 
     $('.testimonial-widget-one .owl-carousel').owlCarousel({
         singleItem: true,
@@ -49,4 +49,4 @@
 
 
 
-})(jQuery);
+})(jQuery)

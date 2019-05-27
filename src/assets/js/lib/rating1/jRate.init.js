@@ -1,10 +1,10 @@
 (function($) {
-    "use strict";
+    'use strict'
 
 
     //No checked stars
-    var that = this;
-    var toolitup = $("#no-checked-stars").jRate({
+    var that = this
+    var toolitup = $('#no-checked-stars').jRate({
         rating: 0,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -16,19 +16,19 @@
         precision: 0.1,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
 
 
 
     //Half & Full Stars
-    var that = this;
-    var toolitup = $("#half-full-stars").jRate({
+    var that = this
+    var toolitup = $('#half-full-stars').jRate({
         rating: 2,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -40,18 +40,18 @@
         precision: 0.1,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
 
 
     //Full Stars Only
-    var that = this;
-    var toolitup = $("#full-stars-only").jRate({
+    var that = this
+    var toolitup = $('#full-stars-only').jRate({
         rating: 5,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -63,17 +63,17 @@
         precision: 0.1,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
 
     //blue-stars
-    var that = this;
-    var toolitup = $("#blue-stars").jRate({
+    var that = this
+    var toolitup = $('#blue-stars').jRate({
         rating: 3,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -85,12 +85,12 @@
         precision: 0.1,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
 
 
@@ -104,8 +104,8 @@
 
 
     //Horizontal stars
-    var that = this;
-    var toolitup = $("#hrizontal-stars").jRate({
+    var that = this
+    var toolitup = $('#hrizontal-stars').jRate({
         rating: 3,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -118,17 +118,17 @@
         precision: 0.1,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
 
     //Reverse stars
-    var that = this;
-    var toolitup = $("#reverse-stars").jRate({
+    var that = this
+    var toolitup = $('#reverse-stars').jRate({
         rating: 2,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -141,17 +141,17 @@
         precision: 0.1,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
 
     //Read Only stars
-    var that = this;
-    var toolitup = $("#read-only-stars").jRate({
+    var that = this
+    var toolitup = $('#read-only-stars').jRate({
         rating: 3,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -164,17 +164,17 @@
         precision: 0.1,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
 
     //Precision stars
-    var that = this;
-    var toolitup = $("#precision-stars").jRate({
+    var that = this
+    var toolitup = $('#precision-stars').jRate({
         rating: 3,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -186,18 +186,18 @@
         precision: 0.5,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
 
 
     //Custom Icon-1
-    var that = this;
-    var toolitup = $("#custom-icon-1").jRate({
+    var that = this
+    var toolitup = $('#custom-icon-1').jRate({
         rating: 3,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -210,16 +210,16 @@
         precision: 0.5,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
     //Custom Icon-2
-    var that = this;
-    var toolitup = $("#custom-icon-2").jRate({
+    var that = this
+    var toolitup = $('#custom-icon-2').jRate({
         rating: 3,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -232,16 +232,16 @@
         precision: 0.5,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
     //Custom Icon-3
-    var that = this;
-    var toolitup = $("#custom-icon-3").jRate({
+    var that = this
+    var toolitup = $('#custom-icon-3').jRate({
         rating: 3,
         strokeColor: '#F96868',
         backgroundColor: '#ffffff',
@@ -254,19 +254,19 @@
         precision: 0.5,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
 
 
 
     //Custom Icon-4
-    var that = this;
-    var toolitup = $("#custom-icon-4").jRate({
+    var that = this
+    var toolitup = $('#custom-icon-4').jRate({
         rating: 3,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -279,12 +279,12 @@
         precision: 0.5,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
     
     
@@ -292,8 +292,8 @@
     ---------------*/
     
         //Full Stars Only
-    var that = this;
-    var toolitup = $(".full-stars-only").jRate({
+    var that = this
+    var toolitup = $('.full-stars-only').jRate({
         rating: 5,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -305,17 +305,17 @@
         precision: 0.1,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
     
     
         //Half & Full Stars
-    var that = this;
-    var toolitup = $(".half-full-stars").jRate({
+    var that = this
+    var toolitup = $('.half-full-stars').jRate({
         rating: 2,
         strokeColor: '#CCCCCC',
         backgroundColor: '#CCCCCC',
@@ -327,14 +327,14 @@
         precision: 0.1,
         minSelected: 1,
         onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+            console.log('OnChange: Rating: '+rating)
         },
         onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+            console.log('OnSet: Rating: '+rating)
         }
-    });
+    })
 
     
 
 
-})(jQuery);
+})(jQuery)

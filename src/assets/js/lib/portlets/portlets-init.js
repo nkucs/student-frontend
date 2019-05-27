@@ -1,5 +1,5 @@
 (function ($) {
-    "use strict";
+    'use strict'
 
 
     /* 
@@ -30,11 +30,11 @@
                     icon: 'ti-fullscreen',
                     icon2: 'fa fa-compress'
                 }
-            });
-        });
+            })
+        })
 
 
 
 
 
-})(jQuery);
+})(jQuery)

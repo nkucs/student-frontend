@@ -1,5 +1,5 @@
 ( function ( $ ) {
-	"use strict";
+	'use strict'
 
 	var map = new Datamap( {
 		scope: 'world',
@@ -31,7 +31,7 @@
 			'white': 'rgba(0,123,255,0.15)',
 			defaultFill: 'rgba(0,123,255,0.75)',
 		}
-	} );
+	} )
 
 
 	map.bubbles( [
@@ -88,7 +88,7 @@
 
 
 	window.addEventListener( 'resize', function ( event ) {
-		map.resize();
-	} );
+		map.resize()
+	} )
 
-} )( jQuery );
+} )( jQuery )
