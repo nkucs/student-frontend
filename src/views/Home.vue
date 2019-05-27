@@ -1,37 +1,37 @@
 <template>
-<div class="main">
+  <div class="main">
     <div class="top-banner" style="width:100%;padding:56px 32px 0;">
-        <div align="center"><h1>NKCS-OPEP</h1> </div>
+      <div align="center"><h1>NKCS-OPEP</h1> </div>
     </div>
 
     <div class="banner" style="text-align: center;padding: 50px 0;margin: 15px 0;">
-        <img alt="Vue logo" style="width: 120px; height: 120px" src="../assets/logo.png">
-        <h1 style="margin-top: 1rem">南开OJ系统</h1>
+      <img alt="Vue logo" style="width: 120px; height: 120px" src="../assets/logo.png">
+      <h1 style="margin-top: 1rem">南开OJ系统</h1>
     </div>
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 p-r-0 title-margin-right">
-                <div class="page-header">
-                    <div class="page-title">
-                        <h1>Hello, <span>Welcome To NKU OPEP</span></h1>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-lg-8 p-r-0 title-margin-right">
+          <div class="page-header">
+            <div class="page-title">
+              <h1>Hello, <span>Welcome To NKU OPEP</span></h1>
             </div>
-            <div class="col-lg-4 p-l-0 title-margin-left">
-                <div class="page-header">
-                    <div class="page-title">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">首页</a></li>
-                            <li class="breadcrumb-item">消息</li>
-                            <li class="breadcrumb-item">个人中心</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>            
+          </div>
         </div>
-        <section id="main-content">
-            <!-- <div class="row">
+        <div class="col-lg-4 p-l-0 title-margin-left">
+          <div class="page-header">
+            <div class="page-title">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">首页</a></li>
+                <li class="breadcrumb-item">消息</li>
+                <li class="breadcrumb-item">个人中心</li>
+              </ol>
+            </div>
+          </div>
+        </div>            
+      </div>
+      <section id="main-content">
+        <!-- <div class="row">
                 <div class="col-lg-3">
                     <div class="card">
                         <div class="stat-widget-one">
@@ -77,61 +77,61 @@
                     </div>
                 </div>
             </div> -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-title">
-                            <h4>新闻</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="ct-bar-chart m-t-30">
-                                新闻内容
-                            </div>
-                        </div>
-                    </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-title">
+                <h4>新闻</h4>
+              </div>
+              <div class="card-body">
+                <div class="ct-bar-chart m-t-30">
+                  新闻内容
                 </div>
-
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-title">
-                            <h4>个人信息显示部分</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="ct-pie-chart">
-                                个人信息详细内容
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-title">
-                            <h4>课程</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="ct-bar-chart m-t-30">
-                                课程内容
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
 
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-title">
-                            <h4>统计信息显示部分</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="ct-pie-chart">
-                                统计信息图表
-                            </div>
-                        </div>
-                    </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-title">
+                <h4>个人信息显示部分</h4>
+              </div>
+              <div class="card-body">
+                <div class="ct-pie-chart">
+                  个人信息详细内容
                 </div>
+              </div>
             </div>
-            <!-- <div class="row">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-title">
+                <h4>课程</h4>
+              </div>
+              <div class="card-body">
+                <div class="ct-bar-chart m-t-30">
+                  课程内容
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-title">
+                <h4>统计信息显示部分</h4>
+              </div>
+              <div class="card-body">
+                <div class="ct-pie-chart">
+                  统计信息图表
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row">
                 <div class="col-lg-4">
                     <div class="row">
                         <div class="col-lg-12">
@@ -276,7 +276,7 @@
                     </div>
                 </div>
             </div> -->
-            <!-- <div class="row">
+        <!-- <div class="row">
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-title">
@@ -355,7 +355,7 @@
                     </div>
                 </div>
             </div> -->
-            <!-- <div class="row">
+        <!-- <div class="row">
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-title">
@@ -446,16 +446,16 @@
                     </div>
                 </div>
             </div> -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer">
-                        <p>Copyright &copy; 2019 NKU <a href="https://github.com/nkucs/student-frontend"> Github</a></p>
-                    </div>
-                </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="footer">
+              <p>Copyright &copy; 2019 NKU <a href="https://github.com/nkucs/student-frontend"> Github</a></p>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </div>
-</div>
+  </div>
 <!-- <div class="home">
     <div class="top-banner">
         <div align="center">
