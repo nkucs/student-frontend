@@ -1,13 +1,14 @@
 <template>
 <div class="main">
-  <div class="top-banner" style="width:100%;padding:56px 32px 0;">
-      <div align="center"><h1>NKCS-OPEP</h1> </div>
-      
+    <div class="top-banner" style="width:100%;padding:56px 32px 0;">
+        <div align="center"><h1>NKCS-OPEP</h1> </div>
     </div>
+
     <div class="banner" style="text-align: center;padding: 50px 0;margin: 15px 0;">
-      <img alt="Vue logo" style="width: 120px; height: 120px" src="../assets/logo.png">
-      <h1 style="margin-top: 1rem">南开OJ系统</h1>
+        <img alt="Vue logo" style="width: 120px; height: 120px" src="../assets/logo.png">
+        <h1 style="margin-top: 1rem">南开OJ系统</h1>
     </div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 p-r-0 title-margin-right">
@@ -17,7 +18,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /# column -->
             <div class="col-lg-4 p-l-0 title-margin-left">
                 <div class="page-header">
                     <div class="page-title">
@@ -28,12 +28,10 @@
                         </ol>
                     </div>
                 </div>
-            </div>
-            <!-- /# column -->
+            </div>            
         </div>
-        <!-- /# row -->
         <section id="main-content">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-3">
                     <div class="card">
                         <div class="stat-widget-one">
@@ -78,16 +76,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-title">
-                            <h4>统计信息显示部分</h4>
+                            <h4>新闻</h4>
                         </div>
                         <div class="card-body">
                             <div class="ct-bar-chart m-t-30">
-                                统计信息图表
+                                新闻内容
                             </div>
                         </div>
                     </div>
@@ -107,6 +105,33 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>课程</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="ct-bar-chart m-t-30">
+                                课程内容
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>统计信息显示部分</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="ct-pie-chart">
+                                统计信息图表
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
                 <div class="col-lg-4">
                     <div class="row">
                         <div class="col-lg-12">
@@ -126,7 +151,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- /# column -->
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-title pr">
@@ -251,9 +275,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- /# column -->
-            </div>
-            <div class="row">
+            </div> -->
+            <!-- <div class="row">
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-title">
@@ -265,9 +288,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /# card -->
                 </div>
-                <!-- /# column -->
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-title">
@@ -287,9 +308,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /# card -->
                 </div>
-                <!-- /# column -->
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-title">
@@ -334,17 +353,13 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- /# card -->
                 </div>
-            </div>
-            <!-- /# row -->
-
-            <div class="row">
+            </div> -->
+            <!-- <div class="row">
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-title">
                             <h4>待办清单</h4>
-
                         </div>
                         <div class="todo-list">
                             <div class="tdl-holder">
@@ -358,89 +373,86 @@
                                         </li>
                                         <li>
                                             <label>
-                                                        <input type="checkbox" checked><i></i><span>算法导论：快速排序算法</span>
-                                                        <a href='#' class="ti-close"></a>
-                                                    </label>
+                                                <input type="checkbox" checked><i></i><span>算法导论：快速排序算法</span>
+                                                <a href='#' class="ti-close"></a>
+                                            </label>
                                         </li>
                                     </ul>
                                 </div>
-                                
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-title pr">
-                                <h4>我的课程</h4>
-
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table student-data-table m-t-20">
-                                        <thead>
-                                            <tr>
-                                                <th><label><input type="checkbox" value=""></label>ID</th>
-                                                <th>课程名称</th>
-                                                <th>任课教师</th>
-                                                <th>课程状态</th>
-                                                <th>教师邮箱</th>
-                                                <th>创建时间</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><label><input type="checkbox" value=""></label>#2901</td>
-                                                <td>
-                                                    算法导论
-                                                </td>
-                                                <td>
-                                                    张圣林
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-primary">进行中</span>
-                                                </td>
-                                                <td>
-                                                    edumin@gmail.com
-                                                </td>
-                                                <td>
-                                                    10/05/2019
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><label><input type="checkbox" value=""></label>#2902</td>
-                                                <td>
-                                                    数据结构
-                                                </td>
-                                                <td>
-                                                    刘铭明
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-warning">已结束</span>
-                                                </td>
-                                                <td>
-                                                    edumin@gmail.com
-                                                </td>
-                                                <td>
-                                                    10/05/2018
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /# column -->
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer">
-                            <p>Copyright &copy; 2019 NKU <a href="https://github.com/nkucs/student-frontend"> Github</a></p>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-title pr">
+                            <h4>我的课程</h4>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table student-data-table m-t-20">
+                                    <thead>
+                                        <tr>
+                                            <th><label><input type="checkbox" value=""></label>ID</th>
+                                            <th>课程名称</th>
+                                            <th>任课教师</th>
+                                            <th>课程状态</th>
+                                            <th>教师邮箱</th>
+                                            <th>创建时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><label><input type="checkbox" value=""></label>#2901</td>
+                                            <td>
+                                                算法导论
+                                            </td>
+                                            <td>
+                                                张圣林
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-primary">进行中</span>
+                                            </td>
+                                            <td>
+                                                edumin@gmail.com
+                                            </td>
+                                            <td>
+                                                10/05/2019
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><label><input type="checkbox" value=""></label>#2902</td>
+                                            <td>
+                                                数据结构
+                                            </td>
+                                            <td>
+                                                刘铭明
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">已结束</span>
+                                            </td>
+                                            <td>
+                                                edumin@gmail.com
+                                            </td>
+                                            <td>
+                                                10/05/2018
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer">
+                        <p>Copyright &copy; 2019 NKU <a href="https://github.com/nkucs/student-frontend"> Github</a></p>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </div>
