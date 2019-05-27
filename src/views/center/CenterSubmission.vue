@@ -1,3 +1,4 @@
+
 <template>
   <body>
     <h1>提交记录</h1>
@@ -6,6 +7,7 @@
   </body>
 </template>
 <script>
+import axios from 'axios'
 const columns = [{
   title: '题目编号',
   dataIndex: 'question_id',
@@ -70,7 +72,21 @@ const data = [{
   status:'内存超限(TLB)',
 }]
 
+
 export default {
+  method :{
+  function(){
+    axios.get('/api/student/problem_history_mission?id_student=12345')
+  .then(function (response) {
+    console.log(response)
+    this.data=response
+  })
+  .catch(function (error) {
+    console.log(error)
+  })
+  }
+},
+
   data() {
     return {
       data,
