@@ -673,7 +673,10 @@ export default {
     top: 0;
     /* margin-left: -480px; */
 }
+/* ant-design用于确保风格的一致性 ，但是由于引入的css中含有双斜杠注释，暂时先取消引入*/
+/* @import '~ant-design-vue/lib/style/themes/default.less';  */
 
+/* 以下为该主页风格的css */
 @import "../assets/css/lib/calendar2/pignose.calendar.min.css";
 @import "../assets/css/lib/chartist/chartist.min.css";
 @import "../assets/css/lib/font-awesome.min.css";
