@@ -442,171 +442,19 @@
                     </div>
                 </div>
         </section>
+    
+    
+    
+    
+    
     </div>
+    <h2>个人统计</h2>
+    <a-divider> 提交记录 </a-divider>
+    <template>
+      <ve-pie :data="chartData"></ve-pie>
+    </template>
 </div>
-<!-- <div class="home">
-    <div class="top-banner">
-        <div align="center">
-            <h1>NKCS-OPEP</h1>
-        </div>
-        <div align="right">首页 | 消息 | 个人中心</div>
-    </div>
-    <div class="banner">
-        <img alt="Vue logo" style="width: 64px; height: 64px" src="../assets/logo.png">
-        <h3 style="margin-top: 1rem">王大毛，欢迎来到NKU-OPEP</h3>
-    </div>
 
-    <div align="center">
-        <h2 align="left">个人信息</h2>
-        <h2 align="right">关注</h2>
-
-        <table border="1" align="left">
-            <tr>
-            <tr>
-                <td>姓名：</td>
-                <td>王大毛</td>
-            </tr>
-            <tr>
-                <td>学号：</td>
-                <td>1231231</td>
-            </tr>
-            <tr>
-                <td>邮箱：</td>
-                <td>kkk@123.com</td>
-            </tr>
-            </tr>
-        </table>
-        <table border="1" align="right">
-            <tr>
-            <tr>
-                <td>老王</td>
-                <td>取消关注</td>
-            </tr>
-            <tr>
-                <td>老张</td>
-                <td>取消关注</td>
-            </tr>
-            <tr>
-                <td>老李</td>
-                <td>取消关注</td>
-            </tr>
-            </tr>
-        </table>
-    </div>
-
-    <h2 align="center">新闻</h2>
-
-    <table border="1" align="center">
-        <tr>
-        <tr>
-            <td>张芳芳：10分钟之前提交了大数求和</td>
-            <td>查看详情</td>
-        </tr>
-        <tr>
-            <td>陈小小：20分钟之前获得了“解题小能手勋章”</td>
-            <td>查看详情</td>
-        </tr>
-        <tr>
-            <td>李大大：1天前成为排行棒第一的“霸主”，快来膜拜他！</td>
-            <td>查看详情</td>
-        </tr>
-        <tr>
-            <td>陈小小：1周前提交了B树实验</td>
-            <td>查看详情</td>
-        </tr>
-        <tr>
-            <td>周胖胖：2周前获得了“提交次数最多”勋章</td>
-            <td>查看详情</td>
-        </tr>
-        </tr>
-    </table>
-    <br/>
-    <h2> 课程 </h2>
-    <a-breadcrumb>
-        <a-breadcrumb-item>正在进行</a-breadcrumb-item>
-        <a-breadcrumb-item><a href="">全部</a></a-breadcrumb-item>
-    </a-breadcrumb>
-
-    <div style="background-color: #ececec; padding: 20px;">
-        <a-row :gutter="16">
-            <a-col :span="8">
-                <a-card hoverable style="width: 300px">
-                    <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-                    <a-card-meta title="C++" description="This is the description">
-                    </a-card-meta>
-                </a-card>
-            </a-col>
-
-            <a-col :span="8">
-                <a-card hoverable style="width: 300px">
-                    <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-                    <a-card-meta title="C++加强版" description="This is the description">
-                    </a-card-meta>
-                </a-card>
-
-            </a-col>
-            <a-col :span="8">
-                <a-card hoverable style="width: 300px">
-                    <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-                    <a-card-meta title="面向对象编程" description="This is the description">
-                    </a-card-meta>
-                </a-card>
-            </a-col>
-        </a-row>
-    </div>
-
-    <div style="background-color: #ececec; padding: 20px;">
-        <a-row :gutter="16">
-            <a-col :span="8">
-                <a-card hoverable style="width: 300px">
-                    <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-                    <a-card-meta title="Java" description="This is the description">
-                    </a-card-meta>
-                </a-card>
-            </a-col>
-
-            <a-col :span="8">
-                <a-card hoverable style="width: 300px">
-                    <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-                    <a-card-meta title="Python" description="This is the description">
-                    </a-card-meta>
-                </a-card>
-            </a-col>
-
-            <a-col :span="8">
-                <a-card hoverable style="width: 300px">
-                    <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-          slot="cover"
-        />
-                    <a-card-meta title="并行" description="This is the description">
-                    </a-card-meta>
-                </a-card>
-            </a-col>
-        </a-row>
-    </div>
-</div> -->
 </template>
 
 <script>
@@ -632,7 +480,17 @@ export default {
     },
     data() {
         return {
-            targetTime: new Date().getTime() + 3900000
+            targetTime: new Date().getTime() + 3900000,
+            chartData: {
+                columns: ['日期', '访问用户'],
+                rows: [
+                    { '日期': 'Accept', '访问用户': 1393 },
+                    { '日期': '其他', '访问用户': 3530 },
+                    { '日期': '答案错误', '访问用户': 2923 },
+                    { '日期': '编译错误', '访问用户': 1723 },
+                    { '日期': '时间或空间超限', '访问用户': 4593 }
+                ]
+        }
         }
     },
     methods: {
