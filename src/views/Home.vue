@@ -1,7 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div class="main">
-=======
 <div class="main">
   <div class="top-banner" style="width:100%;padding:56px 32px 0;">
       <div align="center"><h1>NKCS-OPEP</h1> </div>
@@ -11,7 +8,6 @@
       <img alt="Vue logo" style="width: 120px; height: 120px" src="../assets/logo.png">
       <h1 style="margin-top: 1rem">南开OJ系统</h1>
     </div>
->>>>>>> db70b028c4a4f73b559501578b059b396c486825
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-8 p-r-0 title-margin-right">
