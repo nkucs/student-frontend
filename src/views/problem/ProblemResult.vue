@@ -114,11 +114,11 @@ a {
 
 
 <template>
-<div>
-  <div align="center" style="height: 100px;">
-  <img alt="" style="width: 80px; height: 80px" src="@assets/images/state/accept.png">
-  </div>
-  <a-table :columns="columns" :dataSource="data" @change="onChange" />
+  <div>
+    <div align="center" style="height: 100px;">
+      <img alt="" style="width: 80px; height: 80px" src="@assets/images/state/accept.png">
+    </div>
+    <a-table :columns="columns" :dataSource="data" @change="onChange" />
   </div>
 
 </template>
