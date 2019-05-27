@@ -1,135 +1,135 @@
 (function(jsGrid, $, undefined) {
 
     function Validation(config) {
-        this._init(config);
+        this._init(config)
     }
 
     Validation.prototype = {
 
         _init: function(config) {
-            $.extend(true, this, config);
+            $.extend(true, this, config)
         },
 
         validate: function(args) {
-            var errors = [];
+            var errors = []
 
             $.each(this._normalizeRules(args.rules), function(_, rule) {
                 if(rule.validator(args.value, args.item, rule.param))
-                    return;
+                    return
 
-                var errorMessage = $.isFunction(rule.message) ? rule.message(args.value, args.item) : rule.message;
-                errors.push(errorMessage);
-            });
+                var errorMessage = $.isFunction(rule.message) ? rule.message(args.value, args.item) : rule.message
+                errors.push(errorMessage)
+            })
 
-            return errors;
+            return errors
         },
 
         _normalizeRules: function(rules) {
             if(!$.isArray(rules))
-                rules = [rules];
+                rules = [rules]
 
             return $.map(rules, $.proxy(function(rule) {
-                return this._normalizeRule(rule);
-            }, this));
+                return this._normalizeRule(rule)
+            }, this))
         },
 
         _normalizeRule: function(rule) {
-            if(typeof rule === "string")
-                rule = { validator: rule };
+            if(typeof rule === 'string')
+                rule = { validator: rule }
 
             if($.isFunction(rule))
-                rule = { validator: rule };
+                rule = { validator: rule }
 
             if($.isPlainObject(rule))
-                rule = $.extend({}, rule);
+                rule = $.extend({}, rule)
             else
-                throw Error("wrong validation config specified");
+                throw Error('wrong validation config specified')
 
             if($.isFunction(rule.validator))
-                return rule;
+                return rule
 
-            return this._applyNamedValidator(rule, rule.validator);
+            return this._applyNamedValidator(rule, rule.validator)
         },
 
         _applyNamedValidator: function(rule, validatorName) {
-            delete rule.validator;
+            delete rule.validator
 
-            var validator = validators[validatorName];
+            var validator = validators[validatorName]
             if(!validator)
-                throw Error("unknown validator \"" + validatorName + "\"");
+                throw Error('unknown validator "' + validatorName + '"')
 
             if($.isFunction(validator)) {
-                validator = { validator: validator };
+                validator = { validator: validator }
             }
 
-            return $.extend({}, validator, rule);
+            return $.extend({}, validator, rule)
         }
-    };
+    }
 
-    jsGrid.Validation = Validation;
+    jsGrid.Validation = Validation
 
 
     var validators = {
         required: {
-            message: "Field is required",
+            message: 'Field is required',
             validator: function(value) {
-                return value !== undefined && value !== null && value !== "";
+                return value !== undefined && value !== null && value !== ''
             }
         },
 
         rangeLength: {
-            message: "Field value length is out of the defined range",
+            message: 'Field value length is out of the defined range',
             validator: function(value, _, param) {
-                return value.length >= param[0] && value.length <= param[1];
+                return value.length >= param[0] && value.length <= param[1]
             }
         },
 
         minLength: {
-            message: "Field value is too short",
+            message: 'Field value is too short',
             validator: function(value, _, param) {
-                return value.length >= param;
+                return value.length >= param
             }
         },
 
         maxLength: {
-            message: "Field value is too long",
+            message: 'Field value is too long',
             validator: function(value, _, param) {
-                return value.length <= param;
+                return value.length <= param
             }
         },
 
         pattern: {
-            message: "Field value is not matching the defined pattern",
+            message: 'Field value is not matching the defined pattern',
             validator: function(value, _, param) {
-                if(typeof param === "string") {
-                    param = new RegExp("^(?:" + param + ")$");
+                if(typeof param === 'string') {
+                    param = new RegExp('^(?:' + param + ')$')
                 }
-                return param.test(value);
+                return param.test(value)
             }
         },
 
         range: {
-            message: "Field value is out of the defined range",
+            message: 'Field value is out of the defined range',
             validator: function(value, _, param) {
-                return value >= param[0] && value <= param[1];
+                return value >= param[0] && value <= param[1]
             }
         },
 
         min: {
-            message: "Field value is too small",
+            message: 'Field value is too small',
             validator: function(value, _, param) {
-                return value >= param;
+                return value >= param
             }
         },
 
         max: {
-            message: "Field value is too large",
+            message: 'Field value is too large',
             validator: function(value, _, param) {
-                return value <= param;
+                return value <= param
             }
         }
-    };
+    }
 
-    jsGrid.validators = validators;
+    jsGrid.validators = validators
 
-}(jsGrid, jQuery));
+}(jsGrid, jQuery))

@@ -1,34 +1,34 @@
 (function(jsGrid, $, undefined) {
 
-    var TextField = jsGrid.TextField;
+    var TextField = jsGrid.TextField
 
     function TextAreaField(config) {
-        TextField.call(this, config);
+        TextField.call(this, config)
     }
 
     TextAreaField.prototype = new TextField({
 
         insertTemplate: function() {
             if(!this.inserting)
-                return "";
+                return ''
 
-            return this.insertControl = this._createTextArea();
+            return this.insertControl = this._createTextArea()
         },
 
         editTemplate: function(value) {
             if(!this.editing)
-                return this.itemTemplate.apply(this, arguments);
+                return this.itemTemplate.apply(this, arguments)
 
-            var $result = this.editControl = this._createTextArea();
-            $result.val(value);
-            return $result;
+            var $result = this.editControl = this._createTextArea()
+            $result.val(value)
+            return $result
         },
 
         _createTextArea: function() {
-            return $("<textarea>").prop("readonly", !!this.readOnly);
+            return $('<textarea>').prop('readonly', !!this.readOnly)
         }
-    });
+    })
 
-    jsGrid.fields.textarea = jsGrid.TextAreaField = TextAreaField;
+    jsGrid.fields.textarea = jsGrid.TextAreaField = TextAreaField
 
-}(jsGrid, jQuery));
+}(jsGrid, jQuery))

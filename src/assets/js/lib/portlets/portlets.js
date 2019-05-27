@@ -7,14 +7,14 @@
  * @returns {String}
  */
 Math.randomString = function (n) {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var text = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
     for (var i = 0; i < n; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+        text += possible.charAt(Math.floor(Math.random() * possible.length))
 
-    return text;
-};
+    return text
+}
 
 /**
  * This function is for HTML element style attribute.
@@ -23,37 +23,37 @@ Math.randomString = function (n) {
  * @returns {object}
  */
 String.prototype.getCss = function () {
-    var css = {};
-    var style = this.valueOf().split(';');
+    var css = {}
+    var style = this.valueOf().split(';')
     for (var i = 0; i < style.length; i++) {
-        style[i] = $.trim(style[i]);
+        style[i] = $.trim(style[i])
         if (style[i]) {
-            var s = style[i].split(':');
-            css[$.trim(s[0])] = $.trim(s[1]);
+            var s = style[i].split(':')
+            css[$.trim(s[0])] = $.trim(s[1])
         }
     }
-    return css;
-};
+    return css
+}
 String.prototype.trim = function () {
-    return this.replace(/^\s+|\s+$/g, "");
-};
+    return this.replace(/^\s+|\s+$/g, '')
+}
 
 String.prototype.toCamel = function () {
     return this.replace(/(\-[a-z])/g, function ($1) {
-        return $1.toUpperCase().replace('-', '');
-    });
-};
+        return $1.toUpperCase().replace('-', '')
+    })
+}
 
 String.prototype.toDash = function () {
     return this.replace(/([A-Z])/g, function ($1) {
-        return "-" + $1.toLowerCase();
-    });
-};
+        return '-' + $1.toLowerCase()
+    })
+}
 String.prototype.toUnderscore = function () {
     return this.replace(/([A-Z])/g, function ($1) {
-        return "_" + $1.toLowerCase();
-    });
-};
+        return '_' + $1.toLowerCase()
+    })
+}
 
 /**
  * Checks if number is between two numbers
@@ -66,15 +66,15 @@ String.prototype.toUnderscore = function () {
 Number.prototype.isBetween = function (num1, num2, including) {
     if (!including) {
         if (this.valueOf() < num2 && this.valueOf() > num1) {
-            return true;
+            return true
         }
     } else {
         if (this.valueOf() <= num2 && this.valueOf() >= num1) {
-            return true;
+            return true
         }
     }
-    return false;
-};
+    return false
+}
 
 /**
  * Inserts element at specific index in given elements children
@@ -84,116 +84,116 @@ Number.prototype.isBetween = function (num1, num2, including) {
  * @returns {undefined}
  */
 $.fn.insertAt = function (i, selector) {
-    var object = selector;
+    var object = selector
     if (typeof selector === 'string') {
-        object = $(selector);
+        object = $(selector)
     }
 
-    i = Math.min(object.children().length, i);
+    i = Math.min(object.children().length, i)
     if (i == 0) {
-        object.prepend(this);
-        return this;
+        object.prepend(this)
+        return this
     }
-    var oldIndex = this.data('index');
+    var oldIndex = this.data('index')
 
-    this.attr('data-index', i);
-    object.find(">*:nth-child(" + i + ")").after(this);
+    this.attr('data-index', i)
+    object.find('>*:nth-child(' + i + ')').after(this)
     object.children().each(function (index, el) {
-        var $el = $(el);
+        var $el = $(el)
         if (oldIndex < i && index > oldIndex && index <= i) {
-            $el.attr('data-index', parseInt($el.data('data-index'), 10) - 1);
+            $el.attr('data-index', parseInt($el.data('data-index'), 10) - 1)
         } else if (oldIndex >= i && index > i && index <= oldIndex) {
-            $el.attr('data-index', parseInt($el.attr('data-index'), 10) + 1);
+            $el.attr('data-index', parseInt($el.attr('data-index'), 10) + 1)
         }
-    });
-    return this;
-};
+    })
+    return this
+}
 
 $.fn.disableSelection = function () {
     return this
         .attr('unselectable', 'on')
         .css('user-select', 'none')
-        .on('selectstart', false);
-};
+        .on('selectstart', false)
+}
 
 $.fn.enableSelection = function () {
     return this
         .removeAttr('unselectable')
         .css('user-select', 'initial')
-        .off('selectstart');
-};
+        .off('selectstart')
+}
 
 $(function () {
-    var STORAGE_PREFIX = 'lobipanel_';
+    var STORAGE_PREFIX = 'lobipanel_'
 
     var LobiPanel = function ($el, options) {
-        var me = this;
+        var me = this
 
-        this.hasRandomId = false;
-        this.storage = null;
+        this.hasRandomId = false
+        this.storage = null
 
 
-        this.$el = $el;
+        this.$el = $el
         if (!me.$el.data('inner-id')) {
-            me.hasRandomId = true;
-            me.$el.attr('data-inner-id', Math.randomString(10));
+            me.hasRandomId = true
+            me.$el.attr('data-inner-id', Math.randomString(10))
         }
 
-        this.innerId = me.$el.data('inner-id');
+        this.innerId = me.$el.data('inner-id')
 
-        this.$options = me._processInput(options);
-        me.$heading = this.$el.find('>.panel-heading');
-        me.$body = this.$el.find('>.panel-body');
-        me._init();
-        me.$el.css('display', 'none');
-        me._applyState(me.$options.state, me.$options.stateParams);
-        me.$el.css('display', 'block');
-        me._applyIndex(me.$options.initialIndex);
-    };
+        this.$options = me._processInput(options)
+        me.$heading = this.$el.find('>.panel-heading')
+        me.$body = this.$el.find('>.panel-body')
+        me._init()
+        me.$el.css('display', 'none')
+        me._applyState(me.$options.state, me.$options.stateParams)
+        me.$el.css('display', 'block')
+        me._applyIndex(me.$options.initialIndex)
+    }
 
     LobiPanel.prototype = {
         _processInput: function (options) {
-            var me = this;
+            var me = this
             if (!options) {
-                options = {};
+                options = {}
             }
 
 
             if (!me.hasRandomId) {
-                me.storage = localStorage.getItem(STORAGE_PREFIX + me.innerId);
-                me.storage = JSON.parse(me.storage) || {};
+                me.storage = localStorage.getItem(STORAGE_PREFIX + me.innerId)
+                me.storage = JSON.parse(me.storage) || {}
             }
-            var opts = me._getOptionsFromAttributes();
+            var opts = me._getOptionsFromAttributes()
 //            window.console.log(opts);
-            options = $.extend({}, $.fn.lobiPanel.DEFAULTS, me.storage, options, opts);
-            var objects = ['unpin', 'reload', 'expand', 'minimize', 'close', 'editTitle'];
+            options = $.extend({}, $.fn.lobiPanel.DEFAULTS, me.storage, options, opts)
+            var objects = ['unpin', 'reload', 'expand', 'minimize', 'close', 'editTitle']
             for (var i = 0; i < objects.length; i++) {
-                var prop = objects[i];
+                var prop = objects[i]
                 if (typeof options[prop] === 'object') {
-                    options[prop] = $.extend({}, $.fn.lobiPanel.DEFAULTS[prop], options[prop], opts[prop]);
+                    options[prop] = $.extend({}, $.fn.lobiPanel.DEFAULTS[prop], options[prop], opts[prop])
                 }
             }
-            return options;
+            return options
         },
         _init: function () {
-            var me = this;
-            me.$el.addClass('lobipanel');
+            var me = this
+            me.$el.addClass('lobipanel')
 
-            me.$heading.append(me._generateControls());
+            me.$heading.append(me._generateControls())
 //------------------------------------------------------------------------------
-            var parent = me.$el.parent();
-            me._appendInnerIdToParent(parent, me.innerId);
-            me._enableSorting();
-            me._onToggleIconsBtnClick();
-            me._enableResponsiveness();
-            me._setBodyHeight();
+            var parent = me.$el.parent()
+            me._appendInnerIdToParent(parent, me.innerId)
+            me._enableSorting()
+            me._onToggleIconsBtnClick()
+            me._enableResponsiveness()
+            me._setBodyHeight()
             if (me.$options.autoload) {
-                me.load();
+                me.load()
             }
-            var maxWidth = 'calc(100% - ' + me.$heading.find('.dropdown-menu').children().length * me.$heading.find('.dropdown-menu li').first().outerWidth() + "px)";
-            me.$heading.find('.panel-title').css('max-width', maxWidth);
+            var maxWidth = 'calc(100% - ' + me.$heading.find('.dropdown-menu').children().length * me.$heading.find('.dropdown-menu li').first().outerWidth() + 'px)'
+            me.$heading.find('.panel-title').css('max-width', maxWidth)
 
-            me._triggerEvent("init");
+            me._triggerEvent('init')
         },
         /**
          * Checks if panel is initialized. Panel is initialized if it has
@@ -202,8 +202,8 @@ $(function () {
          * @returns {boolean}
          */
         isPanelInit: function () {
-            var me = this;
-            return me.$el.hasClass('lobipanel') && me.$el.data('inner-id');
+            var me = this
+            return me.$el.hasClass('lobipanel') && me.$el.data('inner-id')
         },
 
         /**
@@ -212,8 +212,8 @@ $(function () {
          * @returns {Boolean}
          */
         isPinned: function () {
-            var me = this;
-            return !me.$el.hasClass('panel-unpin');
+            var me = this
+            return !me.$el.hasClass('panel-unpin')
         },
 
         /**
@@ -222,27 +222,27 @@ $(function () {
          * @returns {LobiPanel}
          */
         pin: function () {
-            var me = this;
+            var me = this
 
             //disable resize functionality
-            me.disableResize();
-            me.disableDrag();
-            me._enableSorting();
+            me.disableResize()
+            me.disableDrag()
+            me._enableSorting()
             //remove on panel click event (which brings the panel into front)
-            me._offPanelClick();
+            me._offPanelClick()
             //remove panel-unpin class
             me.$el.removeClass('panel-unpin')
                 //save current position, z-index and size to use it for later unpin
                 .attr('old-style', me.$el.attr('style'))
                 .removeAttr('style')
-                .css('position', 'relative');
+                .css('position', 'relative')
             me.$body.css({
                 width: '',
                 height: ''
-            });
-            me._setBodyHeight();
-            me._insertInParent();
-            return me;
+            })
+            me._setBodyHeight()
+            me._insertInParent()
+            return me
         },
 
         /**
@@ -251,54 +251,54 @@ $(function () {
          * @returns {LobiPanel}
          */
         unpin: function () {
-            var me = this;
-            if (me.$el.hasClass("panel-collapsed")) {
-                return me;
+            var me = this
+            if (me.$el.hasClass('panel-collapsed')) {
+                return me
             }
-            me._disableSorting();
+            me._disableSorting()
             if (me.$el.attr('old-style')) {
-                me.$el.attr('style', me.$el.attr('old-style'));
+                me.$el.attr('style', me.$el.attr('old-style'))
             } else {
-                var width = me.$el.width();
-                var height = me.$el.height();
-                var left = Math.max(0, (($(window).width() - me.$el.outerWidth()) / 2));
-                var top = Math.max(0, ($(document).scrollTop() + ($(window).height() - me.$el.outerHeight()) / 2));
+                var width = me.$el.width()
+                var height = me.$el.height()
+                var left = Math.max(0, (($(window).width() - me.$el.outerWidth()) / 2))
+                var top = Math.max(0, ($(document).scrollTop() + ($(window).height() - me.$el.outerHeight()) / 2))
                 me.$el.css({
                     left: left,
                     top: top,
                     width: width,
                     height: height
-                });
+                })
             }
-            var res = me._getMaxZIndex();
-            me.$el.css('z-index', res['z-index'] + 1);
-            me._onPanelClick();
+            var res = me._getMaxZIndex()
+            me.$el.css('z-index', res['z-index'] + 1)
+            me._onPanelClick()
 
-            me.$el.addClass('panel-unpin');
-            $('body').append(me.$el);
+            me.$el.addClass('panel-unpin')
+            $('body').append(me.$el)
 
-            var panelWidth = me._getAvailableWidth(me.$el.width());
-            var panelHeight = me._getAvailableHeight(me.$el.height());
+            var panelWidth = me._getAvailableWidth(me.$el.width())
+            var panelHeight = me._getAvailableHeight(me.$el.height())
             me.$el.css({
                 position: 'absolute',
                 width: panelWidth,
                 height: panelHeight
-            });
+            })
             //we give .panel-body to width and height in order .panel-body to start scroling
-            var bHeight = me._calculateBodyHeight(panelHeight);
-            var bWidth = me._calculateBodyWidth(panelWidth);
+            var bHeight = me._calculateBodyHeight(panelHeight)
+            var bWidth = me._calculateBodyWidth(panelWidth)
             me.$body.css({
                 width: bWidth,
                 height: bHeight
-            });
+            })
 
             if (me.$options.draggable) {
-                me.enableDrag();
+                me.enableDrag()
             }
             if (me.$options.resize !== 'none') {
-                me.enableResize();
+                me.enableResize()
             }
-            return me;
+            return me
         },
 
         /**
@@ -307,13 +307,13 @@ $(function () {
          * @returns {LobiPanel}
          */
         togglePin: function () {
-            var me = this;
+            var me = this
             if (this.isPinned()) {
-                this.unpin();
+                this.unpin()
             } else {
-                this.pin();
+                this.pin()
             }
-            return me;
+            return me
         },
 
         /**
@@ -322,8 +322,8 @@ $(function () {
          * @returns {Boolean}
          */
         isMinimized: function () {
-            var me = this;
-            return me.$el.hasClass('panel-minimized') || me.$el.hasClass('panel-collapsed');
+            var me = this
+            return me.$el.hasClass('panel-minimized') || me.$el.hasClass('panel-collapsed')
         },
 
         /**
@@ -333,40 +333,40 @@ $(function () {
          * @returns {LobiPanel}
          */
         minimize: function () {
-            var me = this;
-            me._triggerEvent("beforeMinimize");
+            var me = this
+            me._triggerEvent('beforeMinimize')
             if (me.isMinimized()) {
-                return me;
+                return me
             }
             if (me.isPinned()) {
-                me.$body.slideUp();
-                me.$el.find('.panel-footer').slideUp();
-                me.$el.addClass('panel-collapsed');
-                me._saveState('collapsed');
-                me._changeClassOfControl(me.$heading.find('[data-func="minimize"]'));
+                me.$body.slideUp()
+                me.$el.find('.panel-footer').slideUp()
+                me.$el.addClass('panel-collapsed')
+                me._saveState('collapsed')
+                me._changeClassOfControl(me.$heading.find('[data-func="minimize"]'))
             } else {
-                me.disableTooltips();
+                me.disableTooltips()
                 //get footer where we need to put panel
-                var footer = me._getFooterForMinimizedPanels();
+                var footer = me._getFooterForMinimizedPanels()
                 //find other panels which are already inside footer
-                var children = footer.find('>*');
-                var left, top;
+                var children = footer.find('>*')
+                var left, top
                 //get top coordinate of footer
-                top = footer.offset().top;
+                top = footer.offset().top
                 //if there are no other panels inside footer, this panel will be first
                 //and its left coordinate will be footer's left coordinate
                 if (children.length === 0) {
-                    left = footer.offset().left;
+                    left = footer.offset().left
                 } else {
                     //if there exist panels inside footer, then this panel's left
                     //coordinate will be last panel's (in footer) right coordinate
-                    var ch = $(children[children.length - 1]);
-                    left = ch.offset().left + ch.width();
+                    var ch = $(children[children.length - 1])
+                    left = ch.offset().left + ch.width()
                 }
                 //if panel was not expanded and it was jus unpin we need to save
                 //panel's style
                 if (!me.$el.hasClass('panel-expanded')) {
-                    me.$el.attr('old-style', me.$el.attr('style'));
+                    me.$el.attr('old-style', me.$el.attr('style'))
                 }
                 me.$el.animate({
                     left: left,
@@ -377,29 +377,29 @@ $(function () {
                     //if panel was expanded on full screen before we minimize it
                     //after minimization we remove 'panel-expanded' class and we change icon
                     if (me.$el.hasClass('panel-expanded')) {
-                        me.$el.removeClass('panel-expanded');
+                        me.$el.removeClass('panel-expanded')
                         me.$el.find('.panel-heading [data-func=expand] .' + LobiPanel.PRIVATE_OPTIONS.iconClass)
                             .removeClass(me.$options.expand.icon2)
                             .addClass(me.$options.expand.icon)
-                        ;
+                        
                     }
                     //we add 'panel-minimized' class
-                    me.$el.addClass('panel-minimized');
-                    me.$el.removeAttr('style');
-                    me.disableDrag();
-                    me.disableResize();
-                    me._expandOnHeaderClick();
+                    me.$el.addClass('panel-minimized')
+                    me.$el.removeAttr('style')
+                    me.disableDrag()
+                    me.disableResize()
+                    me._expandOnHeaderClick()
                     //animation was made and panel is positioned in place we it must be
                     //so we append panel into footer
-                    footer.append(me.$el);
-                    $('body').addClass('lobipanel-minimized');
-                    var maxWidth = 'calc(100% - ' + me.$heading.find('.dropdown-menu li>a:visible').length * me.$heading.find('.dropdown-menu li>a:visible').first().outerWidth() + "px)";
-                    me.$heading.find('.panel-title').css('max-width', maxWidth);
-                    me._saveState('minimized');
-                    me._triggerEvent("onMinimize");
-                });
+                    footer.append(me.$el)
+                    $('body').addClass('lobipanel-minimized')
+                    var maxWidth = 'calc(100% - ' + me.$heading.find('.dropdown-menu li>a:visible').length * me.$heading.find('.dropdown-menu li>a:visible').first().outerWidth() + 'px)'
+                    me.$heading.find('.panel-title').css('max-width', maxWidth)
+                    me._saveState('minimized')
+                    me._triggerEvent('onMinimize')
+                })
             }
-            return me;
+            return me
         },
 
         /**
@@ -410,21 +410,21 @@ $(function () {
          * @returns {LobiPanel}
          */
         maximize: function () {
-            var me = this;
-            me._triggerEvent("beforeMaximize");
+            var me = this
+            me._triggerEvent('beforeMaximize')
             if (!me.isMinimized()) {
-                return me;
+                return me
             }
             if (me.isPinned()) {
-                me.$body.slideDown();
-                me.$el.find('.panel-footer').slideDown();
-                me.$el.removeClass('panel-collapsed');
-                me._saveState('pinned');
-                me._changeClassOfControl(me.$heading.find('[data-func="minimize"]'));
+                me.$body.slideDown()
+                me.$el.find('.panel-footer').slideDown()
+                me.$el.removeClass('panel-collapsed')
+                me._saveState('pinned')
+                me._changeClassOfControl(me.$heading.find('[data-func="minimize"]'))
             } else {
-                me.enableTooltips();
+                me.enableTooltips()
                 //we get css style which was saved before minimization
-                var css = me.$el.attr('old-style').getCss();
+                var css = me.$el.attr('old-style').getCss()
                 //we give panel these css properties, coz animation work
                 me.$el.css({
                     position: css.position || 'fixed',
@@ -433,40 +433,40 @@ $(function () {
                     top: me.$el.offset().top,
                     width: me.$el.width(),
                     height: me.$el.height()
-                });
+                })
                 //we append panel into body
-                $('body').append(me.$el);
+                $('body').append(me.$el)
                 //It is not possible to make animations to these propeties and we remove it
-                delete css['position'];
-                delete css['z-index'];
+                delete css['position']
+                delete css['z-index']
 //            css['position'] = 'absolute';
                 //and we animate panel to its saved style
                 me.$el.animate(css, 100, function () {
                     //we remove position property from style, before 'panel-unpin'
                     //class has it to absolute
-                    me.$el.css('position', '');
-                    me.$el.removeClass('panel-minimized');
+                    me.$el.css('position', '')
+                    me.$el.removeClass('panel-minimized')
                     //as panel is already in its place we remove 'old-style' property
-                    me.$el.removeAttr('old-style');
+                    me.$el.removeAttr('old-style')
                     if (me.$options.draggable) {
-                        me.enableDrag();
+                        me.enableDrag()
                     }
-                    me.enableResize();
-                    me._removeExpandOnHeaderClick();
+                    me.enableResize()
+                    me._removeExpandOnHeaderClick()
                     //If there are no other elements inside footer, remove it also
-                    var footer = me._getFooterForMinimizedPanels();
+                    var footer = me._getFooterForMinimizedPanels()
                     if (footer.children().length === 0) {
-                        footer.remove();
+                        footer.remove()
                     }
                     $('body').removeClass('lobipanel-minimized')
-                        .addClass('lobipanel-minimized');
-                    var maxWidth = 'calc(100% - ' + me.$heading.find('.dropdown-menu li').length * me.$heading.find('.dropdown-menu li').first().outerWidth() + "px)";
-                    me.$heading.find('.panel-title').css('max-width', maxWidth);
-                    me._updateUnpinnedState();
-                    me._triggerEvent("onMaximize");
-                });
+                        .addClass('lobipanel-minimized')
+                    var maxWidth = 'calc(100% - ' + me.$heading.find('.dropdown-menu li').length * me.$heading.find('.dropdown-menu li').first().outerWidth() + 'px)'
+                    me.$heading.find('.panel-title').css('max-width', maxWidth)
+                    me._updateUnpinnedState()
+                    me._triggerEvent('onMaximize')
+                })
             }
-            return me;
+            return me
         },
 
         /**
@@ -475,13 +475,13 @@ $(function () {
          * @returns {LobiPanel}
          */
         toggleMinimize: function () {
-            var me = this;
+            var me = this
             if (me.isMinimized()) {
-                me.maximize();
+                me.maximize()
             } else {
-                me.minimize();
+                me.minimize()
             }
-            return me;
+            return me
         },
 
         /**
@@ -490,8 +490,8 @@ $(function () {
          * @returns {Boolean}
          */
         isOnFullScreen: function () {
-            var me = this;
-            return me.$el.hasClass('panel-expanded');
+            var me = this
+            return me.$el.hasClass('panel-expanded')
         },
 
         /**
@@ -500,53 +500,53 @@ $(function () {
          * @returns {LobiPanel}
          */
         toFullScreen: function () {
-            var me = this;
-            me._triggerEvent("beforeFullScreen");
-            if (me.$el.hasClass("panel-collapsed")) {
-                return me;
+            var me = this
+            me._triggerEvent('beforeFullScreen')
+            if (me.$el.hasClass('panel-collapsed')) {
+                return me
             }
-            me._changeClassOfControl(me.$heading.find('[data-func="expand"]'));
-            me.$el.css('position', 'fixed');
-            var res = me._getMaxZIndex();
+            me._changeClassOfControl(me.$heading.find('[data-func="expand"]'))
+            me.$el.css('position', 'fixed')
+            var res = me._getMaxZIndex()
             //if panel is pinned or minimized, its position is not absolute and
             //animation will not work correctly so we change its position and
             //other css properties and we append panel into body
             if (me.isPinned() || me.isMinimized()) {
-                me.enableTooltips();
+                me.enableTooltips()
                 me.$el.css({
-                    "z-index": res["z-index"] + 1,
+                    'z-index': res['z-index'] + 1,
                     left: me.$el.offset().left,
                     top: me.$el.offset().top - $(window).scrollTop(),
                     width: me.$el.width(),
                     height: me.$el.height()
-                });
-                $('body').append(me.$el);
+                })
+                $('body').append(me.$el)
                 //If we are expanding panel to full screen from footer and in footer there are no more elements
                 //remove footer also
-                var footer = me._getFooterForMinimizedPanels();
+                var footer = me._getFooterForMinimizedPanels()
                 if (footer.children().length === 0) {
-                    footer.remove();
+                    footer.remove()
                 }
             } else {
                 me.$body.css({
                     width: '',
                     height: ''
-                });
-                me._setBodyHeight();
+                })
+                me._setBodyHeight()
             }
             //if panel is not minimized we save its style property, because when
             //toSmallSize() method is called panel needs to have style, it had before calling method
             // toFullScreen()
             if (!me.isMinimized()) {
-                me.$el.attr('old-style', me.$el.attr('style'));
-                me.disableResize();
+                me.$el.attr('old-style', me.$el.attr('style'))
+                me.disableResize()
             } else {
-                me.$el.removeClass('panel-minimized');
-                me._removeExpandOnHeaderClick();
+                me.$el.removeClass('panel-minimized')
+                me._removeExpandOnHeaderClick()
             }
             //get toolbar
-            var toolbar = $('.' + LobiPanel.PRIVATE_OPTIONS.toolbarClass);
-            var toolbarHeight = toolbar.outerHeight() || 0;
+            var toolbar = $('.' + LobiPanel.PRIVATE_OPTIONS.toolbarClass)
+            var toolbarHeight = toolbar.outerHeight() || 0
             me.$el.animate({
                 width: $(window).width(),
                 height: $(window).height() - toolbarHeight,
@@ -558,21 +558,21 @@ $(function () {
                     height: '',
                     right: 0,
                     bottom: toolbarHeight
-                });
-                me.$el.addClass('panel-expanded');
-                $('body').css('overflow', 'hidden');
+                })
+                me.$el.addClass('panel-expanded')
+                $('body').css('overflow', 'hidden')
                 me.$body.css({
                     width: me._calculateBodyWidth(me.$el.width()),
                     height: me._calculateBodyHeight(me.$el.height())
-                });
-                me.disableDrag();
+                })
+                me.disableDrag()
                 if (me.isPinned()) {
-                    me._disableSorting();
+                    me._disableSorting()
                 }
-                me._saveState('fullscreen');
-                me._triggerEvent("onFullScreen");
-            });
-            return me;
+                me._saveState('fullscreen')
+                me._triggerEvent('onFullScreen')
+            })
+            return me
         },
 
         /**
@@ -581,10 +581,10 @@ $(function () {
          * @returns {LobiPanel}
          */
         toSmallSize: function () {
-            var me = this;
-            me._triggerEvent("beforeSmallSize");
-            me._changeClassOfControl(me.$heading.find('[data-func="expand"]'));
-            var css = me.$el.attr('old-style').getCss();
+            var me = this
+            me._triggerEvent('beforeSmallSize')
+            me._changeClassOfControl(me.$heading.find('[data-func="expand"]'))
+            var css = me.$el.attr('old-style').getCss()
             //we get css properties from old-style (saved before expanding)
             //and we animate panel to this css properties
             me.$el.animate({
@@ -597,41 +597,41 @@ $(function () {
                 bottom: css.bottom
             }, me.$options.collapseAnimation, function () {
                 //we remove old-style as we do not need it
-                me.$el.removeAttr('old-style');
+                me.$el.removeAttr('old-style')
                 //if panel is pinned we also remove its style attribute and we
                 //append panel in its parent element
                 if (!me.$el.hasClass('panel-unpin')) {
-                    me.$el.removeAttr('style');
-                    me._insertInParent();
-                    me._enableSorting();
+                    me.$el.removeAttr('style')
+                    me._insertInParent()
+                    me._enableSorting()
                 } else {
                     if (me.$options.draggable) {
-                        me.enableDrag();
+                        me.enableDrag()
                     }
-                    me.enableResize();
+                    me.enableResize()
                 }
-                me.$el.removeClass('panel-expanded');
-                $('body').css('overflow', 'auto');
-                var bWidth = '';
-                var bHeight = '';
+                me.$el.removeClass('panel-expanded')
+                $('body').css('overflow', 'auto')
+                var bWidth = ''
+                var bHeight = ''
                 if (!me.isPinned()) {
-                    bWidth = me._calculateBodyWidth(me.getWidth());
-                    bHeight = me._calculateBodyHeight(me.getHeight());
+                    bWidth = me._calculateBodyWidth(me.getWidth())
+                    bHeight = me._calculateBodyHeight(me.getHeight())
                 } else if (me.$options.bodyHeight !== 'auto') {
-                    bHeight = me.$options.bodyHeight;
+                    bHeight = me.$options.bodyHeight
                 }
                 if (me.$options.bodyHeight !== 'auto'){
-                    me._saveState('pinnned');
+                    me._saveState('pinnned')
                 } else {
-                    me._updateUnpinnedState();
+                    me._updateUnpinnedState()
                 }
                 me.$body.css({
                     width: bWidth,
                     height: bHeight
-                });
-                me._triggerEvent("onSmallSize");
-            });
-            return me;
+                })
+                me._triggerEvent('onSmallSize')
+            })
+            return me
         },
 
         /**
@@ -640,13 +640,13 @@ $(function () {
          * @returns {LobiPanel}
          */
         toggleSize: function () {
-            var me = this;
+            var me = this
             if (me.isOnFullScreen()) {
-                me.toSmallSize();
+                me.toSmallSize()
             } else {
-                me.toFullScreen();
+                me.toFullScreen()
             }
-            return me;
+            return me
         },
 
         /**
@@ -657,20 +657,20 @@ $(function () {
          */
         close: function (animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
-            me._triggerEvent('beforeClose');
+                animationDuration = animationDuration  === undefined ? 100 : animationDuration
+            me._triggerEvent('beforeClose')
             me.$el.hide(animationDuration, function () {
                 if (me.isOnFullScreen()) {
-                    $('body').css('overflow', 'auto');
+                    $('body').css('overflow', 'auto')
                 }
-                me._triggerEvent('onClose');
-                me.$el.remove();
-                var footer = me._getFooterForMinimizedPanels();
+                me._triggerEvent('onClose')
+                me.$el.remove()
+                var footer = me._getFooterForMinimizedPanels()
                 if (footer.children().length === 0) {
-                    footer.remove();
+                    footer.remove()
                 }
-            });
-            return me;
+            })
+            return me
         },
 
         /**
@@ -684,17 +684,17 @@ $(function () {
          */
         setPosition: function (left, top, animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
+                animationDuration = animationDuration  === undefined ? 100 : animationDuration
 
             //this method works only if panel is not pinned
             if (me.isPinned()) {
-                return me;
+                return me
             }
             me.$el.animate({
                 'left': left,
                 'top': top
-            }, animationDuration);
-            return me;
+            }, animationDuration)
+            return me
         },
 
         /**
@@ -706,18 +706,18 @@ $(function () {
          */
         setWidth: function (w, animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
+                animationDuration = animationDuration  === undefined ? 100 : animationDuration
             if (me.isPinned()) {
-                return me;
+                return me
             }
-            var bWidth = me._calculateBodyWidth(w);
+            var bWidth = me._calculateBodyWidth(w)
             me.$el.animate({
                 width: w
-            }, animationDuration);
+            }, animationDuration)
             me.$body.animate({
                 width: bWidth
-            }, animationDuration);
-            return me;
+            }, animationDuration)
+            return me
         },
 
         /**
@@ -729,18 +729,18 @@ $(function () {
          */
         setHeight: function (h, animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
+                animationDuration = animationDuration  === undefined ? 100 : animationDuration
             if (me.isPinned()) {
-                return me;
+                return me
             }
-            var bHeight = me._calculateBodyHeight(h);
+            var bHeight = me._calculateBodyHeight(h)
             me.$el.animate({
                 height: h
-            }, animationDuration);
+            }, animationDuration)
             me.$body.animate({
                 height: bHeight
-            }, animationDuration);
-            return me;
+            }, animationDuration)
+            return me
         },
 
         /**
@@ -753,21 +753,21 @@ $(function () {
          */
         setSize: function (w, h, animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
+                animationDuration = animationDuration  === undefined ? 100 : animationDuration
             if (me.isPinned()) {
-                return me;
+                return me
             }
-            var bHeight = me._calculateBodyHeight(h);
-            var bWidth = me._calculateBodyWidth(w);
+            var bHeight = me._calculateBodyHeight(h)
+            var bWidth = me._calculateBodyWidth(w)
             me.$el.animate({
                 height: h,
                 width: w
-            }, animationDuration);
+            }, animationDuration)
             me.$body.animate({
                 height: bHeight,
                 width: bWidth
-            }, animationDuration);
-            return me;
+            }, animationDuration)
+            return me
         },
 
         /**
@@ -777,12 +777,12 @@ $(function () {
          * @returns {Object}
          */
         getPosition: function () {
-            var me = this;
-            var offset = me.$el.offset();
+            var me = this
+            var offset = me.$el.offset()
             return {
                 x: offset.left,
                 y: offset.top
-            };
+            }
         },
 
         /**
@@ -791,8 +791,8 @@ $(function () {
          * @returns {number}
          */
         getWidth: function () {
-            var me = this;
-            return me.$el.width();
+            var me = this
+            return me.$el.width()
         },
 
         /**
@@ -801,8 +801,8 @@ $(function () {
          * @returns {number}
          */
         getHeight: function () {
-            var me = this;
-            return me.$el.height();
+            var me = this
+            return me.$el.height()
         },
 
         /**
@@ -812,15 +812,15 @@ $(function () {
          * @returns {LobiPanel}
          */
         bringToFront: function () {
-            var me = this;
-            me._triggerEvent("beforeToFront");
-            var res = me._getMaxZIndex();
+            var me = this
+            me._triggerEvent('beforeToFront')
+            var res = me._getMaxZIndex()
             if (res['id'] === me.$el.data('inner-id')) {
-                return me;
+                return me
             }
-            me.$el.css('z-index', res['z-index'] + 1);
-            me._triggerEvent("onToFront");
-            return me;
+            me.$el.css('z-index', res['z-index'] + 1)
+            me._triggerEvent('onToFront')
+            return me
         },
 
         /**
@@ -829,19 +829,19 @@ $(function () {
          * @returns {LobiPanel}
          */
         enableDrag: function () {
-            var me = this;
+            var me = this
             me.$el.draggable({
                 handle: '.panel-heading',
                 containment: me.$options.constrain,
                 start: function () {
-                    me.$el.css('position', 'absolute');
+                    me.$el.css('position', 'absolute')
                 },
                 stop: function () {
-                    me.$el.css('position', '');
-                    me._updateUnpinnedState();
+                    me.$el.css('position', '')
+                    me._updateUnpinnedState()
                 }
-            });
-            return me;
+            })
+            return me
         },
 
         /**
@@ -850,11 +850,11 @@ $(function () {
          * @returns {LobiPanel}
          */
         disableDrag: function () {
-            var me = this;
+            var me = this
             if (me.$el.hasClass('ui-draggable')) {
-                me.$el.draggable("destroy");
+                me.$el.draggable('destroy')
             }
-            return me;
+            return me
         },
 
         /**
@@ -863,17 +863,17 @@ $(function () {
          * @returns {LobiPanel}
          */
         enableResize: function () {
-            var me = this;
-            var handles = false;
+            var me = this
+            var handles = false
             if (me.$options.resize === 'vertical') {
-                handles = 'n, s';
+                handles = 'n, s'
             } else if (me.$options.resize === 'horizontal') {
-                handles = 'e, w';
+                handles = 'e, w'
             } else if (me.$options.resize === 'both') {
-                handles = 'all';
+                handles = 'all'
             }
             if (!handles) {
-                return me;
+                return me
             }
             me.$el.resizable({
                 minWidth: me.$options.minWidth,
@@ -882,25 +882,25 @@ $(function () {
                 maxHeight: me.$options.maxHeight,
                 handles: handles,
                 start: function () {
-                    me.$el.disableSelection();
-                    me._triggerEvent('resizeStart');
+                    me.$el.disableSelection()
+                    me._triggerEvent('resizeStart')
                 },
                 stop: function () {
-                    me.$el.enableSelection();
-                    me._triggerEvent('resizeStop');
+                    me.$el.enableSelection()
+                    me._triggerEvent('resizeStop')
                 },
                 resize: function () {
-                    var bHeight = me._calculateBodyHeight(me.$el.height());
-                    var bWidth = me._calculateBodyWidth(me.$el.width());
+                    var bHeight = me._calculateBodyHeight(me.$el.height())
+                    var bWidth = me._calculateBodyWidth(me.$el.width())
                     me.$body.css({
                         width: bWidth,
                         height: bHeight
-                    });
-                    me._updateUnpinnedState();
-                    me._triggerEvent("onResize");
+                    })
+                    me._updateUnpinnedState()
+                    me._triggerEvent('onResize')
                 }
-            });
-            return me;
+            })
+            return me
         },
 
         /**
@@ -909,11 +909,11 @@ $(function () {
          * @returns {LobiPanel}
          */
         disableResize: function () {
-            var me = this;
+            var me = this
             if (me.$el.hasClass('ui-resizable')) {
-                me.$el.resizable("destroy");
+                me.$el.resizable('destroy')
             }
-            return me;
+            return me
         },
 
         /**
@@ -922,12 +922,12 @@ $(function () {
          * @returns {LobiPanel}
          */
         startLoading: function () {
-            var me = this;
-            var spinner = me._generateWindow8Spinner();
-            me.$el.append(spinner);
-            var sp = spinner.find('.spinner');
-            sp.css('margin-top', 50);
-            return me;
+            var me = this
+            var spinner = me._generateWindow8Spinner()
+            me.$el.append(spinner)
+            var sp = spinner.find('.spinner')
+            sp.css('margin-top', 50)
+            return me
         },
 
         /**
@@ -936,9 +936,9 @@ $(function () {
          * @returns {LobiPanel}
          */
         stopLoading: function () {
-            var me = this;
-            me.$el.find('.spinner-wrapper').remove();
-            return me;
+            var me = this
+            me.$el.find('.spinner-wrapper').remove()
+            return me
         },
 
         /**
@@ -949,9 +949,9 @@ $(function () {
          * @returns {LobiPanel}
          */
         setLoadUrl: function (url) {
-            var me = this;
-            me.$options.loadUrl = url;
-            return me;
+            var me = this
+            me.$options.loadUrl = url
+            return me
         },
 
         /**
@@ -967,28 +967,28 @@ $(function () {
          * @returns {LobiPanel}
          */
         load: function (params) {
-            var me = this;
-            params = params || {};
+            var me = this
+            params = params || {}
             if (typeof params === 'string') {
-                params = {url: params};
+                params = {url: params}
             }
             var url = params.url || me.$options.loadUrl,
                 data = params.data || {},
-                callback = params.callback || null;
+                callback = params.callback || null
 
             if (!url) {
-                return me;
+                return me
             }
-            me._triggerEvent("beforeLoad");
-            me.startLoading();
+            me._triggerEvent('beforeLoad')
+            me.startLoading()
             me.$body.load(url, data, function (result, status, xhr) {
                 if (callback && typeof callback === 'function') {
-                    me.callback(result, status, xhr);
+                    me.callback(result, status, xhr)
                 }
-                me.stopLoading();
-                me._triggerEvent("loaded", result, status, xhr);
-            });
-            return me;
+                me.stopLoading()
+                me._triggerEvent('loaded', result, status, xhr)
+            })
+            return me
         },
 
         /**
@@ -997,18 +997,18 @@ $(function () {
          * @returns {jQuery}
          */
         destroy: function () {
-            var me = this;
-            me.disableDrag();
-            me.disableResize();
-            me.$options.sortable = false;
-            me._enableSorting();
-            me._removeInnerIdFromParent(me.innerId);
+            var me = this
+            me.disableDrag()
+            me.disableResize()
+            me.$options.sortable = false
+            me._enableSorting()
+            me._removeInnerIdFromParent(me.innerId)
             me.$el.removeClass('lobipanel')
                 .removeAttr('data-inner-id')
                 .removeAttr('data-index')
-                .removeData('lobiPanel');
-            me.$heading.find('.dropdown').remove();
-            return me.$el;
+                .removeData('lobiPanel')
+            me.$heading.find('.dropdown').remove()
+            return me.$el
         },
 
         /**
@@ -1017,23 +1017,23 @@ $(function () {
          * @returns {LobiPanel}
          */
         startTitleEditing: function () {
-            var me = this;
-            var title = me.$heading.find('.panel-title').text().trim();
-            var input = $('<input value="' + title + '"/>');
+            var me = this
+            var title = me.$heading.find('.panel-title').text().trim()
+            var input = $('<input value="' + title + '"/>')
             input.on('keydown', function (ev) {
                 if (ev.which === 13) {
-                    me.finishTitleEditing();
+                    me.finishTitleEditing()
                 } else if (ev.which === 27) {
-                    me.cancelTitleEditing();
+                    me.cancelTitleEditing()
                 }
-            });
+            })
             me.$heading.find('.panel-title')
                 .data('old-title', title)
-                .html("").append(input);
-            input[0].focus();
-            input[0].select();
-            me._changeClassOfControl(me.$heading.find('[data-func="editTitle"]'));
-            return me;
+                .html('').append(input)
+            input[0].focus()
+            input[0].select()
+            me._changeClassOfControl(me.$heading.find('[data-func="editTitle"]'))
+            return me
         },
 
         /**
@@ -1042,8 +1042,8 @@ $(function () {
          * @returns {Boolean}
          */
         isTitleEditing: function () {
-            var me = this;
-            return me.$heading.find('.panel-title input').length > 0;
+            var me = this
+            return me.$heading.find('.panel-title input').length > 0
         },
 
         /**
@@ -1052,12 +1052,12 @@ $(function () {
          * @returns {LobiPanel}
          */
         cancelTitleEditing: function () {
-            var me = this;
-            var title = me.$heading.find('.panel-title');
+            var me = this
+            var title = me.$heading.find('.panel-title')
             title.html(title.data('old-title'))
-                .find('input').remove();
-            me._changeClassOfControl(me.$heading.find('[data-func="editTitle"]'));
-            return me;
+                .find('input').remove()
+            me._changeClassOfControl(me.$heading.find('[data-func="editTitle"]'))
+            return me
         },
 
         /**
@@ -1067,15 +1067,15 @@ $(function () {
          */
         finishTitleEditing: function () {
             var me = this,
-                input = me.$heading.find('input');
+                input = me.$heading.find('input')
             if (me._triggerEvent('beforeTitleChange', input.val()) === false){
-                return me;
+                return me
             }
-            me.$heading.find('.panel-title').html(input.val());
-            input.remove();
-            me._changeClassOfControl(me.$heading.find('[data-func="editTitle"]'));
-            me._triggerEvent('onTitleChange', input.val());
-            return me;
+            me.$heading.find('.panel-title').html(input.val())
+            input.remove()
+            me._changeClassOfControl(me.$heading.find('[data-func="editTitle"]'))
+            me._triggerEvent('onTitleChange', input.val())
+            return me
         },
 
         /**
@@ -1084,25 +1084,25 @@ $(function () {
          * @returns {LobiPanel}
          */
         enableTooltips: function () {
-            var me = this;
+            var me = this
             if ($(window).width() < 768) {
-                return me;
+                return me
             }
-            var controls = me.$heading.find('.dropdown-menu>li>a');
+            var controls = me.$heading.find('.dropdown-menu>li>a')
             controls.each(function (index, el) {
-                var $el = $(el);
+                var $el = $(el)
                 $el.attr('data-toggle', 'tooltip')
                     .attr('data-title', $el.data('tooltip'))
                     .attr('data-placement', 'bottom')
-                ;
-            });
+                
+            })
             controls.each(function (ind, el) {
                 $(el).tooltip({
                     container: 'body',
                     template: '<div class="tooltip lobipanel-tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
-                });
-            });
-            return me;
+                })
+            })
+            return me
         },
 
         /**
@@ -1111,338 +1111,338 @@ $(function () {
          * @returns {LobiPanel}
          */
         disableTooltips: function () {
-            var me = this;
-            var $links = me.$heading.find('.dropdown-menu>li>a');
+            var me = this
+            var $links = me.$heading.find('.dropdown-menu>li>a')
             $links.each(function(ind, el){
-                var bsTooltip = $(el).data('bs.tooltip');
+                var bsTooltip = $(el).data('bs.tooltip')
                 if (bsTooltip){
-                    $(el).tooltip('destroy');
+                    $(el).tooltip('destroy')
                 }
-            });
+            })
             // me.$heading.find('.dropdown-menu>li>a').tooltip('destroy');
-            return me;
+            return me
         },
 
         _generateControls: function () {
-            var me = this;
-            var dropdown = me._generateDropdown();
-            var menu = dropdown.find('.dropdown-menu');
+            var me = this
+            var dropdown = me._generateDropdown()
+            var menu = dropdown.find('.dropdown-menu')
             if (me.$options.editTitle !== false) {
-                menu.append(me._generateEditTitle());
+                menu.append(me._generateEditTitle())
             }
             if (me.$options.unpin !== false) {
-                menu.append(me._generateUnpin());
+                menu.append(me._generateUnpin())
             }
             if (me.$options.reload !== false) {
-                menu.append(me._generateReload());
+                menu.append(me._generateReload())
             }
             if (me.$options.minimize !== false) {
-                menu.append(me._generateMinimize());
+                menu.append(me._generateMinimize())
             }
             if (me.$options.expand !== false) {
-                menu.append(me._generateExpand());
+                menu.append(me._generateExpand())
             }
             if (me.$options.close !== false) {
-                menu.append(me._generateClose());
+                menu.append(me._generateClose())
             }
             menu.find('>li>a').on('click', function (ev) {
-                ev.preventDefault();
-                ev.stopPropagation();
-            });
-            return dropdown;
+                ev.preventDefault()
+                ev.stopPropagation()
+            })
+            return dropdown
         },
         _generateDropdown: function () {
-            var me = this;
+            var me = this
             return $('<div class="dropdown"></div>')
                 .append('<ul class="dropdown-menu dropdown-menu-right"></ul>')
-                .append('<div class="dropdown-toggle" data-toggle="dropdown"><span class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + me.$options.toggleIcon + '"></div>');
+                .append('<div class="dropdown-toggle" data-toggle="dropdown"><span class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + me.$options.toggleIcon + '"></div>')
         },
         _generateEditTitle: function () {
-            var me = this;
-            var options = me.$options.editTitle;
-            var control = $('<a data-func="editTitle"></a>');
-            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>');
+            var me = this
+            var options = me.$options.editTitle
+            var control = $('<a data-func="editTitle"></a>')
+            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>')
             if (options.tooltip && typeof options.tooltip === 'string') {
-                control.append('<span class="control-title">' + options.tooltip + '</span>');
-                control.attr('data-tooltip', options.tooltip);
+                control.append('<span class="control-title">' + options.tooltip + '</span>')
+                control.attr('data-tooltip', options.tooltip)
             }
 
-            me._attachEditTitleClickListener(control);
-            return $('<li></li>').append(control);
+            me._attachEditTitleClickListener(control)
+            return $('<li></li>').append(control)
         },
         _attachEditTitleClickListener: function (control) {
-            var me = this;
+            var me = this
             control.on('mousedown', function (ev) {
-                ev.stopPropagation();
-            });
+                ev.stopPropagation()
+            })
             control.on('click', function (ev) {
-                ev.stopPropagation();
-                me.hideTooltip(control);
+                ev.stopPropagation()
+                me.hideTooltip(control)
                 if (me.isTitleEditing()) {
-                    me.finishTitleEditing();
+                    me.finishTitleEditing()
                 } else {
-                    me.startTitleEditing();
+                    me.startTitleEditing()
                 }
-            });
+            })
         },
 
         hideTooltip: function($el){
-            var bsTooltip = $el.data('bs.tooltip');
+            var bsTooltip = $el.data('bs.tooltip')
 
             if (bsTooltip){
-                $el.tooltip('hide');
+                $el.tooltip('hide')
             }
-            return this;
+            return this
         },
         _generateUnpin: function () {
-            var me = this;
-            var options = me.$options.unpin;
-            var control = $('<a data-func="unpin"></a>');
-            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>');
+            var me = this
+            var options = me.$options.unpin
+            var control = $('<a data-func="unpin"></a>')
+            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>')
             if (options.tooltip && typeof options.tooltip === 'string') {
-                control.append('<span class="control-title">' + options.tooltip + '</span>');
-                control.attr('data-tooltip', options.tooltip);
+                control.append('<span class="control-title">' + options.tooltip + '</span>')
+                control.attr('data-tooltip', options.tooltip)
             }
-            me._attachUnpinClickListener(control);
-            return $('<li></li>').append(control);
+            me._attachUnpinClickListener(control)
+            return $('<li></li>').append(control)
         },
         _attachUnpinClickListener: function (control) {
-            var me = this;
+            var me = this
             //hide the tooltip
             control.on('mousedown', function (ev) {
-                ev.stopPropagation();
-            });
+                ev.stopPropagation()
+            })
             control.on('click', function () {
-                me.hideTooltip(control);
-                me.doTogglePin();
-            });
+                me.hideTooltip(control)
+                me.doTogglePin()
+            })
         },
         _generateReload: function () {
-            var me = this;
-            var options = me.$options.reload;
-            var control = $('<a data-func="reload"></a>');
-            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>');
+            var me = this
+            var options = me.$options.reload
+            var control = $('<a data-func="reload"></a>')
+            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>')
             if (options.tooltip && typeof options.tooltip === 'string') {
-                control.append('<span class="control-title">' + options.tooltip + '</span>');
-                control.attr('data-tooltip', options.tooltip);
+                control.append('<span class="control-title">' + options.tooltip + '</span>')
+                control.attr('data-tooltip', options.tooltip)
             }
-            me._attachReloadClickListener(control);
-            return $('<li></li>').append(control);
+            me._attachReloadClickListener(control)
+            return $('<li></li>').append(control)
         },
         _attachReloadClickListener: function (control) {
-            var me = this;
+            var me = this
             control.on('mousedown', function (ev) {
-                ev.stopPropagation();
-            });
+                ev.stopPropagation()
+            })
             control.on('click', function () {
-                me.hideTooltip(control);
-                me.load();
-            });
+                me.hideTooltip(control)
+                me.load()
+            })
         },
         _generateMinimize: function () {
-            var me = this;
-            var options = me.$options.minimize;
-            var control = $('<a data-func="minimize"></a>');
-            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>');
+            var me = this
+            var options = me.$options.minimize
+            var control = $('<a data-func="minimize"></a>')
+            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>')
             if (options.tooltip && typeof options.tooltip === 'string') {
-                control.append('<span class="control-title">' + options.tooltip + '</span>');
-                control.attr('data-tooltip', options.tooltip);
+                control.append('<span class="control-title">' + options.tooltip + '</span>')
+                control.attr('data-tooltip', options.tooltip)
             }
-            me._attachMinimizeClickListener(control);
-            return $('<li></li>').append(control);
+            me._attachMinimizeClickListener(control)
+            return $('<li></li>').append(control)
         },
         _attachMinimizeClickListener: function (control) {
-            var me = this;
+            var me = this
             control.on('mousedown', function (ev) {
-                ev.stopPropagation();
-            });
+                ev.stopPropagation()
+            })
             control.on('click', function (ev) {
-                ev.stopPropagation();
-                me.hideTooltip(control);
-                me.toggleMinimize();
-            });
+                ev.stopPropagation()
+                me.hideTooltip(control)
+                me.toggleMinimize()
+            })
         },
         _generateExpand: function () {
-            var me = this;
-            var options = me.$options.expand;
-            var control = $('<a data-func="expand"></a>');
-            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>');
+            var me = this
+            var options = me.$options.expand
+            var control = $('<a data-func="expand"></a>')
+            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>')
             if (options.tooltip && typeof options.tooltip === 'string') {
-                control.append('<span class="control-title">' + options.tooltip + '</span>');
-                control.attr('data-tooltip', options.tooltip);
+                control.append('<span class="control-title">' + options.tooltip + '</span>')
+                control.attr('data-tooltip', options.tooltip)
             }
-            me._attachExpandClickListener(control);
-            return $('<li></li>').append(control);
+            me._attachExpandClickListener(control)
+            return $('<li></li>').append(control)
         },
         _attachExpandClickListener: function (control) {
-            var me = this;
+            var me = this
             control.on('mousedown', function (ev) {
-                ev.stopPropagation();
-            });
+                ev.stopPropagation()
+            })
             control.on('click', function (ev) {
-                ev.stopPropagation();
-                me.hideTooltip(control);
-                me.toggleSize();
-            });
+                ev.stopPropagation()
+                me.hideTooltip(control)
+                me.toggleSize()
+            })
         },
         _generateClose: function () {
-            var me = this;
-            var options = me.$options.close;
-            var control = $('<a data-func="close"></a>');
-            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>');
+            var me = this
+            var options = me.$options.close
+            var control = $('<a data-func="close"></a>')
+            control.append('<i class="' + LobiPanel.PRIVATE_OPTIONS.iconClass + ' ' + options.icon + '"></i>')
             if (options.tooltip && typeof options.tooltip === 'string') {
-                control.append('<span class="control-title">' + options.tooltip + '</span>');
-                control.attr('data-tooltip', options.tooltip);
+                control.append('<span class="control-title">' + options.tooltip + '</span>')
+                control.attr('data-tooltip', options.tooltip)
             }
-            me._attachCloseClickListener(control);
-            return $('<li></li>').append(control);
+            me._attachCloseClickListener(control)
+            return $('<li></li>').append(control)
         },
         _attachCloseClickListener: function (control) {
-            var me = this;
+            var me = this
             control.on('mousedown', function (ev) {
-                ev.stopPropagation();
-            });
+                ev.stopPropagation()
+            })
             control.on('click', function (ev) {
-                ev.stopPropagation();
-                me.hideTooltip(control);
-                me.close();
-            });
+                ev.stopPropagation()
+                me.hideTooltip(control)
+                me.close()
+            })
         },
         _getMaxZIndex: function () {
-            var me = this;
+            var me = this
             var panels = $('.lobipanel.panel-unpin:not(.panel-minimized.panel-expanded)'),
                 style,
                 max,
-                cur;
+                cur
             if (panels.length === 0) {
                 return {
-                    "id": "",
-                    "z-index": LobiPanel.PRIVATE_OPTIONS.initialZIndex
-                };
+                    'id': '',
+                    'z-index': LobiPanel.PRIVATE_OPTIONS.initialZIndex
+                }
             }
-            style = $(panels[0]).attr('style');
-            var id = $(panels[0]).data('inner-id');
+            style = $(panels[0]).attr('style')
+            var id = $(panels[0]).data('inner-id')
             if (!style) {
-                max = LobiPanel.PRIVATE_OPTIONS.initialZIndex;
+                max = LobiPanel.PRIVATE_OPTIONS.initialZIndex
             } else {
-                max = style.getCss()['z-index'];
+                max = style.getCss()['z-index']
             }
             for (var i = 1; i < panels.length; i++) {
-                style = $(panels[i]).attr('style');
+                style = $(panels[i]).attr('style')
                 if (!style) {
-                    cur = 0;
+                    cur = 0
                 } else {
-                    cur = style.getCss()['z-index'];
+                    cur = style.getCss()['z-index']
                 }
                 if (cur > max) {
-                    id = $(panels[i]).data('inner-id');
-                    max = cur;
+                    id = $(panels[i]).data('inner-id')
+                    max = cur
                 }
             }
             return {
-                "id": id,
-                "z-index": parseInt(max, 10)
-            };
+                'id': id,
+                'z-index': parseInt(max, 10)
+            }
         },
         _onPanelClick: function () {
-            var me = this;
+            var me = this
             me.$el.on('mousedown.lobiPanel', function () {
                 if (me.isPinned() ||
                     me.isMinimized() ||
                     me.isOnFullScreen()) {
-                    return false;
+                    return false
                 }
-                me.bringToFront();
-            });
+                me.bringToFront()
+            })
         },
         _offPanelClick: function () {
-            var me = this;
-            me.$el.off('mousedown.lobiPanel');
+            var me = this
+            me.$el.off('mousedown.lobiPanel')
         },
         _changeClassOfControl: function (el) {
-            var me = this;
-            el = $(el);
-            var opts = me.$options[el.attr('data-func')];
+            var me = this
+            el = $(el)
+            var opts = me.$options[el.attr('data-func')]
             if (!opts.icon) {
-                return;
+                return
             }
-            el.find('.' + LobiPanel.PRIVATE_OPTIONS.iconClass).toggleClass(opts.icon).toggleClass(opts.icon2);
+            el.find('.' + LobiPanel.PRIVATE_OPTIONS.iconClass).toggleClass(opts.icon).toggleClass(opts.icon2)
         },
         _getFooterForMinimizedPanels: function () {
-            var me = this;
+            var me = this
             //we grab footer where minimized panels should go
-            var minimizedCtr = $('.' + LobiPanel.PRIVATE_OPTIONS.toolbarClass);
+            var minimizedCtr = $('.' + LobiPanel.PRIVATE_OPTIONS.toolbarClass)
             //if panel does not exist we create it and append to body
             if (minimizedCtr.length === 0) {
-                minimizedCtr = $('<div class="' + LobiPanel.PRIVATE_OPTIONS.toolbarClass + '"></div>');
-                $('body').append(minimizedCtr);
+                minimizedCtr = $('<div class="' + LobiPanel.PRIVATE_OPTIONS.toolbarClass + '"></div>')
+                $('body').append(minimizedCtr)
             }
-            return minimizedCtr;
+            return minimizedCtr
         },
         _expandOnHeaderClick: function () {
-            var me = this;
+            var me = this
             me.$heading.on('click.lobiPanel', function () {
-                me.maximize();
-                me.bringToFront();
-            });
+                me.maximize()
+                me.bringToFront()
+            })
         },
         _removeExpandOnHeaderClick: function () {
-            var me = this;
-            me.$heading.off('click.lobiPanel');
+            var me = this
+            me.$heading.off('click.lobiPanel')
         },
         _getAvailableWidth: function (calcWidth) {
-            var me = this;
+            var me = this
             if (me.$options.maxWidth) {
-                calcWidth = Math.min(calcWidth, me.$options.maxWidth);
+                calcWidth = Math.min(calcWidth, me.$options.maxWidth)
             }
             if (me.$options.minWidth) {
-                calcWidth = Math.max(calcWidth, me.$options.minWidth);
+                calcWidth = Math.max(calcWidth, me.$options.minWidth)
             }
-            return calcWidth;
+            return calcWidth
         },
         _getAvailableHeight: function (calcHeight) {
-            var me = this;
+            var me = this
             if (me.$options.maxHeight) {
-                calcHeight = Math.min(calcHeight, me.$options.maxHeight);
+                calcHeight = Math.min(calcHeight, me.$options.maxHeight)
             }
             if (me.$options.minHeight) {
-                calcHeight = Math.max(calcHeight, me.$options.minHeight);
+                calcHeight = Math.max(calcHeight, me.$options.minHeight)
             }
-            return calcHeight;
+            return calcHeight
         },
         _calculateBodyHeight: function (h) {
-            var me = this;
-            return h - me.$heading.outerHeight() - me.$el.find('.panel-footer').outerHeight();
+            var me = this
+            return h - me.$heading.outerHeight() - me.$el.find('.panel-footer').outerHeight()
         },
         _calculateBodyWidth: function (w) {
-            var me = this;
-            return w - 2;
+            var me = this
+            return w - 2
         },
         _appendInnerIdToParent: function (parent, innerId) {
-            var me = this;
+            var me = this
             //If this is first lobipanel element of its parent
             if (parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr) === undefined) {
-                parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr, innerId);
+                parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr, innerId)
             }
             //This means that parent already has LobiPanel instance
             else {
                 //if parent already has panel innerId than we do nothing
                 if (parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr).indexOf(innerId) > -1) {
-                    return;
+                    return
                 }
-                var innerIds = parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr);
-                parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr, innerIds + " " + innerId);
+                var innerIds = parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr)
+                parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr, innerIds + ' ' + innerId)
             }
-            me.$el.attr('data-index', me.$el.index());
+            me.$el.attr('data-index', me.$el.index())
         },
         _insertInParent: function () {
-            var me = this;
+            var me = this
             //find its parent element
-            var parent = $('[' + LobiPanel.PRIVATE_OPTIONS.parentAttr + '~=' + me.innerId + ']');
-            me.$el.insertAt(me.$el.attr('data-index'), parent);
+            var parent = $('[' + LobiPanel.PRIVATE_OPTIONS.parentAttr + '~=' + me.innerId + ']')
+            me.$el.insertAt(me.$el.attr('data-index'), parent)
         },
         _generateWindow8Spinner: function () {
-            var me = this;
+            var me = this
             var template = ['<div class="spinner spinner-windows8">',
                 '<div class="wBall">',
                 '<div class="wInnerBall">',
@@ -1464,20 +1464,20 @@ $(function () {
                 '<div class="wInnerBall">',
                 '</div>',
                 '</div>',
-                '</div>'].join("");
-            return $('<div class="spinner-wrapper">' + template + '</div>');
+                '</div>'].join('')
+            return $('<div class="spinner-wrapper">' + template + '</div>')
         },
         _enableSorting: function () {
-            var me = this;
-            var parent = me.$el.parent();
+            var me = this
+            var parent = me.$el.parent()
             if (parent.hasClass('ui-sortable')) {
-                parent.sortable("destroy");
+                parent.sortable('destroy')
             }
             if (me.$options.sortable) {
-                me.$el.addClass('lobipanel-sortable');
-                parent.addClass('lobipanel-parent-sortable');
+                me.$el.addClass('lobipanel-sortable')
+                parent.addClass('lobipanel-parent-sortable')
             } else {
-                me.$el.removeClass('lobipanel-sortable');
+                me.$el.removeClass('lobipanel-sortable')
             }
             parent.sortable({
                 connectWith: '.lobipanel-parent-sortable',
@@ -1489,214 +1489,214 @@ $(function () {
                 opacity: 0.7,
                 revert: 300,
                 update: function (event, ui) {
-                    var innerId = ui.item.data('inner-id');
-                    me._removeInnerIdFromParent(innerId);
-                    me._appendInnerIdToParent(ui.item.parent(), innerId);
-                    me._updateDataIndices(ui.item);
-                    me._triggerEvent('dragged');
+                    var innerId = ui.item.data('inner-id')
+                    me._removeInnerIdFromParent(innerId)
+                    me._appendInnerIdToParent(ui.item.parent(), innerId)
+                    me._updateDataIndices(ui.item)
+                    me._triggerEvent('dragged')
                 }
-            });
+            })
         },
         _disableSorting: function () {
-            var me = this;
-            var parent = me.$el.parent();
+            var me = this
+            var parent = me.$el.parent()
             if (parent.hasClass('ui-sortable')) {
-                parent.sortable("destroy");
+                parent.sortable('destroy')
             }
         },
         _updateDataIndices: function (panel) {
-            var me = this;
-            var items = panel.parent().children();
+            var me = this
+            var items = panel.parent().children()
             items.each(function (index, el) {
-                $(el).attr('data-index', index);
-                var lobiPanel = $(el).data('lobiPanel');
+                $(el).attr('data-index', index)
+                var lobiPanel = $(el).data('lobiPanel')
                 if (lobiPanel && lobiPanel.$options.stateful && !lobiPanel.hasRandomId){
-                    lobiPanel._saveState('pinned', {index: index});
+                    lobiPanel._saveState('pinned', {index: index})
                 }
-            });
+            })
             // me._saveState('pinned', {index: panel.index()})
-            console.log("Save indices in localstorage");
+            console.log('Save indices in localstorage')
 
         },
         _removeInnerIdFromParent: function (innerId) {
-            var me = this;
-            var parent = $('[' + LobiPanel.PRIVATE_OPTIONS.parentAttr + '~=' + innerId + ']');
-            var innerIds = parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr).replace(innerId, '').trim().replace(/\s{2,}/g, ' ');
-            parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr, innerIds);
+            var me = this
+            var parent = $('[' + LobiPanel.PRIVATE_OPTIONS.parentAttr + '~=' + innerId + ']')
+            var innerIds = parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr).replace(innerId, '').trim().replace(/\s{2,}/g, ' ')
+            parent.attr(LobiPanel.PRIVATE_OPTIONS.parentAttr, innerIds)
         },
         _onToggleIconsBtnClick: function () {
-            var me = this;
+            var me = this
             me.$heading.find('.toggle-controls').on('click.lobiPanel', function () {
-                me.$el.toggleClass("controls-expanded");
-            });
+                me.$el.toggleClass('controls-expanded')
+            })
         },
         _adjustForScreenSize: function () {
-            var me = this;
-            me.disableTooltips();
+            var me = this
+            me.disableTooltips()
             if ($(window).width() > 768 && me.$options.tooltips) {
-                me.enableTooltips();
+                me.enableTooltips()
             }
             if (me.isOnFullScreen()) {
                 me.$body.css({
                     width: me._calculateBodyWidth(me.$el.width()),
                     height: me._calculateBodyHeight(me.$el.height())
-                });
+                })
             }
         },
         _enableResponsiveness: function () {
-            var me = this;
-            me._adjustForScreenSize();
+            var me = this
+            me._adjustForScreenSize()
             $(window).on('resize.lobiPanel', function () {
-                me._adjustForScreenSize();
-            });
+                me._adjustForScreenSize()
+            })
         },
         _setBodyHeight: function () {
-            var me = this;
+            var me = this
             if (me.$options.bodyHeight !== 'auto') {
                 me.$body.css({
                     'height': me.$options.bodyHeight,
                     overflow: 'auto'
-                });
+                })
             }
         },
         _getOptionsFromAttributes: function () {
-            var me = this;
-            var $el = me.$el;
-            var options = {};
+            var me = this
+            var $el = me.$el
+            var options = {}
             for (var key in $.fn.lobiPanel.DEFAULTS) {
-                var k = key.toDash();
-                var val = $el.data(k);
+                var k = key.toDash()
+                var val = $el.data(k)
                 if (val !== undefined) {
                     if (typeof $.fn.lobiPanel.DEFAULTS[key] !== 'object') {
-                        options[key] = val;
+                        options[key] = val
                     } else {
-                        options[key] = eval('(' + val + ')');
+                        options[key] = eval('(' + val + ')')
                     }
                 }
             }
-            return options;
+            return options
         },
         _saveState: function (state, params) {
-            var me = this;
-            console.log("Save state ", state, params);
+            var me = this
+            console.log('Save state ', state, params)
             if (!me.hasRandomId && me.$options.stateful) {
-                me.storage.state = state;
+                me.storage.state = state
                 if (params) {
-                    me.storage.stateParams = params;
+                    me.storage.stateParams = params
                 }
-                me._saveLocalStorage(me.storage);
+                me._saveLocalStorage(me.storage)
             }
         },
         _saveLocalStorage: function (storage) {
-            var me = this;
-            localStorage.setItem(STORAGE_PREFIX + me.innerId, JSON.stringify(storage));
+            var me = this
+            localStorage.setItem(STORAGE_PREFIX + me.innerId, JSON.stringify(storage))
         },
         _applyState: function (state, params) {
-            var me = this;
+            var me = this
             switch (state) {
                 case 'pinned':
                     if (params && params.index !== null && params.index !== undefined) {
-                        me._applyIndex(params.index);
+                        me._applyIndex(params.index)
                     }
-                    break;
+                    break
                 case 'unpinned':
-                    me.unpin();
-                    me.setPosition(params.left, params.top, 0);
-                    me.setSize(params.width, params.height, 0);
-                    break;
+                    me.unpin()
+                    me.setPosition(params.left, params.top, 0)
+                    me.setSize(params.width, params.height, 0)
+                    break
                 case 'minimized':
-                    me.unpin();
-                    me.minimize();
-                    break;
+                    me.unpin()
+                    me.minimize()
+                    break
                 case 'collapsed':
-                    me.minimize();
-                    break;
+                    me.minimize()
+                    break
                 case 'fullscreen':
-                    me.toFullScreen();
-                    break;
+                    me.toFullScreen()
+                    break
                 default:
-                    break;
+                    break
             }
         },
         _applyIndex: function (index) {
-            var me = this;
+            var me = this
             if (index !== null) {
-                me.$el.insertAt(index, me.$el.parent());
+                me.$el.insertAt(index, me.$el.parent())
             }
         },
         _triggerEvent: function (eventType) {
-            var me = this;
-            var args = Array.prototype.slice.call(arguments, 1);
-            args.unshift(me);
+            var me = this
+            var args = Array.prototype.slice.call(arguments, 1)
+            args.unshift(me)
 
-            me.$el.trigger(eventType + '.lobiPanel', args);
+            me.$el.trigger(eventType + '.lobiPanel', args)
             if (me.$options[eventType] && typeof me.$options[eventType] === 'function'){
-                return me.$options[eventType].apply(me, args);
+                return me.$options[eventType].apply(me, args)
             }
 
-            return true;
+            return true
         },
         doPin: function(){
-            var me = this;
-            if (me._triggerEvent("beforePin") !== false){
-                me.pin();
-                me._saveState('pinned');
-                me._triggerEvent("onPin");
+            var me = this
+            if (me._triggerEvent('beforePin') !== false){
+                me.pin()
+                me._saveState('pinned')
+                me._triggerEvent('onPin')
             }
-            return me;
+            return me
         },
         doUnpin: function(){
-            var me = this;
+            var me = this
             if (me._triggerEvent('beforeUnpin') !== false){
-                me.unpin();
-                me._updateUnpinnedState();
-                me._triggerEvent('onUnpin');
+                me.unpin()
+                me._updateUnpinnedState()
+                me._triggerEvent('onUnpin')
             }
-            return me;
+            return me
         },
         doTogglePin: function(){
-            var me = this;
+            var me = this
             if (this.isPinned()) {
-                this.doUnpin();
+                this.doUnpin()
             } else {
-                this.doPin();
+                this.doPin()
             }
-            return me;
+            return me
         },
         _updateUnpinnedState: function(){
-            var me = this;
-            me._saveState('unpinned', me.getAlignment());
+            var me = this
+            me._saveState('unpinned', me.getAlignment())
         },
         getAlignment: function(){
-            var me = this;
+            var me = this
             return {
                 top: me.$el.css('top'),
                 left: me.$el.css('left'),
                 width: me.$el.css('width'),
                 height: me.$el.css('height')
-            };
+            }
         }
-    };
+    }
 
     $.fn.lobiPanel = function (option) {
         var args = arguments,
-            ret = null;
+            ret = null
         this.each(function () {
 
-            var $this = $(this);
-            var data = $this.data('lobiPanel');
-            var options = typeof option === 'object' && option;
+            var $this = $(this)
+            var data = $this.data('lobiPanel')
+            var options = typeof option === 'object' && option
 
             if (!data) {
-                $this.data('lobiPanel', (data = new LobiPanel($this, options)));
+                $this.data('lobiPanel', (data = new LobiPanel($this, options)))
             }
             if (typeof option === 'string') {
-                args = Array.prototype.slice.call(args, 1);
-                ret = data[option].apply(data, args);
+                args = Array.prototype.slice.call(args, 1)
+                ret = data[option].apply(data, args)
             }
-        });
-        return ret;
-    };
+        })
+        return ret
+    }
     LobiPanel.PRIVATE_OPTIONS = {
         //We need to know what is the parent of the panel, that's why we add
         //this attribute to parent element and it contains space seperated inner-ids of all its child lobipanel
@@ -1707,7 +1707,7 @@ $(function () {
         initialZIndex: 10000,
         //This class is attached to every panel-control icon
         iconClass: 'panel-control-icon'
-    };
+    }
     $.fn.lobiPanel.DEFAULTS = {
         //Makes <b>unpinned</b> panel draggable
         //Warning!!! This requires jquery ui draggable widget to be included
@@ -1729,7 +1729,7 @@ $(function () {
         //Maximum height <b>unpin, resizable</b> panel can have.
         maxHeight: 700,
         //The url which will be used to load content. If not provided reload button will do nothing
-        loadUrl: "",
+        loadUrl: '',
         //If loadUrl is provided plugin will load content as soon as plugin is initialized
         autoload: true,
         bodyHeight: 'auto',
@@ -1782,8 +1782,8 @@ $(function () {
          * @param {LobiPanel} The <code>LobiPanel</code> instance
          */
         beforeTitleChange: null
-    };
+    }
 
-    $('.lobipanel').lobiPanel();
-});
+    $('.lobipanel').lobiPanel()
+})
 

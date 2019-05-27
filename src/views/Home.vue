@@ -437,7 +437,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="footer">
-                            <p>Copyright &copy; 2019 NKU <a href="https://github.com/nkucs/student-frontend">Github</a></p> 
+                            <p>Copyright &copy; 2019 NKU <a href="https://github.com/nkucs/student-frontend"> Github</a></p>
                         </div>
                     </div>
                 </div>

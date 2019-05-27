@@ -1,6 +1,6 @@
 
 (function ($) {
-    "use strict";
+    'use strict'
 
 
 
@@ -14,29 +14,29 @@
     [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4],
     [4, 6, 3, 9, 6, 5, 2, 8, 3, , 5, 4],
   ]
-    };
+    }
 
     var options = {
         seriesBarDistance: 10
-    };
+    }
 
     var responsiveOptions = [
   ['screen and (max-width: 640px)', {
             seriesBarDistance: 5,
             axisX: {
                 labelInterpolationFnc: function (value) {
-                    return value[0];
+                    return value[0]
                 }
             }
   }]
-];
+]
 
-    new Chartist.Bar('.ct-bar-chart', data, options, responsiveOptions);
-
-
+    new Chartist.Bar('.ct-bar-chart', data, options, responsiveOptions)
 
 
-})(jQuery);
+
+
+})(jQuery)
 
 
 
@@ -69,7 +69,7 @@ new Chartist.Line('.ct-sm-line-chart', {
   chartPadding: {
     right: 40
   }
-});
+})
 
 // line chart with area
 
@@ -85,7 +85,7 @@ new Chartist.Line('.ct-area-ln-chart', {
     Chartist.plugins.tooltip()
   ],
   showArea: true
-});
+})
 
 // ct-polar-chart
 new Chartist.Line('#ct-polar-chart', {
@@ -118,7 +118,7 @@ new Chartist.Line('#ct-polar-chart', {
     showLabel: false,
     showGrid: true
   }
-});
+})
 
 // ct-animation-chart
 
@@ -131,21 +131,21 @@ var chart = new Chartist.Line('.ct-animation-chart', {
   ]
 }, {
   low: 0
-});
+})
 
 // Let's put a sequence number aside so we can use it in the event callbacks
 var seq = 0,
   delays = 80,
-  durations = 500;
+  durations = 500
 
 // Once the chart is fully created we reset the sequence
 chart.on('created', function() {
-  seq = 0;
-});
+  seq = 0
+})
 
 // On each drawn element by Chartist we use the Chartist.Svg API to trigger SMIL animations
 chart.on('draw', function(data) {
-  seq++;
+  seq++
 
   if(data.type === 'line') {
     // If the drawn element is a line we do a simple opacity fade in. This could also be achieved using CSS3 animations.
@@ -160,7 +160,7 @@ chart.on('draw', function(data) {
         // The value where it should end
         to: 1
       }
-    });
+    })
   } else if(data.type === 'label' && data.axis === 'x') {
     data.element.animate({
       y: {
@@ -171,7 +171,7 @@ chart.on('draw', function(data) {
         // We can specify an easing function from Chartist.Svg.Easing
         easing: 'easeOutQuart'
       }
-    });
+    })
   } else if(data.type === 'label' && data.axis === 'y') {
     data.element.animate({
       x: {
@@ -181,7 +181,7 @@ chart.on('draw', function(data) {
         to: data.x,
         easing: 'easeOutQuart'
       }
-    });
+    })
   } else if(data.type === 'point') {
     data.element.animate({
       x1: {
@@ -205,7 +205,7 @@ chart.on('draw', function(data) {
         to: 1,
         easing: 'easeOutQuart'
       }
-    });
+    })
   } else if(data.type === 'grid') {
     // Using data.axis we get x or y which we can use to construct our animation definition objects
     var pos1Animation = {
@@ -214,7 +214,7 @@ chart.on('draw', function(data) {
       from: data[data.axis.units.pos + '1'] - 30,
       to: data[data.axis.units.pos + '1'],
       easing: 'easeOutQuart'
-    };
+    }
 
     var pos2Animation = {
       begin: seq * delays,
@@ -222,31 +222,31 @@ chart.on('draw', function(data) {
       from: data[data.axis.units.pos + '2'] - 100,
       to: data[data.axis.units.pos + '2'],
       easing: 'easeOutQuart'
-    };
+    }
 
-    var animations = {};
-    animations[data.axis.units.pos + '1'] = pos1Animation;
-    animations[data.axis.units.pos + '2'] = pos2Animation;
+    var animations = {}
+    animations[data.axis.units.pos + '1'] = pos1Animation
+    animations[data.axis.units.pos + '2'] = pos2Animation
     animations['opacity'] = {
       begin: seq * delays,
       dur: durations,
       from: 0,
       to: 1,
       easing: 'easeOutQuart'
-    };
+    }
 
-    data.element.animate(animations);
+    data.element.animate(animations)
   }
-});
+})
 
 // For the sake of the example we update the chart every time it's created with a delay of 10 seconds
 chart.on('created', function() {
   if(window.__exampleAnimateTimeout) {
-    clearTimeout(window.__exampleAnimateTimeout);
-    window.__exampleAnimateTimeout = null;
+    clearTimeout(window.__exampleAnimateTimeout)
+    window.__exampleAnimateTimeout = null
   }
-  window.__exampleAnimateTimeout = setTimeout(chart.update.bind(chart), 12000);
-});
+  window.__exampleAnimateTimeout = setTimeout(chart.update.bind(chart), 12000)
+})
 
 // SVG Path animation graph
 var chart = new Chartist.Line('.ct-svg-chart', {
@@ -261,7 +261,7 @@ var chart = new Chartist.Line('.ct-svg-chart', {
   showArea: true,
   showPoint: false,
   fullWidth: true
-});
+})
 
 chart.on('draw', function(data) {
   if(data.type === 'line' || data.type === 'area') {
@@ -273,9 +273,9 @@ chart.on('draw', function(data) {
         to: data.path.clone().stringify(),
         easing: Chartist.Svg.Easing.easeOutQuint
       }
-    });
+    })
   }
-});
+})
 
 // Bar chart
 
@@ -285,11 +285,11 @@ var data = {
     [5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8],
     [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4]
   ]
-};
+}
 
 var options = {
   seriesBarDistance: 10
-};
+}
 
 var responsiveOptions = [
   ['screen and (max-width: 640px)', {
@@ -297,13 +297,13 @@ var responsiveOptions = [
 
     axisX: {
       labelInterpolationFnc: function (value) {
-        return value[0];
+        return value[0]
       }
     }
   }]
-];
+]
 
-new Chartist.Bar('.ct-bar-chart', data, options, responsiveOptions);
+new Chartist.Bar('.ct-bar-chart', data, options, responsiveOptions)
 
 
 // ct-gauge-chart
@@ -317,7 +317,7 @@ new Chartist.Pie('.ct-gauge-chart', {
   total: 200,
   low:0,
   showLabel: false
-});
+})
 
 // Animated Donute chart
 var chart = new Chartist.Pie('.ct-donute-chart', {
@@ -326,17 +326,17 @@ var chart = new Chartist.Pie('.ct-donute-chart', {
 }, {
   donut: true,
   showLabel: false
-});
+})
 
 chart.on('draw', function(data) {
   if(data.type === 'slice') {
     // Get the total path length in order to use for dash array animation
-    var pathLength = data.element._node.getTotalLength();
+    var pathLength = data.element._node.getTotalLength()
 
     // Set a dasharray that matches the path length as prerequisite to animate dashoffset
     data.element.attr({
       'stroke-dasharray': pathLength + 'px ' + pathLength + 'px'
-    });
+    })
 
     // Create animation definition while also assigning an ID to the animation for later sync usage
     var animationDefinition = {
@@ -349,29 +349,29 @@ chart.on('draw', function(data) {
         // We need to use `fill: 'freeze'` otherwise our animation will fall back to initial (not visible)
         fill: 'freeze'
       }
-    };
+    }
 
     // If this was not the first slice, we need to time the animation so that it uses the end sync event of the previous animation
     if(data.index !== 0) {
-      animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end';
+      animationDefinition['stroke-dashoffset'].begin = 'anim' + (data.index - 1) + '.end'
     }
 
     // We need to set an initial value before the animation starts as we are not in guided mode which would do that for us
     data.element.attr({
       'stroke-dashoffset': -pathLength + 'px'
-    });
+    })
 
     // We can't use guided mode as the animations need to rely on setting begin manually
     // See http://gionkunz.github.io/chartist-js/api-documentation.html#chartistsvg-function-animate
-    data.element.animate(animationDefinition, false);
+    data.element.animate(animationDefinition, false)
   }
-});
+})
 
 // For the sake of the example we update the chart every time it's created with a delay of 8 seconds
 chart.on('created', function() {
   if(window.__anim21278907124) {
-    clearTimeout(window.__anim21278907124);
-    window.__anim21278907124 = null;
+    clearTimeout(window.__anim21278907124)
+    window.__anim21278907124 = null
   }
-  window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000);
-});
+  window.__anim21278907124 = setTimeout(chart.update.bind(chart), 10000)
+})

@@ -1,5 +1,5 @@
 ( function ( $ ) {
-	"use strict";
+	'use strict'
 
 
 
@@ -16,7 +16,7 @@
 		values: sample_data,
 		scaleColors: [ '#1de9b6', '#03a9f5' ],
 		normalizeFunction: 'polynomial'
-	} );
+	} )
 
 	jQuery( '#vmap2' ).vectorMap( {
 		map: 'dz_fr',
@@ -26,7 +26,7 @@
 		borderOpacity: 1,
 		enableZoom: true,
 		showTooltip: true
-	} );
+	} )
 
 	jQuery( '#vmap3' ).vectorMap( {
 		map: 'argentina_en',
@@ -34,11 +34,11 @@
 		borderColor: '#fff',
 		backgroundColor: '#fff',
 		onRegionClick: function ( element, code, region ) {
-			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase()
 
-			alert( message );
+			alert( message )
 		}
-	} );
+	} )
 
 	jQuery( '#vmap4' ).vectorMap( {
 		map: 'brazil_br',
@@ -46,11 +46,11 @@
 		borderColor: '#fff',
 		backgroundColor: '#fff',
 		onRegionClick: function ( element, code, region ) {
-			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase()
 
-			alert( message );
+			alert( message )
 		}
-	} );
+	} )
 
 	jQuery( '#vmap5' ).vectorMap( {
 		map: 'france_fr',
@@ -59,7 +59,7 @@
 		backgroundColor: '#fff',
 		enableZoom: true,
 		showTooltip: true
-	} );
+	} )
 
 	jQuery( '#vmap6' ).vectorMap( {
 		map: 'germany_en',
@@ -67,11 +67,11 @@
 		borderColor: '#fff',
 		backgroundColor: '#fff',
 		onRegionClick: function ( element, code, region ) {
-			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase()
 
-			alert( message );
+			alert( message )
 		}
-	} );
+	} )
 
 	jQuery( '#vmap7' ).vectorMap( {
 		map: 'greece',
@@ -79,20 +79,20 @@
 		borderColor: '#fff',
 		backgroundColor: '#fff',
 		onRegionClick: function ( element, code, region ) {
-			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase()
 
-			alert( message );
+			alert( message )
 		}
-	} );
+	} )
 
 	jQuery( '#vmap8' ).vectorMap( {
 		map: 'iran_ir',
 		onRegionClick: function ( element, code, region ) {
-			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase()
 
-			alert( message );
+			alert( message )
 		}
-	} );
+	} )
 
 	jQuery( '#vmap9' ).vectorMap( {
 		map: 'iraq',
@@ -100,11 +100,11 @@
 		borderColor: '#fff',
 		backgroundColor: '#fff',
 		onRegionClick: function ( element, code, region ) {
-			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase()
 
-			alert( message );
+			alert( message )
 		}
-	} );
+	} )
 
 	jQuery( '#vmap10' ).vectorMap( {
 		map: 'russia_en',
@@ -117,7 +117,7 @@
 		showTooltip: true,
 		scaleColors: [ '#C8EEFF', '#006491' ],
 		normalizeFunction: 'polynomial'
-	} );
+	} )
 
 	jQuery( '#vmap11' ).vectorMap( {
 		map: 'tunisia',
@@ -125,11 +125,11 @@
 		borderColor: '#fff',
 		backgroundColor: '#fff',
 		onRegionClick: function ( element, code, region ) {
-			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
+			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase()
 
-			alert( message );
+			alert( message )
 		}
-	} );
+	} )
 
 	jQuery( '#vmap12' ).vectorMap( {
 		map: 'europe_en',
@@ -138,7 +138,7 @@
 		backgroundColor: '#fff',
 		enableZoom: true,
 		showTooltip: true
-	} );
+	} )
 
 	jQuery( '#vmap13' ).vectorMap( {
 		map: 'usa_en',
@@ -155,9 +155,9 @@
 			or: '#001BFF'
 		},
 		onRegionClick: function ( event, code, region ) {
-			event.preventDefault();
+			event.preventDefault()
 		}
-	} );
+	} )
 
 	jQuery( '#vmap14' ).vectorMap( {
 		map: 'turkey',
@@ -165,26 +165,26 @@
 		borderColor: '#fff',
 		backgroundColor: '#fff',
 		onRegionClick: function ( element, code, region ) {
-			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase();
-			alert( message );
+			var message = 'You clicked "' + region + '" which has the code: ' + code.toUpperCase()
+			alert( message )
 		}
-	} );
+	} )
 
 
 
-} )( jQuery );
+} )( jQuery )
 
 
 
-var map;
+var map
 
 jQuery( document ).ready( function () {
 
 	// Store currentRegion
-	var currentRegion = 'fl';
+	var currentRegion = 'fl'
 
 	// List of Regions we'll let clicks through for
-	var enabledRegions = [ 'mo', 'fl', 'or' ];
+	var enabledRegions = [ 'mo', 'fl', 'or' ]
 
 	map = jQuery( '#vmap15' ).vectorMap( {
 		map: 'usa_en',
@@ -205,19 +205,19 @@ jQuery( document ).ready( function () {
 			// Check if this is an Enabled Region, and not the current selected on
 			if ( enabledRegions.indexOf( code ) === -1 || currentRegion === code ) {
 				// Not an Enabled Region
-				event.preventDefault();
+				event.preventDefault()
 			} else {
 				// Enabled Region. Update Newly Selected Region.
-				currentRegion = code;
+				currentRegion = code
 			}
 		},
 		onRegionSelect: function ( event, code, region ) {
-			console.log( map.selectedRegions );
+			console.log( map.selectedRegions )
 		},
 		onLabelShow: function ( event, label, code ) {
 			if ( enabledRegions.indexOf( code ) === -1 ) {
-				event.preventDefault();
+				event.preventDefault()
 			}
 		}
-	} );
-} );
+	} )
+} )

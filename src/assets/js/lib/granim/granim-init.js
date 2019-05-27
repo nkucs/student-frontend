@@ -11,7 +11,7 @@ var granimInstance = new Granim({
     opacity: [1, 1],
     isPausedWhenNotInView: true,
     states : {
-        "default-state": {
+        'default-state': {
             gradients: [
                 ['#AA076B', '#61045F'],
                 ['#02AAB0', '#00CDAC'],
@@ -19,7 +19,7 @@ var granimInstance = new Granim({
             ]
         }
     }
-});
+})
 
 
 
