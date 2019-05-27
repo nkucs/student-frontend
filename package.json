@@ -20,6 +20,7 @@
     "lodash.pick": "^4.4.0",
     "md5": "^2.2.1",
     "nprogress": "^0.2.0",
+    "reqwest": "^2.0.5",
     "v-charts": "^1.19.0",
     "viser-vue": "^2.3.3",
     "vue": "^2.5.17",

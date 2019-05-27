@@ -15,6 +15,8 @@
               </a-list-item>
             </a-list>
           </a-tab-pane>
+
+
           <a-tab-pane tab="讨论" key="2">
             <a-list
               class="comment-list"
@@ -34,6 +36,8 @@
               </a-list-item>
             </a-list>
           </a-tab-pane>
+
+          
           <a-tab-pane tab="提交记录" key="3">
             <a-table :columns="columns" :dataSource="data" bordered>
               <template slot="name" slot-scope="text">
