@@ -95,10 +95,27 @@ export const asyncRouterMap = [
           name: '课程资料',
           component: () => import('@/views/course/CourseResource'),
           meta: { title: '课程资料', permission: [ 'dashboard' ] }
-        }]
+        },
+        {
+          path: '/course/CourseExam', // todo
+          name: '考试',
+          component: () => import('@/views/exam/CourseExam'),
+          meta: { title: '考试', permission: [ 'dashboard' ] },
+        },{
+          path: '/course/ExamInformation',
+          name: 'course/ExamInformation',
+          component: () => import('@/views/exam/ExamInformation'),
+          meta: { title: '开始考试', permission: [ 'dashboard' ] },
+          hidden: true,
+      },{
+          path: '/course/ExamEnd',
+          name: 'course/ExamEnd',
+          component: () => import('@/views/exam/ExamEnd'),
+          meta: { title: '结束考试', permission: [ 'dashboard' ] },
+          hidden: true,
+      }]
       }
-    ]
-  },
+    ]},
   {
     path: '*', redirect: '/404', hidden: true
   }
