@@ -43,7 +43,7 @@ export default {
 
   methods: {
     checkDetail () {
-      this.$router.push({ path:'/course/ExperimentDetail'  })
+      this.$router.push({ path:'/course/experiment/experimentdetail'  })
     }
   }
 }

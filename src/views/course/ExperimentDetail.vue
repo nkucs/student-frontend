@@ -1,8 +1,10 @@
 <template>
   <div class="detail">
     <div class="title">{{ title }}</div>
-    <div class="separate-line"></div>
-    <div class="description text">{{ description }}</div>
+    <a-tabs class="description" defaultActiveKey="1" @change="callback">
+      <a-tab-pane tab="实验描述" key="1">{{ description }}</a-tab-pane>
+      <a-tab-pane tab="提交记录" key="2" forceRender></a-tab-pane>
+    </a-tabs>
     <div class="separate-line"></div>
     <div class="additional text">
       <div class="additional-title">附加问题：</div>
@@ -27,7 +29,7 @@
           </div>
         </li>
       </ol>
-      <a-button type="primary">提交</a-button>
+      <a-button type="primary" @click="submit">提交</a-button>
     </div>
   </div>
 </template>
@@ -48,6 +50,12 @@ export default {
         {file_name: '1612xxx实验报告.docs', file_size: '567kb', link: '/'},
         {file_name: 'main.cpp', file_size: '23kb', link: '/'}
       ]
+    }
+  },
+
+  methods: {
+    submit () {
+      this.$router.push({ path:'/problem/result'  })
     }
   }
 }
