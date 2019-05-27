@@ -4,10 +4,10 @@
       <div align="center"><h1>NKCS-OPEP</h1> </div>
     </div>
 
-    <div class="banner" style="text-align: center;padding: 50px 0;margin: 15px 0;">
+    <!-- <div class="banner" style="text-align: center;padding: 50px 0;margin: 15px 0;">
       <img alt="Vue logo" style="width: 120px; height: 120px" src="../assets/logo.png">
       <h1 style="margin-top: 1rem">南开OJ系统</h1>
-    </div>
+    </div> -->
 
     <div class="container-fluid">
       <div class="row">
