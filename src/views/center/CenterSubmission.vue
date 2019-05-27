@@ -117,8 +117,8 @@ a {
 </template>
 
 <script>
-import classnames from 'classnames';
-import { ListSize } from 'ant-design-vue/es/list';
+// import classnames from 'classnames'
+// import { ListSize } from 'ant-design-vue/es/list'
 const columns = [{
   title: '题目编号',
   dataIndex: 'id', 
@@ -165,12 +165,12 @@ const columns = [{
   align:'center',
 },
 
-];
+]
 
 const data = [{
   key: '1',
   id: 1001,
-  time: "2019-01-01 23:59:59",
+  time: '2019-01-01 23:59:59',
   accept: 0.2,
   score:20,
   length:936,
@@ -179,10 +179,10 @@ const data = [{
   store:2.5,
   state:'内存超限',
   
-}];
+}]
 
 function onChange(pagination, sorter) {
-  console.log('params', pagination, sorter);
+  console.log('params', pagination, sorter)
 }
 
 
