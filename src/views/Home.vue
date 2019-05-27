@@ -1,5 +1,13 @@
 <template>
-  <div class="main">
+<div class="main">
+  <div class="top-banner" style="width:100%;padding:56px 32px 0;">
+      <div align="center"><h1>NKCS-OPEP</h1> </div>
+      <div align="right" style="font-size:22px;">首页 | 消息 | 个人中心</div>
+    </div>
+    <div class="banner" style="text-align: center;padding: 50px 0;margin: 15px 0;">
+      <img alt="Vue logo" style="width: 120px; height: 120px" src="../assets/logo.png">
+      <h1 style="margin-top: 1rem">南开OJ系统</h1>
+    </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-8 p-r-0 title-margin-right">
@@ -904,27 +912,28 @@ export default {
 </script>
 
 <style scoped>
-.home {
+/* .main {
     width: 900px;
     margin: 0 auto;
     padding: 25px 0;
-}
+} */
 
-.home>.banner {
+.mian>.banner {
     text-align: center;
     padding: 25px 0;
     margin: 25px 0;
 }
 
 .top-banner {
-    width: 960px;
-    height: 70px;
+    width: 100%;
+    height: 150px;
     background-color: #99CCFF;
-    position: fixed;
-    left: 50%;
+    /* position: fixed; */
+    /* padding: 40px 0 0 0; */
+    /* left: 50%; */
 
     top: 0;
-    margin-left: -480px;
+    /* margin-left: -480px; */
 }
 
 @import "../assets/css/lib/calendar2/pignose.calendar.min.css";
