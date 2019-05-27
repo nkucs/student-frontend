@@ -1,76 +1,76 @@
 <template>
-    <div id="components-layout-demo-basic">
-        <a-layout>
-        <a-layout-header>导航栏</a-layout-header>
-        <a-layout>
-            <a-layout-content>
-                <a-card>
-                    <p>新闻</p>
-                </a-card>
-                <a-card>
-                    <p class="title">课程</p><a-divider />
-                    <div style="float:left;"> 
-                        <a href="#">正在进行</a>
-                        <a-divider type="vertical" />
-                        <a href="#">全部</a>
-                    </div>
-                    <div style="background-color: #ececec; margin-top:60px;padding: 50px;">
-                        <a-row :gutter="16">
-                        <a-col :span="6">
-                            <a-card title="Card title" :bordered=false>
-                            <p>card content</p>
-                            </a-card>
-                        </a-col>
-                        <a-col :span="6">
-                            <a-card title="Card title" :bordered=false>
-                            <p>card content</p>
-                            </a-card> 
-                        </a-col>
-                        <a-col :span="6">
-                            <a-card title="Card title" :bordered=false>
-                            <p>card content</p>
-                            </a-card>   
-                        </a-col>
-                        </a-row>
-                        <a-row :gutter="16">
-                        <a-col :span="6">
-                            <a-card title="Card title" :bordered=false>
-                            <p>card content</p>
-                            </a-card>
-                        </a-col>
-                        <a-col :span="6">
-                            <a-card title="Card title" :bordered=false>
-                            <p>card content</p>
-                            </a-card> 
-                        </a-col>
-                        <a-col :span="6">
-                            <a-card title="Card title" :bordered=false>
-                            <p>card content</p>
-                            </a-card>   
-                        </a-col>
-                        </a-row>
-                    </div>
-                </a-card>
-                <a-card>
-                    <a-divider> 提交记录 </a-divider>
-                    <template>
-                    <div style="margin-left:-150px;">
-                    <ve-pie :data="chartData"></ve-pie>
-                    </div>
-                    </template>
-                    <a-divider> 每日提交情况 </a-divider>
-                    <template>
-                    <div style="margin-left:350px; width:600px;">
-                    <ve-line :data="chartData2" :settings="chartSettings"></ve-line>
-                    </div>
-                    </template>
+  <div id="components-layout-demo-basic">
+    <a-layout>
+      <a-layout-header>导航栏</a-layout-header>
+      <a-layout>
+        <a-layout-content>
+          <a-card>
+            <p>新闻</p>
+          </a-card>
+          <a-card>
+            <p class="title">课程</p><a-divider />
+            <div style="float:left;"> 
+              <a href="#">正在进行</a>
+              <a-divider type="vertical" />
+              <a href="#">全部</a>
+            </div>
+            <div style="background-color: #ececec; margin-top:60px;padding: 50px;">
+              <a-row :gutter="16">
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered=false>
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered=false>
+                    <p>card content</p>
+                  </a-card> 
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered=false>
+                    <p>card content</p>
+                  </a-card>   
+                </a-col>
+              </a-row>
+              <a-row :gutter="16">
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered=false>
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered=false>
+                    <p>card content</p>
+                  </a-card> 
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered=false>
+                    <p>card content</p>
+                  </a-card>   
+                </a-col>
+              </a-row>
+            </div>
+          </a-card>
+          <a-card>
+            <a-divider> 提交记录 </a-divider>
+            <template>
+              <div style="margin-left:-150px;">
+                <ve-pie :data="chartData"></ve-pie>
+              </div>
+            </template>
+            <a-divider> 每日提交情况 </a-divider>
+            <template>
+              <div style="margin-left:350px; width:600px;">
+                <ve-line :data="chartData2" :settings="chartSettings"></ve-line>
+              </div>
+            </template>
 
-                </a-card>
-            </a-layout-content>
-            <a-layout-sider>个人信息的侧边栏</a-layout-sider>
-        </a-layout>
-        </a-layout>
-    </div>
+          </a-card>
+        </a-layout-content>
+        <a-layout-sider>个人信息的侧边栏</a-layout-sider>
+      </a-layout>
+    </a-layout>
+  </div>
 </template>
 
 <style scoped>
