@@ -1,41 +1,41 @@
 (function(jsGrid, $, undefined) {
 
-    var TextField = jsGrid.TextField;
+    var TextField = jsGrid.TextField
 
     function NumberField(config) {
-        TextField.call(this, config);
+        TextField.call(this, config)
     }
 
     NumberField.prototype = new TextField({
 
-        sorter: "number",
-        align: "right",
+        sorter: 'number',
+        align: 'right',
 		readOnly: false,
 
         filterValue: function() {
             return this.filterControl.val()
                 ? parseInt(this.filterControl.val() || 0, 10)
-                : undefined;
+                : undefined
         },
 
         insertValue: function() {
             return this.insertControl.val()
                 ? parseInt(this.insertControl.val() || 0, 10)
-                : undefined;
+                : undefined
         },
 
         editValue: function() {
             return this.editControl.val()
                 ? parseInt(this.editControl.val() || 0, 10)
-                : undefined;
+                : undefined
         },
 
         _createTextBox: function() {
-			return $("<input>").attr("type", "number")
-                .prop("readonly", !!this.readOnly);
+			return $('<input>').attr('type', 'number')
+                .prop('readonly', !!this.readOnly)
         }
-    });
+    })
 
-    jsGrid.fields.number = jsGrid.NumberField = NumberField;
+    jsGrid.fields.number = jsGrid.NumberField = NumberField
 
-}(jsGrid, jQuery));
+}(jsGrid, jQuery))

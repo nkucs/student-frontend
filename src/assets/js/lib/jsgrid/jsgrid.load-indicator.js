@@ -1,82 +1,82 @@
 (function(jsGrid, $, undefined) {
 
     function LoadIndicator(config) {
-        this._init(config);
+        this._init(config)
     }
 
     LoadIndicator.prototype = {
 
-        container: "body",
-        message: "Loading...",
+        container: 'body',
+        message: 'Loading...',
         shading: true,
 
         zIndex: 1000,
-        shaderClass: "jsgrid-load-shader",
-        loadPanelClass: "jsgrid-load-panel",
+        shaderClass: 'jsgrid-load-shader',
+        loadPanelClass: 'jsgrid-load-panel',
 
         _init: function(config) {
-            $.extend(true, this, config);
+            $.extend(true, this, config)
 
-            this._initContainer();
-            this._initShader();
-            this._initLoadPanel();
+            this._initContainer()
+            this._initShader()
+            this._initLoadPanel()
         },
 
         _initContainer: function() {
-            this._container = $(this.container);
+            this._container = $(this.container)
         },
 
         _initShader: function() {
             if(!this.shading)
-                return;
+                return
 
-            this._shader = $("<div>").addClass(this.shaderClass)
+            this._shader = $('<div>').addClass(this.shaderClass)
                 .hide()
                 .css({
-                    position: "absolute",
+                    position: 'absolute',
                     top: 0,
                     right: 0,
                     bottom: 0,
                     left: 0,
                     zIndex: this.zIndex
                 })
-                .appendTo(this._container);
+                .appendTo(this._container)
         },
 
         _initLoadPanel: function() {
-            this._loadPanel = $("<div>").addClass(this.loadPanelClass)
+            this._loadPanel = $('<div>').addClass(this.loadPanelClass)
                 .text(this.message)
                 .hide()
                 .css({
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
                     zIndex: this.zIndex
                 })
-                .appendTo(this._container);
+                .appendTo(this._container)
         },
 
         show: function() {
-            var $loadPanel = this._loadPanel.show();
+            var $loadPanel = this._loadPanel.show()
 
-            var actualWidth = $loadPanel.outerWidth();
-            var actualHeight = $loadPanel.outerHeight();
+            var actualWidth = $loadPanel.outerWidth()
+            var actualHeight = $loadPanel.outerHeight()
 
             $loadPanel.css({
                 marginTop: -actualHeight / 2,
                 marginLeft: -actualWidth / 2
-            });
+            })
 
-            this._shader.show();
+            this._shader.show()
         },
 
         hide: function() {
-            this._loadPanel.hide();
-            this._shader.hide();
+            this._loadPanel.hide()
+            this._shader.hide()
         }
 
-    };
+    }
 
-    jsGrid.LoadIndicator = LoadIndicator;
+    jsGrid.LoadIndicator = LoadIndicator
 
-}(jsGrid, jQuery));
+}(jsGrid, jQuery))

@@ -1,57 +1,57 @@
 ( function ( $ ) {
-	"use strict";
+	'use strict'
 
 	var data = [],
-		totalPoints = 300;
+		totalPoints = 300
 
 	function getRandomData() {
 
 		if ( data.length > 0 )
-			data = data.slice( 1 );
+			data = data.slice( 1 )
 
 		// Do a random walk
 
 		while ( data.length < totalPoints ) {
 
 			var prev = data.length > 0 ? data[ data.length - 1 ] : 50,
-				y = prev + Math.random() * 10 - 5;
+				y = prev + Math.random() * 10 - 5
 
 			if ( y < 0 ) {
-				y = 0;
+				y = 0
 			} else if ( y > 100 ) {
-				y = 100;
+				y = 100
 			}
 
-			data.push( y );
+			data.push( y )
 		}
 
 		// Zip the generated y values with the x values
 
-		var res = [];
+		var res = []
 		for ( var i = 0; i < data.length; ++i ) {
 			res.push( [ i, data[ i ] ] )
 		}
 
-		return res;
+		return res
 	}
 
 	// Set up the control widget
 
-	var updateInterval = 30;
-	$( "#updateInterval" ).val( updateInterval ).change( function () {
-		var v = $( this ).val();
+	var updateInterval = 30
+	$( '#updateInterval' ).val( updateInterval ).change( function () {
+		var v = $( this ).val()
 		if ( v && !isNaN( +v ) ) {
-			updateInterval = +v;
+			updateInterval = +v
 			if ( updateInterval < 1 ) {
-				updateInterval = 1;
+				updateInterval = 1
 			} else if ( updateInterval > 3000 ) {
-				updateInterval = 3000;
+				updateInterval = 3000
 			}
-			$( this ).val( "" + updateInterval );
+			$( this ).val( '' + updateInterval )
 		}
-	} );
+	} )
 
-	var plot = $.plot( "#cpu-load", [ getRandomData() ], {
+	var plot = $.plot( '#cpu-load', [ getRandomData() ], {
 		series: {
 			shadowSize: 0 // Drawing is faster without shadows
 		},
@@ -62,36 +62,36 @@
 		xaxis: {
 			show: false
 		},
-		colors: [ "#007BFF" ],
+		colors: [ '#007BFF' ],
 		grid: {
-			color: "transparent",
+			color: 'transparent',
 			hoverable: true,
 			borderWidth: 0,
 			backgroundColor: 'transparent'
 		},
 		tooltip: true,
 		tooltipOpts: {
-			content: "Y: %y",
+			content: 'Y: %y',
 			defaultTheme: false
 		}
 
 
-	} );
+	} )
 
 	function update() {
 
-		plot.setData( [ getRandomData() ] );
+		plot.setData( [ getRandomData() ] )
 
 		// Since the axes don't change, we don't need to call plot.setupGrid()
 
-		plot.draw();
-		setTimeout( update, updateInterval );
+		plot.draw()
+		setTimeout( update, updateInterval )
 	}
 
-	update();
+	update()
 
 
-} )( jQuery );
+} )( jQuery )
 
 
 /*  Line
@@ -100,21 +100,21 @@
 $( function () {
 
 	var sin = [],
-		cos = [];
+		cos = []
 
 	for ( var i = 0; i < 10; i += 0.1 ) {
-		sin.push( [ i, Math.sin( i ) ] );
-		cos.push( [ i, Math.cos( i ) ] );
+		sin.push( [ i, Math.sin( i ) ] )
+		cos.push( [ i, Math.cos( i ) ] )
 	}
 
-	var plot = $.plot( "#flot-line", [
+	var plot = $.plot( '#flot-line', [
 		{
 			data: sin,
-			label: "sin(x)"
+			label: 'sin(x)'
         },
 		{
 			data: cos,
-			label: "cos(x)"
+			label: 'cos(x)'
         }
 		], {
 		series: {
@@ -129,9 +129,9 @@ $( function () {
 			min: -1.2,
 			max: 1.2
 		},
-		colors: [ "#007BFF", "#DC3545" ],
+		colors: [ '#007BFF', '#DC3545' ],
 		grid: {
-			color: "#fff",
+			color: '#fff',
 			hoverable: true,
 			borderWidth: 0,
 			backgroundColor: 'transparent'
@@ -144,9 +144,9 @@ $( function () {
 				y: 25
 			}
 		}
-	} );
+	} )
 
-} );
+} )
 
 
 /*  Pie
@@ -156,28 +156,28 @@ $( function () {
 
 	var data = [
 		{
-			label: "Primary",
+			label: 'Primary',
 			data: 1,
-			color: "#8fc9fb"
+			color: '#8fc9fb'
         },
 		{
-			label: "Success",
+			label: 'Success',
 			data: 3,
-			color: "#007BFF"
+			color: '#007BFF'
         },
 		{
-			label: "Danger",
+			label: 'Danger',
 			data: 9,
-			color: "#19A9D5"
+			color: '#19A9D5'
         },
 		{
-			label: "Warning",
+			label: 'Warning',
 			data: 20,
-			color: "#DC3545"
+			color: '#DC3545'
         }
-    ];
+    ]
 
-	var plotObj = $.plot( $( "#flot-pie" ), data, {
+	var plotObj = $.plot( $( '#flot-pie' ), data, {
 		series: {
 			pie: {
 				show: true,
@@ -193,16 +193,16 @@ $( function () {
 		},
 		tooltip: {
 			show: true,
-			content: "%p.0%, %s, n=%n", // show percentages, rounding to 2 decimal places
+			content: '%p.0%, %s, n=%n', // show percentages, rounding to 2 decimal places
 			shifts: {
 				x: 20,
 				y: 0
 			},
 			defaultTheme: false
 		}
-	} );
+	} )
 
-} );
+} )
 
 
 /*  Line
@@ -221,9 +221,9 @@ $( function () {
 			}
 		},
 		xaxis: {
-			mode: "time",
-			timeformat: "%m/%d",
-			minTickSize: [ 1, "day" ]
+			mode: 'time',
+			timeformat: '%m/%d',
+			minTickSize: [ 1, 'day' ]
 		},
 		grid: {
 			hoverable: true
@@ -232,19 +232,19 @@ $( function () {
 			show: false
 		},
 		grid: {
-			color: "#fff",
+			color: '#fff',
 			hoverable: true,
 			borderWidth: 0,
 			backgroundColor: 'transparent'
 		},
 		tooltip: {
 			show: true,
-			content: "y: %y"
+			content: 'y: %y'
 		}
-	};
+	}
 	var chart1Data = {
-		label: "chart1",
-		color: "#007BFF",
+		label: 'chart1',
+		color: '#007BFF',
 		data: [
       [ 1354521600000, 6322 ],
       [ 1355040000000, 6360 ],
@@ -253,10 +253,10 @@ $( function () {
       [ 1355487300000, 6388 ],
       [ 1355571900000, 6393 ]
     ]
-	};
-	$.plot( $( "#chart1" ), [ chart1Data ], chart1Options );
+	}
+	$.plot( $( '#chart1' ), [ chart1Data ], chart1Options )
 
-} );
+} )
 
 /*  Bar
 -------------*/
@@ -272,9 +272,9 @@ $( function () {
 			}
 		},
 		xaxis: {
-			mode: "time",
-			timeformat: "%m/%d",
-			minTickSize: [ 1, "day" ]
+			mode: 'time',
+			timeformat: '%m/%d',
+			minTickSize: [ 1, 'day' ]
 		},
 		grid: {
 			hoverable: true
@@ -283,19 +283,19 @@ $( function () {
 			show: false
 		},
 		grid: {
-			color: "#fff",
+			color: '#fff',
 			hoverable: true,
 			borderWidth: 0,
 			backgroundColor: 'transparent'
 		},
 		tooltip: {
 			show: true,
-			content: "x: %x, y: %y"
+			content: 'x: %x, y: %y'
 		}
-	};
+	}
 	var flotBarData = {
-		label: "flotBar",
-		color: "#007BFF",
+		label: 'flotBar',
+		color: '#007BFF',
 		data: [
       [ 1354521600000, 1000 ],
       [ 1355040000000, 2000 ],
@@ -304,14 +304,14 @@ $( function () {
       [ 1355487300000, 5000 ],
       [ 1355571900000, 6000 ]
     ]
-	};
-	$.plot( $( "#flotBar" ), [ flotBarData ], flotBarOptions );
+	}
+	$.plot( $( '#flotBar' ), [ flotBarData ], flotBarOptions )
 
 
-} );
+} )
 
 $( function () {
-	var d1 = [ [ 20, 20 ], [ 42, 60 ], [ 54, 20 ], [ 80, 80 ] ];
+	var d1 = [ [ 20, 20 ], [ 42, 60 ], [ 54, 20 ], [ 80, 80 ] ]
 
 	//flot options
 	var options = {
@@ -319,7 +319,7 @@ $( function () {
 			show: false
 		},
 		series: {
-			label: "Curved Lines Test",
+			label: 'Curved Lines Test',
 			curvedLines: {
 				active: true,
 				nrSplinePoints: 20
@@ -327,14 +327,14 @@ $( function () {
 		},
 
 		grid: {
-			color: "#fff",
+			color: '#fff',
 			hoverable: true,
 			borderWidth: 0,
 			backgroundColor: 'transparent'
 		},
 		tooltip: {
 			show: true,
-			content: "%s | x: %x; y: %y"
+			content: '%s | x: %x; y: %y'
 		},
 		yaxes: [ {
 			min: 10,
@@ -342,16 +342,16 @@ $( function () {
         }, {
 			position: 'right'
         } ]
-	};
+	}
 
 	//plotting
-	$.plot( $( "#flotCurve" ), [
+	$.plot( $( '#flotCurve' ), [
 		{
 			data: d1,
 			lines: {
 				show: true,
 				fill: true,
-				fillColor: "rgba(0,123,255,.15)",
+				fillColor: 'rgba(0,123,255,.15)',
 				lineWidth: 3
 			},
 			//curve the line  (old pre 1.0.0 plotting function)
@@ -359,7 +359,7 @@ $( function () {
 				apply: true,
 				show: true,
 				fill: true,
-				fillColor: "rgba(0,123,255,.15)",
+				fillColor: 'rgba(0,123,255,.15)',
 
 			}
       }, {
@@ -367,8 +367,8 @@ $( function () {
 			points: {
 				show: true,
 				fill: true,
-				fillColor: "rgba(0,123,255,.15)",
+				fillColor: 'rgba(0,123,255,.15)',
 			}
       }
-      ], options );
-} );
+      ], options )
+} )
