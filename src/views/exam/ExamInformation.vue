@@ -98,7 +98,6 @@ export default {
     selectItem (id) {
       console.log(id)
     }
-
   }
 
 }
