@@ -10,14 +10,53 @@
     </div>
 
     <div class="exam-item">
-      <a-table
-        :columns="columns"
-        :dataSource="data"
-        :pagination="{ pageSize: 4 }"
-        onRow="onClickRow"
-      />
-    </div>
 
+      <div class="items">
+        <div class="title">
+          <div
+            style="flex: 1;
+            line-height: 40px;
+            text-align: center;
+            min-width: 100px;">
+            <a-icon type="edit" theme="filled"/>
+          </div>
+          <div style="flex: 2; line-height: 40px; min-width: 300px;">题名</div>
+          <div style="flex: 1; line-height: 40px; min-width: 100px;">分数</div>
+          <div style="flex: 1; line-height: 40px; min-width: 100px;">通过率</div>
+          <div style="flex: 1; line-height: 40px; min-width: 100px;">难度</div>
+        </div>
+        
+
+        <div
+          v-for="data in datas"
+          :key="data.index"
+          :class="data.index%2==0?'even-item':'oven-item'"
+          @click="selectItem(data.id)">
+          <div
+            style="flex: 1;
+            line-height: 40px;
+            text-align: center;
+            min-width: 100px;">
+            {{ data.id }}
+          </div>
+          <div style="flex: 2; line-height: 40px; min-width: 300px;">{{ data.name }}</div>
+          <div style="flex: 1; line-height: 40px; min-width: 100px;">{{ data.score }}</div>
+          <div style="flex: 1; line-height: 40px; min-width: 100px;">{{ data.success }}</div>
+          <div style="flex: 1; line-height: 40px; min-width: 100px;">
+            <a-icon
+              theme="twoTone"
+              twoToneColor="#eb2f96"
+              v-for="s in star.slice(0, data.difficulty)"
+              :key="s" 
+              type="frown"
+              style="margin-right: 5px;"/>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
     <div class="end-exam">
       <a-button class="my-button" @click="examEnd">结束考试</a-button>
     </div>
@@ -26,46 +65,26 @@
 </template>
 
 <script>
-const columns = [{
-  title: '题号',
-  dataIndex: 'index',
-  width: 100,
-},{
-  title: '题名',
-  dataIndex: 'name',
-  width: 200,
-}, {
-  title: '分数',
-  dataIndex: 'score',
-  width: 100,
-}, {
-  title: '通过率',
-  dataIndex: 'success',
-  width: 100,
-},{
-  title: '难度',
-  dataIndex: 'difficulty',
-  width: 100,
-}]
 
-const data = []
-for (let i = 0; i < 100; i++) {
-  data.push({
-    key: i,
+const datas = []
+for (let i = 0; i < 30; i++) {
+  datas.push({
     index: i,
+    id: i,
     name: `第${i}题`,
     score: `${i}`,
     success: `80%`,
-    difficulty: '***'
+    difficulty: i%5+1,
   })
 }
-
+const star = [1, 2, 3, 4, 5]
 
 export default {
   data () {
     return {
-      data,
-      columns,
+      datas,
+      star,
+
     }
   },
 
@@ -73,17 +92,11 @@ export default {
     onSearch (value) {
       console.log(value)
     },
-    //出现问题
-    //onClickRow (record) {
-      //return {
-        //onClick: () => {
-          //console.log("click row")
-          //console.log(record)
-        //}
-      //}
-    //},
     examEnd () {
       this.$router.push({ path:'/course/ExamEnd'  })
+    },
+    selectItem (id) {
+      console.log(id)
     }
 
   }
@@ -104,7 +117,35 @@ export default {
   flex-direction: row;
 }
 .exam-item {
-  flex: 8;
+  flex: 10;
+  margin-top: 10px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+.title {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  background: lightgray;
+  min-width: 700px;
+}
+
+.items {
+  margin-top: 5px;
+  min-width: 700px;
+}
+.even-item {
+  height: 40px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+}
+.oven-item {
+  height: 40px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  background: white;
 }
 .end-exam {
   flex: 2;
