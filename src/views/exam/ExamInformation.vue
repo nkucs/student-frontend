@@ -139,12 +139,18 @@ export default {
   display: flex;
   flex-direction: row;
 }
+div.even-item:hover {
+  background: lightblue;
+}
 .oven-item {
   height: 40px;
   margin-top: 5px;
   display: flex;
   flex-direction: row;
   background: white;
+}
+div.oven-item:hover {
+  background: lightblue;
 }
 .end-exam {
   flex: 2;
