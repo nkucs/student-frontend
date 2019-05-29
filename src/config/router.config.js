@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView } from '@/components/layouts'
+import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView,HomepageLayout } from '@/components/layouts'
 
 export const asyncRouterMap = [
 
@@ -8,7 +8,7 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: '首页' },
-    redirect: '/problem/list',
+    redirect: '/home',
     children: [
       {
         path: '/problem',
@@ -21,6 +21,12 @@ export const asyncRouterMap = [
           name: '题目列表',
           component: () => import('@/views/problem/ProblemList'),
           meta: { title: '题目列表', permission: [ 'dashboard' ] }
+        },
+        {
+          path: '/problem/detail', // todo
+          name: '题目详情',
+          component: () => import('@/views/problem/ProblemDetail'),
+          meta: { title: '题目详情', permission: [ 'dashboard' ] }
         },
         {
           path: '/problem/result', // todo
@@ -161,14 +167,15 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/test',
-    component: PageView,
-    redirect: '/test/home',
+    path: '/',
+    component: HomepageLayout,
+    redirect: '/home',
     children: [
       {
         path: 'home',
-        name: 'TestHome',
-        component: () => import('@/views/Home')
+        name: 'Home',
+        component: () => import('@/views/Home'),
+        meta: { title: '首页' , permission: [ 'dashboard' ]}
       }
     ]
   },
