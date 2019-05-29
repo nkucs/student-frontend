@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
@@ -92,10 +92,10 @@ export default {
     }
   }
 }
-</script>
+</script>-->
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<!--<style scoped>
 h1, h2 {
   font-weight: normal;
 }
@@ -110,4 +110,89 @@ li {
 a {
   color: #42b983;
 }
+</style>-->
+
+
+<template>
+  <div>
+    <div align="center" style="height: 100px;">
+      <img alt="" style="width: 80px; height: 80px" src="@assets/images/state/accept.png">
+    </div>
+    <a-table :columns="columns" :dataSource="data" @change="onChange" />
+  </div>
+
+</template>
+
+<script>
+const columns = [{
+  title: '题目编号',
+  dataIndex: 'id',
+  align:'center',
+}, {
+  title: '提交时间',
+  dataIndex: 'time',
+  align:'center',
+},{
+  title: '状态',
+  dataIndex: 'state',
+  align:'center',
+}, {
+  title: '分数',
+  dataIndex: 'score',
+  align:'center',
+},{
+  title: '运行时间',
+  dataIndex: 'run',
+  align:'center',
+},{
+  title: '使用内存',
+  dataIndex: 'store',
+  align:'center',
+},
+
+]
+
+const data = [{
+  key: '1',
+  id: 1001,
+  time: '2019-01-01 23:59:59',
+  score:20,
+  run:123,
+  store:2.5,
+  state:'内存超限',
+  
+},{
+  key: '2',
+  id: 1001,
+  time: '2019-01-01 23:59:59',
+  score:20,
+  run:123,
+  store:2.5,
+  state:'内存超限',
+  
+}]
+
+function onChange(pagination, sorter) {
+  console.log('params', pagination, sorter)
+}
+
+
+export default {
+  data() {
+    return {
+      data,
+      columns
+    }
+  },
+  methods: {
+    onChange,
+  }
+}
+</script>
+
+<style>
+.ant-table{
+  font-size: 14px;
+}
 </style>
+
