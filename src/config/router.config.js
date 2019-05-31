@@ -99,6 +99,15 @@ export const asyncRouterMap = [
         },
 
         {
+          path: '/course/experiment/experimentlist', // todo
+          name: '实验课列表',
+          hidden: true,
+          component: () => import('@/views/course/CourseExperimentList'),
+          meta: { title: '实验课列表', permission: [ 'dashboard' ] }
+          
+        },
+
+        {
           path: '/course/experiment/experimentdetail', // todo
           name: '查看详情',
           hidden: true,

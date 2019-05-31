@@ -1,7 +1,6 @@
 <template>
   <div id="components-layout-demo-basic">
     <a-layout>
-      <a-layout-header>导航栏</a-layout-header>
       <a-layout>
         <a-layout-content>
           <a-card>
@@ -90,7 +89,15 @@
             </template>
           </a-card>
         </a-layout-content>
-        <a-layout-sider>个人信息的侧边栏</a-layout-sider>
+        <a-layout-sider>
+          <a-card title="个人信息">
+            <p>姓名：王大毛</p>
+            <p>学号:1612940</p>
+            <p>院系：软件学院</p>
+            <p>积分：999</p>
+            <p>邮箱：xxx@mail.nankai.edu.cn</p>
+          </a-card>
+        </a-layout-sider>
       </a-layout>
     </a-layout>
   </div>
@@ -113,12 +120,12 @@
   line-height: 1.5;
 }
 #components-layout-demo-basic .ant-layout-sider {
-  background: #3ba0e9;
+  background: #ffffff;
   color: #fff;
   line-height: 120px;
 }
 #components-layout-demo-basic .ant-layout-content {
-  background: rgba(16, 142, 233, 1);
+  background: rgb(255, 255, 255);
   color: #fff;
   min-height: 120px;
   line-height: 120px;
