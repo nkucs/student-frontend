@@ -67,7 +67,7 @@ module.exports = {
         }
       },
       '/nkcs': {
-        target: 'https://httpbin.org',
+        target: 'http://127.0.0.1:8000/',
         ws: false,
         changeOrigin: true,
         pathRewrite: {
