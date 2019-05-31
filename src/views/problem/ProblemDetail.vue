@@ -15,8 +15,6 @@
               </a-list-item>
             </a-list>
           </a-tab-pane>
-
-
           <a-tab-pane tab="讨论" key="2">
             <a-list
               class="comment-list"
@@ -36,8 +34,6 @@
               </a-list-item>
             </a-list>
           </a-tab-pane>
-
-          
           <a-tab-pane tab="提交记录" key="3">
             <a-table :columns="columns" :dataSource="data" bordered>
               <template slot="name" slot-scope="text">
@@ -46,11 +42,6 @@
             </a-table>
           </a-tab-pane>
         </a-tabs>
-        <div>
-          <a-button>返回</a-button>
-          <a-button>上一题</a-button>
-          <a-button>下一题</a-button>
-        </div>
       </a-col>
       <a-col :span="2">
         <a-divider dash type="vertical" class="line" style="height: 800px;color: black;"/>
@@ -173,7 +164,8 @@ export default {
 			describelist: [],
 			commlist: [],
 			data: [],
-      columns
+      columns: '',
+      problem_id: 0
 		}
 	},
 	mounted () {
