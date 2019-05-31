@@ -1,94 +1,94 @@
 <template>
-<div id="components-layout-demo-basic">
+  <div id="components-layout-demo-basic">
     <a-layout>
-        <a-layout>
-            <a-layout-content>
-                <a-card>
-                    <p>新闻</p>
-                    <a-list class="demo-loadmore-list" :loading="loading" itemLayout="horizontal" :dataSource="data" text-align=left;>
+      <a-layout>
+        <a-layout-content>
+          <a-card>
+            <p>新闻</p>
+            <a-list class="demo-loadmore-list" :loading="loading" itemLayout="horizontal" :dataSource="data" text-align=left;>
 
-                        <a-list-item slot="renderItem" slot-scope="item, index">
-                            <a slot="actions">more</a>
-                            <a-list-item-meta description="Ant Design, a design language for background applications, is refined by Ant UED Team">
-                                <a slot="title" href="https://vue.ant.design/">"{{item.name.last}}"</a>
-                                <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                            </a-list-item-meta>
-                        </a-list-item>
-                    </a-list>
+              <a-list-item slot="renderItem" slot-scope="item, index">
+                <a slot="actions">more</a>
+                <a-list-item-meta description="Ant Design, a design language for background applications, is refined by Ant UED Team">
+                  <a slot="title" href="https://vue.ant.design/">"{{ item.name.last }}"</a>
+                  <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                </a-list-item-meta>
+              </a-list-item>
+            </a-list>
 
-                    <div id="container" style="padding: 24px"></div>
-                </a-card>
-                <a-card>
-                    <p class="title">课程</p>
-                    <a-divider />
-                    <div style="float:left;">
-                        <a href="#">正在进行</a>
-                        <a-divider type="vertical" />
-                        <a href="#">全部</a>
-                    </div>
-                    <div style="background-color: #ececec; margin-top:60px;padding: 50px;">
-                        <a-row :gutter="16">
-                            <a-col :span="6">
-                                <a-card title="Card title" :bordered="false">
-                                    <p>card content</p>
-                                </a-card>
-                            </a-col>
-                            <a-col :span="6">
-                                <a-card title="Card title" :bordered="false">
-                                    <p>card content</p>
-                                </a-card>
-                            </a-col>
-                            <a-col :span="6">
-                                <a-card title="Card title" :bordered="false">
-                                    <p>card content</p>
-                                </a-card>
-                            </a-col>
-                        </a-row>
-                        <a-row :gutter="16">
-                            <a-col :span="6">
-                                <a-card title="Card title" :bordered="false">
-                                    <p>card content</p>
-                                </a-card>
-                            </a-col>
-                            <a-col :span="6">
-                                <a-card title="Card title" :bordered="false">
-                                    <p>card content</p>
-                                </a-card>
-                            </a-col>
-                            <a-col :span="6">
-                                <a-card title="Card title" :bordered="false">
-                                    <p>card content</p>
-                                </a-card>
-                            </a-col>
-                        </a-row>
-                    </div>
-                </a-card>
-                <a-card>
-                    <a-divider>提交记录</a-divider>
-                    <template>
-                        <div style="margin-left:auto; margin-right:auto;width:600px;">
-                            <ve-pie :data="chartData"></ve-pie>
-                        </div>
-                    </template>
-                    <a-divider>每日提交情况</a-divider>
-                    <template>
-                        <div style="margin-left:auto; margin-right:auto;width:600px;">
-                            <ve-line :data="chartData2" :settings="chartSettings"></ve-line>
-                        </div>
-                    </template>
-                </a-card>
-            </a-layout-content>
-            <a-layout-sider>
-                <a-card title="个人信息">
-                    <p>姓名：{{user.name}}</p>
-                    <p>学号:{{user.student_number}}</p>
-                    <p>积分：{{user.rank_score}}</p>
-                    <p>邮箱：{{user.email}}</p>
-                </a-card>
-            </a-layout-sider>
-        </a-layout>
+            <div id="container" style="padding: 24px"></div>
+          </a-card>
+          <a-card>
+            <p class="title">课程</p>
+            <a-divider />
+            <div style="float:left;">
+              <a href="#">正在进行</a>
+              <a-divider type="vertical" />
+              <a href="#">全部</a>
+            </div>
+            <div style="background-color: #ececec; margin-top:60px;padding: 50px;">
+              <a-row :gutter="16">
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+              </a-row>
+              <a-row :gutter="16">
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+              </a-row>
+            </div>
+          </a-card>
+          <a-card>
+            <a-divider>提交记录</a-divider>
+            <template>
+              <div style="margin-left:auto; margin-right:auto;width:600px;">
+                <ve-pie :data="chartData"></ve-pie>
+              </div>
+            </template>
+            <a-divider>每日提交情况</a-divider>
+            <template>
+              <div style="margin-left:auto; margin-right:auto;width:600px;">
+                <ve-line :data="chartData2" :settings="chartSettings"></ve-line>
+              </div>
+            </template>
+          </a-card>
+        </a-layout-content>
+        <a-layout-sider>
+          <a-card title="个人信息">
+            <p>姓名：{{ user.name }}</p>
+            <p>学号:{{ user.student_number }}</p>
+            <p>积分：{{ user.rank_score }}</p>
+            <p>邮箱：{{ user.email }}</p>
+          </a-card>
+        </a-layout-sider>
+      </a-layout>
     </a-layout>
-</div>
+  </div>
 </template>
 
 <style scoped>
@@ -136,7 +136,7 @@
 <script>
 import reqwest from 'reqwest'
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo'
-const user = {
+const user = {// eslint-disable-line no-unused-vars
     name: '',
     id_user_status: 0,
     email: '',
@@ -150,6 +150,7 @@ const user = {
 }
 
 export default {
+
     data() {
         return {
             data: [],
@@ -176,44 +177,6 @@ export default {
                         访问用户: 4593
                     }
                 ]
-            },
-            onLoad() {
-                this.axios({
-                    //从user获取
-                    method: 'get',
-                    url: '/api/user/personal_information',
-                    data: {
-                        id_user: '',
-                    },
-                }).then((response) => {
-                    if (response != null) {
-                        this.user.name = response.name;
-                        this.user.id_user_status = response.id_user_status;
-                        this.user.email = response.email;
-                        this.user.id_gender = response.id_gender;
-                        // this.user = response.;
-                    }
-
-                })
-                this.axios({
-                    //从student获取
-                    method: 'get',
-                    url: '/api/student/personal_information',
-                    data: {
-                        id_student: '',
-                    },
-                }).then((response) => {
-                    if (response != null) {
-                        this.user.student_number = response.student_number;
-                        this.user.id_user = response.id_user;
-                        this.user.rank_score = response.rank_score;
-                        this.user.room = response.room;
-                        this.user.province = response.province;
-                        this.user.class = response.class;
-                    }
-
-                })
-
             },
             chartData2: {
                 columns: ['日期', '提交次数'],
@@ -246,9 +209,48 @@ export default {
                         提交次数: 4593
                     }
                 ]
-            }
+            },
         }
     },
+
+    onLoad() {
+        this.axios({
+            //从user获取
+            method: 'get',
+            url: '/api/user/personal_information',
+            data: {
+                id_user: '',
+            },
+        }).then((response) => {
+            if (response != null) {
+                this.user.name = response.name
+                this.user.id_user_status = response.id_user_status
+                this.user.email = response.email
+                this.user.id_gender = response.id_gender
+                // this.user = response.;
+            }
+
+        })
+        this.axios({
+            //从student获取
+            method: 'get',
+            url: '/api/student/personal_information',
+            data: {
+                id_student: '',
+            },
+        }).then((response) => {
+            if (response != null) {
+                this.user.student_number = response.student_number
+                this.user.id_user = response.id_user
+                this.user.rank_score = response.rank_score
+                this.user.room = response.room
+                this.user.province = response.province
+                this.user.class = response.class
+            }
+
+        })
+    },
+
     mounted() {
         this.getData(res => {
             this.loading = false
@@ -268,7 +270,8 @@ export default {
             })
         },
         get_course() {
-
+            const temp = this.user// eslint-disable-line no-unused-vars
         }
-    },
+    }
+}
 </script>
