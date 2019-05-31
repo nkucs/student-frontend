@@ -22,13 +22,11 @@
 </template>
 
 <script>
-import { axios } from '@/utils/request'
 
 const listData = []
-const courseList = ['数据结构', 'java程序设计', '算法导论']
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 20; i++) {
     listData.push({
-				name: courseList[i],
+				name: `实验 ${i+1}`,
 				date: '发布时间: 2019-10-25 12:00 截止时间: 2019-11-25 12:00',
     })
 }
@@ -45,18 +43,7 @@ export default {
 
   methods: {
     checkDetail () {
-      //this.$router.push({ path:'/course/experiment/experimentlist'  })
-      axios.get('/user', {
-        params: {
-          ID: 'admin'
-        }
-      })
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      this.$router.push({ path:'/course/experiment/experimentdetail'  })
     }
   }
 }
