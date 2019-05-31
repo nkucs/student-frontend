@@ -6,13 +6,13 @@
     <template>
       <div class="card-container">
         <a-tabs type="card">
-          <a-tab-pane tab="系统通知" key="1">
+          <a-tab-pane tab="课程消息" key="1">
             <template>
               <a-list itemLayout="horizontal" :dataSource="data1">
                 <a-list-item slot="renderItem" slot-scope="item, index">
                   <a-list-item-meta>
                     <a slot="title" href="https://vue.ant.design/">
-                      {{ item.title }} 距离它结束还有{{ item.day }}天</a>
+                      {{ coursemessage }}</a>
                     <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
                   </a-list-item-meta>
                 </a-list-item>
@@ -37,7 +37,7 @@
               <a-list itemLayout="horizontal" :dataSource="data3">
                 <a-list-item slot="renderItem" slot-scope="item, index">
                   <a-list-item-meta>
-                    <a slot="title" href="https://vue.ant.design/">{{ item.name }} 将课程 {{ item.title }} 更新了</a>
+                    <a slot="title" href="https://vue.ant.design/">{{ teacherName }} 将课程 {{ courseName }} 更新了</a>
                     <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
                   </a-list-item-meta>
                 </a-list-item>
@@ -51,6 +51,9 @@
 </template>
 
 <script>
+  import { getCourseMessage } from '@/api/message'
+  import { getCourse } from '@/api/message'
+
   const data1 = [
     {
       title: '数据结构',
@@ -108,15 +111,43 @@
   export default {
     data() {
       return {
+        teacherName:null,
+        courseName:null,
+        coursemessage:null,
         data1,
         data2,
         data3
       }
     },
     methods: {
+
       callback(key) {
         console.log(key)
+      },
+      getMessaageCourse:function(id_user){
+        getCourseMessage({
+          id_user: id_user,
+        }).then(response=>{
+          this.teacherName = response['teacher']
+          this.courseName = response['name']
+        })
+          .catch(function(error) {
+            console.log(error)
+          })
+
+      },
+      courseGet:function(id_course) {
+        getCourse({
+          id_course: id_course,
+        }).then(response=>{
+          this.coursemessage = response['message']
+        })
       }
+
+    },
+    mounted() {
+      this. getMessaageCourse(this.$route.query.id)
+      this. courseGet(this.$route.query.id)
     }
   }
 </script>
