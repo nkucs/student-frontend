@@ -120,6 +120,7 @@ import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
 import { getSmsCaptcha } from '@/api/login'
+import { test } from '@/api/example'
 
 export default {
   components: {
@@ -164,6 +165,11 @@ export default {
       // this.form.resetFields()
     },
     handleSubmit (e) {
+      test({date: '20190529'}) // 测试接口调用
+        .then(res => {
+          console.log('ok')
+          console.log(res)
+        })
       e.preventDefault()
       const {
         form: { validateFields },

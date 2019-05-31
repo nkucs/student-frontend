@@ -113,7 +113,7 @@
 }
 #components-layout-demo-basic .ant-layout-header,
 #components-layout-demo-basic .ant-layout-footer {
-  background: #7dbcea;
+  background: #ffffff;
   color: #fff;
 }
 #components-layout-demo-basic .ant-layout-footer {

@@ -33,6 +33,18 @@ export const asyncRouterMap = [
           name: '提交结果',
           component: () => import('@/views/problem/ProblemResult'),
           meta: { title: '提交结果', permission: [ 'dashboard' ] }
+        },
+        {
+          path: '/problem/detail', // todo
+          name: '题目详情',
+          component: () => import('@/views/problem/ProblemDetail'),
+          meta: { title: '题目详情', permission: [ 'dashboard' ] }
+        },
+        {
+          path: '/problem/result', // todo
+          name: '提交结果',
+          component: () => import('@/views/problem/ProblemResult'),
+          meta: { title: '提交结果', permission: [ 'dashboard' ] }
         }]
       },
       {
@@ -95,7 +107,17 @@ export const asyncRouterMap = [
           name: '实验课',
           component: () => import('@/views/course/CourseExperiment'),
           meta: { title: '实验课', permission: [ 'dashboard' ] }
+          
         },
+
+        {
+          path: '/course/experiment/experimentdetail', // todo
+          name: '查看详情',
+          hidden: true,
+          component: () => import('@/views/course/ExperimentDetail'),
+          meta: { title: '查看详情', permission: [ 'dashboard' ], hiddenHeaderContent: 'true' }
+        },
+        
         {
           path: '/course/resource', // todo
           name: '课程资料',
@@ -170,12 +192,6 @@ export const constantRouterMap = [
     ]
   },
 
-  {
-    path: '/course/ExperimentDetail', // todo
-    name: '查看详情',
-    component: () => import('@/views/course/ExperimentDetail'),
-    meta: { title: '查看详情', permission: [ 'dashboard' ] }
-  },
 
   {
     path: '/404',

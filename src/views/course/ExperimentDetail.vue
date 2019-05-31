@@ -16,7 +16,9 @@
       </ul>
       <div class="additional-title">
         <div>附件上传：</div>
-        <input shape="circle" icon="plus" type="file"/>
+        <input
+          type="file"
+          @change='Change'>
       </div>
       <ol class="upload-file">
         <li v-for="file in upload_files" :key="file.file_name" style="list-style-type:none;">
@@ -44,14 +46,34 @@ export default {
         { title: '238.背包问题1', score: 66, link: '/' },
         { title: '239.背包问题2', score: 78, link: '/' }
       ],
-      upload_files: [
-        {file_name: '1612xxx实验报告.docs', file_size: '567kb', link: '/'},
-        {file_name: 'main.cpp', file_size: '23kb', link: '/'}
-      ]
+      upload_files: [],
     }
-  }
+  },
+  methods: {
+    Change (e) {
+      var file = e.target.files[0]
+      var fileName = file.name
+      var fileSize = file.size
+      if(file.size<1000)
+      {
+        fileSize = fileSize.toFixed(2) + 'b'
+      }
+      else if(file.size<1000*1000)
+      {
+        fileSize = (fileSize/1000).toFixed(2) + 'kb'
+      }
+      else{
+        fileSize = (fileSize/1000000).toFixed(2) + 'mb'
+      }
+      var uploadfile = [{file_name:fileName, file_size:fileSize, link:'/'}]
+      this.upload_files= uploadfile
+      console.log(this.upload_files)
+      console.log(file)
+    },
+  },
 }
 </script>
+
 
 <style scoped>
 .detail {

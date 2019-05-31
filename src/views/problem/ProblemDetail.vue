@@ -15,8 +15,6 @@
               </a-list-item>
             </a-list>
           </a-tab-pane>
-
-
           <a-tab-pane tab="讨论" key="2">
             <a-list
               class="comment-list"
@@ -36,8 +34,6 @@
               </a-list-item>
             </a-list>
           </a-tab-pane>
-
-          
           <a-tab-pane tab="提交记录" key="3">
             <a-table :columns="columns" :dataSource="data" bordered>
               <template slot="name" slot-scope="text">
@@ -46,11 +42,6 @@
             </a-table>
           </a-tab-pane>
         </a-tabs>
-        <div>
-          <a-button>返回</a-button>
-          <a-button>上一题</a-button>
-          <a-button>下一题</a-button>
-        </div>
       </a-col>
       <a-col :span="2">
         <a-divider dash type="vertical" class="line" style="height: 800px;color: black;"/>
@@ -133,8 +124,7 @@ const data = [{
   result: 'AC',
 }]
 
-const describelist = [
-	{
+const describelist = [{
 		title: '描述',
 		content: '这是一个简单的问题，给你两个数，把他们加起来，具体看样例。'
 	},
@@ -169,24 +159,49 @@ const describelist = [
 		}]
 export default {
 	data () {
-		// title: 'A+B Problem'
 		return {
 			describelist,
 			commlist,
-			moment,
 			data,
-      columns
+      columns,
+      problem_id: 0
 		}
 	},
 	mounted () {
 		this.fetch()
-	},
+  },
+  onload() {
+    this.axios({
+        method: 'get',
+        url: '/api/student/problem_detail',
+        data: {
+        problem_id: '',
+      },
+      }).then((response) => {
+        var temp = []
+        for(let i = 0;i < response.len(); i++) {
+          temp[i].title = response[i].key
+          temp[i].content = response[i].value
+        }
+        this.describelist = temp
+      })
+  },
 	methods: {
 		handleChange(value) {
 			console.log(`selected ${value}`)
 		},
 		confirm() {
-			console.log('confirm!!')
+      this.axios({
+          method: 'post',
+          url: '/api/student/problem_hand_in',
+          data: {
+          user_id: '',
+          problem_id: '',
+          code: '',
+        },
+        }).then(() => {
+          console.log('success!!')
+        })
 		},
 		handleTableChange (pagination, filters, sorter) {
       console.log(pagination)
