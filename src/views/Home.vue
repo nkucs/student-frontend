@@ -1,6 +1,13 @@
 <template>
   <div id="components-layout-demo-basic">
     <a-layout>
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+      <a-layout-header>导航栏</a-layout-header>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
       <a-layout>
         <a-layout-content>
           <a-card>
@@ -89,6 +96,10 @@
             </template>
           </a-card>
         </a-layout-content>
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
         <a-layout-sider>
           <a-card title="个人信息">
             <p>姓名：王大毛</p>
@@ -98,6 +109,12 @@
             <p>邮箱：xxx@mail.nankai.edu.cn</p>
           </a-card>
         </a-layout-sider>
+<<<<<<< Updated upstream
+=======
+=======
+        <a-layout-sider>个人信息的侧边栏</a-layout-sider>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
       </a-layout>
     </a-layout>
   </div>
@@ -120,12 +137,28 @@
   line-height: 1.5;
 }
 #components-layout-demo-basic .ant-layout-sider {
+<<<<<<< Updated upstream
   background: #ffffff;
+=======
+<<<<<<< Updated upstream
+  background: #ffffff;
+=======
+  background: #3ba0e9;
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   color: #fff;
   line-height: 120px;
 }
 #components-layout-demo-basic .ant-layout-content {
+<<<<<<< Updated upstream
   background: rgb(255, 255, 255);
+=======
+<<<<<<< Updated upstream
+  background: rgb(255, 255, 255);
+=======
+  background: rgba(16, 142, 233, 1);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   color: #fff;
   min-height: 120px;
   line-height: 120px;

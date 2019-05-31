@@ -23,6 +23,21 @@ export const asyncRouterMap = [
           meta: { title: '题目列表', permission: [ 'dashboard' ] }
         },
         {
+<<<<<<< Updated upstream
+=======
+          path: '/problem/detail', // todo
+          name: '题目详情',
+          component: () => import('@/views/problem/ProblemDetail'),
+          meta: { title: '题目详情', permission: [ 'dashboard' ] }
+        },
+        {
+          path: '/problem/result', // todo
+          name: '提交结果',
+          component: () => import('@/views/problem/ProblemResult'),
+          meta: { title: '提交结果', permission: [ 'dashboard' ] }
+        },
+        {
+>>>>>>> Stashed changes
           path: '/problem/detail', // todo
           name: '题目详情',
           component: () => import('@/views/problem/ProblemDetail'),

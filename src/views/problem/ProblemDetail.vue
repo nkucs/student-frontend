@@ -102,6 +102,7 @@ th.column-money, td.column-money {
 </style>
 <script>
 import moment from 'moment'
+import { axios } from '../../utils/axios'
 
 const columns = [{
   title: 'Name',
@@ -133,8 +134,7 @@ const data = [{
   result: 'AC',
 }]
 
-const describelist = [
-	{
+const describelist = [{
 		title: '描述',
 		content: '这是一个简单的问题，给你两个数，把他们加起来，具体看样例。'
 	},
@@ -169,24 +169,48 @@ const describelist = [
 		}]
 export default {
 	data () {
-		// title: 'A+B Problem'
 		return {
-			describelist,
-			commlist,
-			moment,
-			data,
+			describelist: [],
+			commlist: [],
+			data: [],
       columns
 		}
 	},
 	mounted () {
 		this.fetch()
-	},
+  },
+  onload() {
+    this.axios({
+        method: 'get',
+        url: '/api/student/problem_detail',
+        data: {
+        problem_id: '',
+      },
+      }).then((response) => {
+        var temp = []
+        for(let i = 0;i < response.len(); i++) {
+          temp[i].title = response[i].key
+          temp[i].content = response[i].value
+        }
+        this.describelist = temp
+      });
+  },
 	methods: {
 		handleChange(value) {
 			console.log(`selected ${value}`)
 		},
 		confirm() {
-			console.log('confirm!!')
+      this.axios({
+          method: 'post',
+          url: '/api/student/problem_hand_in',
+          data: {
+          user_id: '',
+          problem_id: '',
+          code: '',
+        },
+        }).then((response) => {
+          console.log('success!!')
+        });
 		},
 		handleTableChange (pagination, filters, sorter) {
       console.log(pagination)
