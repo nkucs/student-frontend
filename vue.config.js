@@ -65,7 +65,7 @@ module.exports = {
         changeOrigin: true
       },
       '/gateway': {
-        target: 'https://www.easy-mock.com/mock/5b7bce071f130e5b7fe8cd7d/antd-pro',
+        target: 'http://127.0.0.1:8000',
         ws: false,
         changeOrigin: true,
         pathRewrite: {

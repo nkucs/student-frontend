@@ -1,129 +1,19 @@
-<!--<template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
-</script>-->
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<!--<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>-->
-
-
 <template>
-  <div>
+  <div model="getdata">
     <div align="center" style="height: 100px;">
       <img alt="" style="width: 80px; height: 80px" src="@assets/images/state/accept.png">
     </div>
-    <a-table :columns="columns" :dataSource="data" @change="onChange" />
+    <a-table :columns="columns" :dataSource="data" :model="getdata" @change="onChange" />
   </div>
 
 </template>
 
 <script>
+var getdata = {
+  time:'',
+  run:'',
+  store:''
+}
 const columns = [{
   title: '题目编号',
   dataIndex: 'id',
@@ -155,19 +45,10 @@ const columns = [{
 const data = [{
   key: '1',
   id: 1001,
-  time: '2019-01-01 23:59:59',
-  score:20,
-  run:123,
-  store:2.5,
-  state:'内存超限',
-  
-},{
-  key: '2',
-  id: 1001,
-  time: '2019-01-01 23:59:59',
-  score:20,
-  run:123,
-  store:2.5,
+  time: getdata.time,
+  score:getdata.score,
+  run:getdata.run,
+  store:getdata.store,
   state:'内存超限',
   
 }]
@@ -181,11 +62,38 @@ export default {
   data() {
     return {
       data,
+      getdata:{},
       columns
     }
   },
   methods: {
     onChange,
+  },
+
+  onload(){
+    this.$axios.post('api/submission/get_user_submission',JSON.stringify('123,1100').then(res=>{
+        console.log(res)
+    }))
+  
+    this.$axios.get('api/submission/get_user_submission',{
+        params:{
+          content:this.get_user_submission
+        }
+      }).then(res => {
+        console.log(res)
+        this.getdata.time='2019-01-01 23:59:59',
+        this.getdata.score = 20,
+        this.getdata.run = 123,
+        this.getdata.store=2.5
+        // this.getdata = res.data
+        // this.getdata=Object.assign({},{
+        //   time:'2019-01-01 23:59:59',
+        //   score:20,
+        //   run:'123ms',
+        //   store:2.5
+        // })
+
+      })
   }
 }
 </script>

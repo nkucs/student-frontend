@@ -1,122 +1,17 @@
-
-<!--<template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
-</script>-->
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<!--<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>-->
 <template>
   <a-table :columns="columns" :dataSource="data" @change="onChange" />
 </template>
 
 <script>
+var getdata = {
+  id:'',
+  time:'',
+  run:'',
+  accept:'',
+  store:'',
+  length:'',
+  lenguage:''
+}
 // import classnames from 'classnames'
 // import { ListSize } from 'ant-design-vue/es/list'
 const columns = [{
@@ -169,14 +64,14 @@ const columns = [{
 
 const data = [{
   key: '1',
-  id: 1001,
-  time: '2019-01-01 23:59:59',
-  accept: 0.2,
-  score:20,
-  length:936,
-  language:'C++',
-  run:123,
-  store:2.5,
+  id: getdata.problem_id,
+  time: getdata.time,
+  accept: getdata.accept,
+  score:getdata.score,
+  length:getdata.length,
+  language:getdata.language,
+  run:getdata.run,
+  store:getdata.store,
   state:'内存超限',
   
 }]
@@ -190,11 +85,38 @@ export default {
   data() {
     return {
       data,
+      getdata:{},
       columns,
     }
   },
   methods: {
     onChange,
+  },
+  onload(){
+    this.$axios.post('api/submission/get_all_submission',JSON.stringify('123').then(res=>{
+        console.log(res)
+    }))
+  
+    this.$axios.get('api/submission/get_all_submission',{
+        params:{
+          content:this.get_user_submission
+        }
+      }).then(res => {
+        console.log(res)
+        this.getdata.id = 1100,
+        this.getdata.time='2019-01-01 23:59:59',
+        this.getdata.score = 20,
+        this.getdata.run = 123,
+        this.getdata.store=2.5
+        // this.getdata = res.data
+        // this.getdata=Object.assign({},{
+        //   time:'2019-01-01 23:59:59',
+        //   score:20,
+        //   run:'123ms',
+        //   store:2.5
+        // })
+
+      })
   }
 }
 </script>
