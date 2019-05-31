@@ -1,20 +1,38 @@
 <template>
   <div class="hello">
+    <h3>统计展示</h3>
     <a-tabs defaultActiveKey="1" @change="change_course">
       <a-tab-pane v-for="course in courses" :tab="course.name" :key="course.index">
-        <p>编译错误: {{ course.compiler_err }}</p>
-        <p>答案错误: {{ course.answer_err }}</p>
-        <p>运行错误: {{ course.runtime_err }}</p>
-        <p>时间超线: {{ course.timeout }}</p>
-        <p>其他错误: {{ course.other_err }}</p>
-        <p>待添加饼图表格类插件</p>
+        <div style="margin-left:auto; margin-right:auto; width:600px; height:400px">
+          <ve-pie :data="chart_data1"></ve-pie>
+        </div>
       </a-tab-pane>
     </a-tabs>
+    <h3>实时排名</h3>
+    <a-tabs defaultActiveKey="1" @change="change_course">
+      <a-tab-pane v-for="course in courses" :tab="course.name" :key="course.index">
+        <div style="margin-left:auto; margin-right:auto; width:600px; height:400px">
+          <ve-line :data="chart_data2"></ve-line>
+        </div>
+      </a-tab-pane>
+    </a-tabs>
+    <h3>课程排名</h3>
+    <a-tabs defaultActiveKey="1" @change="change_course">
+      <a-tab-pane v-for="course in courses" :tab="course.name" :key="course.index">
+        <div style="margin-left:auto; margin-right:auto; width:600px; height:400px">
+          <ve-line :data="chart_data2"></ve-line>
+        </div>
+      </a-tab-pane>
+    </a-tabs>
+    <h3>词云展示</h3>
+    <div style="margin-left:auto; margin-right:auto; width:600px; height:400px">
+      展示词云
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { axios } from '../../utils/axios'
 export default {
   name: 'Infomation',
   data () {
@@ -46,7 +64,27 @@ export default {
         runtime_err: '123',
         timeout: '123',
         other_err: '123'
-      }]
+      }],
+      chart_data1: {
+        columns: ['错误类型', '个数'],
+        rows: [
+          {错误类型:'compiler_err', 个数:'122'},
+          {错误类型:'answer_err', 个数:'122'},
+          {错误类型:'runtime_err', 个数:'122'},
+          {错误类型:'timeout', 个数:'122'},
+          {错误类型:'other_err', 个数:'122'},
+        ]
+      },
+      chart_data2: {
+        columns: ['错误类型', '个数'],
+        rows: [
+          {错误类型:'compiler_err', 个数:'1'},
+          {错误类型:'answer_err', 个数:'2'},
+          {错误类型:'runtime_err', 个数:'4'},
+          {错误类型:'timeout', 个数:'6'},
+          {错误类型:'other_err', 个数:'8'},
+        ]
+      }
     }
   },
   method: {
