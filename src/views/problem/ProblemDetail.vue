@@ -93,7 +93,6 @@ th.column-money, td.column-money {
 </style>
 <script>
 import moment from 'moment'
-import { axios } from '../../utils/axios'
 
 const columns = [{
   title: 'Name',
@@ -161,10 +160,10 @@ const describelist = [{
 export default {
 	data () {
 		return {
-			describelist: [],
-			commlist: [],
-			data: [],
-      columns: '',
+			describelist,
+			commlist,
+			data,
+      columns,
       problem_id: 0
 		}
 	},
@@ -185,7 +184,7 @@ export default {
           temp[i].content = response[i].value
         }
         this.describelist = temp
-      });
+      })
   },
 	methods: {
 		handleChange(value) {
@@ -200,9 +199,9 @@ export default {
           problem_id: '',
           code: '',
         },
-        }).then((response) => {
+        }).then(() => {
           console.log('success!!')
-        });
+        })
 		},
 		handleTableChange (pagination, filters, sorter) {
       console.log(pagination)

@@ -23,8 +23,6 @@ export const asyncRouterMap = [
           meta: { title: '题目列表', permission: [ 'dashboard' ] }
         },
         {
-<<<<<<< Updated upstream
-=======
           path: '/problem/detail', // todo
           name: '题目详情',
           component: () => import('@/views/problem/ProblemDetail'),
@@ -37,7 +35,6 @@ export const asyncRouterMap = [
           meta: { title: '提交结果', permission: [ 'dashboard' ] }
         },
         {
->>>>>>> Stashed changes
           path: '/problem/detail', // todo
           name: '题目详情',
           component: () => import('@/views/problem/ProblemDetail'),
