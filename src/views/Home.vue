@@ -80,11 +80,10 @@
             </a-layout-content>
             <a-layout-sider>
                 <a-card title="个人信息">
-                    <p>姓名：</p>
-                    <p>学号:</p>
-                    <p>院系：</p>
-                    <p>积分：</p>
-                    <p>邮箱：</p>
+                    <p>姓名：{{user.name}}</p>
+                    <p>学号:{{user.student_number}}</p>
+                    <p>积分：{{user.rank_score}}</p>
+                    <p>邮箱：{{user.email}}</p>
                 </a-card>
             </a-layout-sider>
         </a-layout>
@@ -138,13 +137,16 @@
 import reqwest from 'reqwest'
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo'
 const user = {
-    id: '',
+    name: '',
+    id_user_status: 0,
+    email: '',
+    id_gender: 0,
     student_number: '',
     id_user: '',
     rank_score: 0,
     room: 0,
-    province0: 0,
-    class: 0
+    province: 0,
+    class: 0,
 }
 
 export default {
@@ -177,17 +179,41 @@ export default {
             },
             onLoad() {
                 this.axios({
+                    //从user获取
                     method: 'get',
-                    url: '/api/student/personal_information',
+                    url: '/api/user/personal_information',
                     data: {
                         id_user: '',
                     },
                 }).then((response) => {
                     if (response != null) {
-                        this.user = response;
+                        this.user.name = response.name;
+                        this.user.id_user_status = response.id_user_status;
+                        this.user.email = response.email;
+                        this.user.id_gender = response.id_gender;
+                        // this.user = response.;
                     }
 
                 })
+                this.axios({
+                    //从student获取
+                    method: 'get',
+                    url: '/api/student/personal_information',
+                    data: {
+                        id_student: '',
+                    },
+                }).then((response) => {
+                    if (response != null) {
+                        this.user.student_number = response.student_number;
+                        this.user.id_user = response.id_user;
+                        this.user.rank_score = response.rank_score;
+                        this.user.room = response.room;
+                        this.user.province = response.province;
+                        this.user.class = response.class;
+                    }
+
+                })
+
             },
             chartData2: {
                 columns: ['日期', '提交次数'],
