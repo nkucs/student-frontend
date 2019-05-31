@@ -45,7 +45,7 @@ export default {
 
   methods: {
     checkDetail () {
-      //this.$router.push({ path:'/course/experiment/experimentlist'  })
+      this.$router.push({ path:'/course/experiment/experimentlist'})
       axios.get('/user', {
         params: {
           ID: 'admin'
