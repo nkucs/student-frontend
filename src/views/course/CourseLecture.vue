@@ -1,10 +1,8 @@
 <template>
   <div>
-    <a-text class="page_title">
-      课程资源
-    </a-text>
     <a-form 
       layout="inline" 
+      class="lecture_search"
       :form="form" 
       @submit="handleSubmit"
     >
@@ -32,35 +30,68 @@
     </a-form>                                           
 
     <a-table :columns="columns" :dataSource="data">
-      <a slot="sourse" class="ant-dropdown-link" href="javascript:;">
-        课件1 <a-icon type="down" />
-      </a>
+      <!-- <span slot="sourse" slot-scope="text,record">
+        <a href="">
+          课件1{{ record.name }} <a-icon type="down" />
+        </a>
+      </span> -->
+      <span slot="sourse" slot-scope="text,record">
+        <a-dropdown>
+          <a class="ant-dropdown-link" href="#">
+            课件列表 <a-icon type="down" />
+          </a>
+          <a-menu slot="overlay">
+            <a-menu-item key="1">1st menu item</a-menu-item>
+            <a-menu-item key="2">2nd menu item</a-menu-item>
+            <a-menu-item key="3">3rd menu item</a-menu-item>
+          </a-menu>
+        </a-dropdown>
+      </span>
+      <span slot="experiment" slot-scope="text,record">
+        <a @click="getExperiment(record.id)">
+          练习题{{ record.name }} <a-icon type="down" />
+        </a> 
+      </span>
+      <span slot="download" slot-scope="text,record">
+        <a @click="download(record.id)">
+          下载
+        </a> 
+      </span>
     </a-table>
   </div>
 </template>
 
 <script>
+import {getlecture} from '@/api/lectureaxios'
+import {getlecturename} from '@/api/lectureaxios'
+// import { axios } from '@/utils/request'
 const columns = [
-  { title: '', dataIndex: 'key', key: 'key' },
-  { title: '章节', dataIndex: 'section', key: 'section' },
-  { title: '课件', dataIndex: 'sourse', key: 'sourse', scopedSlots: { customRender: 'action' }  },
-  { title: '下载', dataIndex: '', key: '', },
+  { title: '章节序号', dataIndex: 'key', key: 'key' },
+  { title: '章节列表', dataIndex: 'section', key: 'section' },
+  { title: '课件列表', dataIndex: 'sourse', key: 'sourse', scopedSlots: { customRender: 'sourse' }  },
+  {title: '章节练习', dataIndex: 'experiment', key: 'experiment', scopedSlots: { customRender: 'experiment' } },
+  { title: '课件下载', key: 'download', scopedSlots: { customRender: 'download' } },
+
 ]
 
 const data = [
-  { key: 1, section: '走近c++', sourse: '课件1'},
-  { key: 2, section: '基本数据类型', sourse: '课件1'},
-  { key: 3, section: '基本控制语句', sourse: '课件1'},
+  { key: 1, section: '走近c++', experiment: '练习题1', sourse: '课件1'},
+  { key: 2, section: '基本数据类型', experiment: '练习题1', sourse: '课件1'},
+  { key: 3, section: '基本控制语句', experiment: '练习题1', sourse: '课件1'},
 ]
 function hasErrors (fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field])
 }
 export default {
+  created() { 
+    this.fetch()
+  },
   data () {
     return {
       hasErrors,
       form: this.$form.createForm(this),
       data,
+      // data: [],
       columns,
     }
   },
@@ -70,11 +101,13 @@ export default {
       this.form.validateFields()
     })
   },
+  
   methods: {
     sectionNameError () {
       const { getFieldError, isFieldTouched } = this.form
       return isFieldTouched('userName') && getFieldError('userName')
     },
+
     handleSubmit  (e) {
       e.preventDefault()
       this.form.validateFields((err, values) => {
@@ -83,6 +116,38 @@ export default {
         }
       })
     },
+
+    fetch() {
+        getlecture(101625).then((response)=>{
+          this.data.push(response.data)
+          console.log(response)
+        })
+        .catch((error)=>{
+          console.log(error)
+        })        
+    },
+
+    onSearch(value) {
+      console.log(value)
+      if(value) {
+        getlecturename(value).then((response)=>{
+          this.data=[]
+          this.data.push(response.data)
+          console.log(response)
+        })
+        .catch((error)=>{
+          alert('meiyou')
+          console.log(error)
+        })        
+       }
+    },
+
+    getExperiment(id) {
+      // 直接调⽤$router.push 实现携带参数的跳转
+      this.$router.push({
+      path: '/course/CoursePractice/CoursePracticeExample/${id}',
+      })
+    }
   }
 }
 </script>
@@ -103,41 +168,8 @@ li {
 a {
   color: #42b983;
 }
-.page_title{
-	width: 148px;
-	height: 61px;
-	left: 291px;
-	top: 147px;
-	color: rgba(56, 56, 56, 1);
-	font-size: 29px;
-	line-height: 140%;
-	text-align: left;
-	font-weight: bold;
-}
-.search_input{
-	width: 320px;
-	height: 38px;
-	left: 321px;
-	top: 241px;
-	text-indent: 5px;
-	color: rgba(51, 51, 51, 1);
-	background-color: rgba(240, 242, 245, 1);
-	border-radius: 2px;
-	font-size: 18px;
-	line-height: 150%;
-	border: rgba(153, 153, 153, 1) solid 1px;
-	text-align: left;
-}
-.search_button{
-	width: 105px;
-	height: 33px;
-	left: 677px;
-	top: 246px;
-	color: rgba(255, 255, 255, 1);
-	background-color: rgba(24, 144, 255, 1);
-	border-radius: 4px;
-	font-size: 15px;
-	line-height: 150%;
-	text-align: center;
+
+.lecture_search {
+  margin-bottom: 10px;
 }
 </style>

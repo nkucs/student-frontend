@@ -1,113 +1,85 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
-  </div>
+  <a-list 
+    size="large" 
+    itemLayout="horizontal" 
+    :pagination="pagination"
+    :dataSource="listData"
+    class="list"
+  >
+    <a-list-item slot="renderItem" slot-scope="item, " class="item-border">
+      <div class="item">
+        <p class="item-head">
+          {{ item.name }}
+        </p>
+        <p class="item-date">
+          {{ item.date }}
+        </p>
+      </div>
+      <a-button type="primary" class="detail-btn" @click="checkDetail">查看详情</a-button>
+    </a-list-item>
+
+  </a-list>
 </template>
 
 <script>
+const listData = []
+for (let i = 0; i < 20; i++) {
+    listData.push({
+				name: `实验 ${i+1}`,
+				date: '发布时间: 2019-10-25 12:00 截止时间: 2019-11-25 12:00',
+    })
+}
 export default {
-  name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      listData,
+      pagination: {
+        pageSize: 3,
+      },
+    }
+  },
+  methods: {
+    checkDetail () {
+      this.$router.push({ path:'/course/ExperimentDetail'  })
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+	.list {
+		padding-bottom: 10px;
+	}
+	.item {
+		text-align: left;
+		width: 80%;
+	}
+	.item-head {
+		font-size: 200%;
+		margin-left: 8%;
+		font-weight: bold;
+	}
+	.item-date {
+		margin-left: 8%;
+		color:black;
+	}
+	.detail-btn {
+		margin-top: 60px;
+		border-radius:30px;
+		background-color: #6db1fc;
+	}
+	.detail-btn:hover {
+		background-color: #2280e4;
+	}
+	.item-border {
+    border: solid #bbbbbb;
+    margin: 10px 4% 20px;
+  }
+	.list >>> .ant-list-item:last-child {
+    border-bottom: solid #bbbbbb;
+	}
+	.list >>> .ant-list-pagination {
+    margin-top: 24px;
+    text-align: center;
 }
 </style>
