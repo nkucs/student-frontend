@@ -38,7 +38,6 @@
     </a-table>
   </div>
 </template>
-
 <script>
 const columns = [
   { title: '', dataIndex: 'key', key: 'key' },
