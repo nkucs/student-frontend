@@ -90,21 +90,12 @@ export const asyncRouterMap = [
           component: () => import('@/views/course/CourseLecture'),
           meta: { title: '主讲课', permission: [ 'dashboard' ] }
         },
-        {
-          path: '/course/experiment', // todo
-          name: '实验课',
-          component: () => import('@/views/course/CourseExperiment'),
-          meta: { title: '实验课', permission: [ 'dashboard' ] }
-          
-        },
 
         {
           path: '/course/experiment/experimentlist', // todo
-          name: '实验课列表',
-          hidden: true,
+          name: '实验课',
           component: () => import('@/views/course/CourseExperimentList'),
-          meta: { title: '实验课列表', permission: [ 'dashboard' ] }
-          
+          meta: { title: '实验课', permission: [ 'dashboard' ] }
         },
 
         {

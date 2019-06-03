@@ -8,30 +8,39 @@
   >
     <a-list-item slot="renderItem" slot-scope="item, " class="item-border">
       <div class="item">
-        <p class="item-head">
-          {{ item.name }}
-        </p>
-        <p class="item-date">
-          {{ item.date }}
-        </p>
+        <p class="item-head">{{ item.name }}</p>
+        <p class="item-date">发布时间: {{ item.start_date }}</p>
+        <p class="item-date">截止时间: {{ item.end_date }}</p>
       </div>
-      <a-button type="primary" class="detail-btn" @click="checkDetail">查看详情</a-button>
+      <a-button type="primary" class="detail-btn" @click="checkDetail(item.id)">查看详情</a-button>
     </a-list-item>
 
   </a-list>
 </template>
 
 <script>
+import { get_lab_list } from '@/api/lab'
 
-const listData = []
-for (let i = 0; i < 20; i++) {
-    listData.push({
-				name: `实验 ${i+1}`,
-				date: '发布时间: 2019-10-25 12:00 截止时间: 2019-11-25 12:00',
-    })
-}
+const listData = new Array()
 
 export default {
+  created() {
+    listData.splice(0, listData.length)
+    get_lab_list(1).then(response => {
+      console.log(response)
+      if (response['data'].length != 0) {
+        for (let i = 0; i < response['data'].length; i++) {
+          listData.push({
+            id: response['data'][i]['id'],
+            name: response['data'][i]['name'],
+            start_date: response['data'][i]['start_time'],
+            end_date: response['data'][i]['end_time']
+          })
+        }
+      }
+    })
+  },
+
   data () {
     return {
       listData,
@@ -42,8 +51,8 @@ export default {
   },
 
   methods: {
-    checkDetail () {
-      this.$router.push({ path:'/course/experiment/experimentdetail'  })
+    checkDetail(id_lab) {
+      this.$router.push({ path: '/course/experiment/experimentdetail', params: { id_lab: id_lab } })
     }
   }
 }
