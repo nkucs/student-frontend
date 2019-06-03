@@ -8,11 +8,15 @@
         <a-tabs type="card">
           <a-tab-pane tab="课程消息" key="1">
             <template>
-              <a-list itemLayout="horizontal" :dataSource="data1">
+              <a-list itemLayout="horizontal" :dataSource="mytime">
                 <a-list-item slot="renderItem" slot-scope="item, index">
                   <a-list-item-meta>
                     <a slot="title">
-                      <span>距离课程结束还有：{{ `${day}天${hr}小时${min}分钟${sec}秒` }}</span></a>
+                      <span>距离课程结束还有：
+<!--                        {{ `${mytime.day}天${mytime.hr}小时${mytime.min}分钟${mytime.sec}秒` }}-->
+                        {{ item }}
+
+                      </span></a>
                     <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
                   </a-list-item-meta>
                 </a-list-item>
@@ -53,23 +57,22 @@
 <script>
   import { getCourseMessage } from '@/api/message'
   import { getCourse } from '@/api/message'
-
   const data1 = [
     {
       title: '数据结构',
-      day: '3'
+      day: '2019-6-05'
     },
     {
       title: '算法导论',
-      day: '5'
+      day: '2019-6-06'
     },
     {
       title: '算法导论301',
-      day: '2'
+      day: '2019-6-07'
     },
     {
       title: '数据结构112',
-      day: '1'
+      day: '2019-6-08'
     }
   ]
   const data2 = [
@@ -121,22 +124,60 @@
         coursemessage: null,
         data1,
         data2,
-        data3
+        data3,
+        myday:[],
+        myhour:[],
+        mymin:[],
+        mysec:[],
+        mytime:[]
+
       }
     },
     methods: {
       countdown: function() {
-        const end = Date.parse(new Date('2019-12-01'))
-        const now = Date.parse(new Date())
-        const msec = end - now
-        const day = parseInt(msec / 1000 / 60 / 60 / 24)
-        const hr = parseInt(msec / 1000 / 60 / 60 % 24)
-        const min = parseInt(msec / 1000 / 60 % 60)
-        const sec = parseInt(msec / 1000 % 60)
-        this.day = day
-        this.hr = hr > 9 ? hr : '0' + hr
-        this.min = min > 9 ? min : '0' + min
-        this.sec = sec > 9 ? sec : '0' + sec
+        try {
+          data1.forEach((times)=>{
+            const end = Date.parse(new Date(times.day))
+            const now = Date.parse(new Date())
+            const msec = end - now
+            const day = parseInt(msec / 1000 / 60 / 60 / 24)
+            const hr = parseInt(msec / 1000 / 60 / 60 % 24)
+            const min = parseInt(msec / 1000 / 60 % 60)
+            const sec = parseInt(msec / 1000 % 60)
+            if(this.mytime.length==data1.length){
+              for(let i = 0; i<data1.length; i++){
+                this.mytime.pop()
+              }
+            }
+            //插入天数
+            this.day = day
+            //this.mytime.push(this.day)
+            //插入小时数
+            this.hr = hr > 9 ? hr : '0' + hr
+            //插入分钟数
+            //this.mytime.push(this.hr)
+            this.min = min > 9 ? min : '0' + min
+            //this.mytime.push(this.min)
+            //插入秒数
+            this.sec = sec > 9 ? sec : '0' + sec
+            //this.mytime.push(this.sec)
+            this.mytime.push(this.day+'天'+this.hr+'小时'+this.min+'分钟'+this.sec+'秒')
+          })
+        }
+        catch (err) {
+          console(err)
+        }
+        // const end = Date.parse(new Date('2019-6-04 '))
+        // const now = Date.parse(new Date())
+        // const msec = end - now
+        // const day = parseInt(msec / 1000 / 60 / 60 / 24)
+        // const hr = parseInt(msec / 1000 / 60 / 60 % 24)
+        // const min = parseInt(msec / 1000 / 60 % 60)
+        // const sec = parseInt(msec / 1000 % 60)
+        // this.day = day
+        // this.hr = hr > 9 ? hr : '0' + hr
+        // this.min = min > 9 ? min : '0' + min
+        // this.sec = sec > 9 ? sec : '0' + sec
       },
       callback(key) {
         console.log(key)
