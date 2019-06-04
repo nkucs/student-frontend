@@ -1,6 +1,6 @@
 <template>
   <div id="components-layout-demo-basic">
-    <div class="title">A+B Problem</div>
+    <div class="title">{{ title }}</div>
     <a-divider class="line"/>
     <a-row>
       <a-col :span="11">
@@ -15,26 +15,7 @@
               </a-list-item>
             </a-list>
           </a-tab-pane>
-          <a-tab-pane tab="讨论" key="2">
-            <a-list
-              class="comment-list"
-              :header="`${commlist.length} 回复`"
-              itemLayout="horizontal"
-              :dataSource="commlist"
-            >
-              <a-list-item slot="renderItem" slot-scope="item, index">
-                <a-comment
-                  :author=item.author
-                  :avatar=item.avatar>
-                  <p slot="content">{{ item.content }}</p>
-                  <a-tooltip slot="datetime" :title="item.datetime.format('YYYY-MM-DD HH:mm:ss')">
-                    <span>{{ item.datetime.fromNow() }}</span>
-                  </a-tooltip>
-                </a-comment>
-              </a-list-item>
-            </a-list>
-          </a-tab-pane>
-          <a-tab-pane tab="提交记录" key="3">
+          <a-tab-pane tab="提交记录" key="2">
             <a-table :columns="columns" :dataSource="data" bordered>
               <template slot="name" slot-scope="text">
                 <a href="javascript:;">{{ text }}</a>
@@ -92,10 +73,8 @@ th.column-money, td.column-money {
 }
 </style>
 <script>
-import moment from 'moment'
-
 const columns = [{
-  title: 'Name',
+  title: 'id',
   dataIndex: 'name',
   scopedSlots: { customRender: 'name' },
 }, {
@@ -107,86 +86,74 @@ const columns = [{
   dataIndex: 'result',
 }]
 
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  time: '10:55:53',
-  result: 'AC',
-}, {
-  key: '2',
-  name: 'Jim Green',
-  time: '11:50:00',
-  result: 'Time Out',
-}, {
-  key: '3',
-  name: 'Joe Black',
-  time: '12:00:03',
-  result: 'AC',
-}]
+const data = []
 
+const des = ['描述', '时间限制','空间限制']
 const describelist = [{
 		title: '描述',
-		content: '这是一个简单的问题，给你两个数，把他们加起来，具体看样例。'
+		content: 'A simple example'
 	},
 	{
-		title: '输入',
-		content: '每组首先输入XXXX'
+		title: '时间限制',
+		content: '100'
 	},
 	{
-		title: '输出',
-		content: '对于每一组数据XXX'
-	},
-	{
-		title: '样例输入',
-		content: '每组首先输入XXXX'
-	},
-	{
-		title: '样例输出',
-		content: '每组首先输入XXXX'
+		title: '空间限制',
+		content: '100'
 	}]
-	const commlist = [
-		{
-			author: 'Han Solo',
-			avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-			content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-			datetime: moment().subtract(1, 'days'),
-		},
-		{
-			author: 'Han Solo',
-			avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-			content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-			datetime: moment().subtract(2, 'days'),
-		}]
+const title = 'A+B Problem'
 export default {
 	data () {
 		return {
 			describelist,
-			commlist,
+			title,
 			data,
       columns,
-      problem_id: 0
+      problem_id: 5,
+      des
 		}
-	},
-	mounted () {
-		this.fetch()
   },
-  onload() {
+  created: function(){
+    this.getTheOneData()
+  },
+  onload() {},
+	methods: {
+    getTheOneData:function(){
+    //获取该题目提交情况
     this.axios({
         method: 'get',
-        url: '/api/student/problem_detail',
-        data: {
-        problem_id: '',
+        url: 'student/submission/get_problem_submission',
+        params: {
+        problem_id: 5,
       },
       }).then((response) => {
-        var temp = []
-        for(let i = 0;i < response.len(); i++) {
-          temp[i].title = response[i].key
-          temp[i].content = response[i].value
-        }
-        this.describelist = temp
+        console.log(response.data)
+       for(let i = 0;i < Object.keys(response.data).length; i++) {
+          this.data.push({
+            key:i,
+            name: response.data[i].student,
+            time:response.data[i].create_at,
+            result:response.data[i].status
+          })
+       }
       })
-  },
-	methods: {
+  //获取某题目详细信息
+    this.axios({
+        method: 'get',
+        url: 'api/student/problem/get-problem',
+        params: {
+        id_problem: 1,
+      },
+      }).then((response) => {
+        console.log('response.data')
+        console.log(response.data)
+        // this.describelist[0].content = response.data[0].description
+        // this.describelist[1].content = response.data[0].
+        // this.describelist[2].content = response.data[0].
+        // this.describelist[3].content = response.data[0].
+        // this.title = response.data[0].title
+      })
+    },
 		handleChange(value) {
 			console.log(`selected ${value}`)
 		},
@@ -215,10 +182,6 @@ export default {
         sortOrder: sorter.order,
         ...filters,
       })
-    },
-    fetch (params = {}) {
-      console.log('params:', params)
-      this.loading = true
     }
 	}
 }
