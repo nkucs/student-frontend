@@ -55,8 +55,6 @@
 </template>
 
 <script>
-  import { getCourseMessage } from '@/api/message'
-  import { getCourse } from '@/api/message'
   const data1 = [
     {
       title: '数据结构',
