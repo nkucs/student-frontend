@@ -169,41 +169,24 @@
         catch (err) {
           console(err)
         }
-        // const end = Date.parse(new Date('2019-6-04 '))
-        // const now = Date.parse(new Date())
-        // const msec = end - now
-        // const day = parseInt(msec / 1000 / 60 / 60 / 24)
-        // const hr = parseInt(msec / 1000 / 60 / 60 % 24)
-        // const min = parseInt(msec / 1000 / 60 % 60)
-        // const sec = parseInt(msec / 1000 % 60)
-        // this.day = day
-        // this.hr = hr > 9 ? hr : '0' + hr
-        // this.min = min > 9 ? min : '0' + min
-        // this.sec = sec > 9 ? sec : '0' + sec
+
       },
       callback(key) {
         console.log(key)
       },
-      getMessaageCourse: function(id_user) {
-        getCourseMessage({
-          id_user: id_user
-        }).then(response => {
-          console.log(response)
-          this.teacherName = response['teacher']
-          this.courseName = response['name']
-        })
-          .catch(function(error) {
-            console.log(error)
-          })
-
-      },
-      courseGet: function(id_course) {
-        getCourse({
-          id_course: id_course
-        }).then(response => {
-          this.coursemessage = response['message']
-        })
-      }
+      // getMessaageCourse: function(id_user) {
+      //   getCourseMessage({
+      //     id_user: id_user
+      //   }).then(response => {
+      //     console.log(response)
+      //     this.teacherName = response['teacher']
+      //     this.courseName = response['name']
+      //   })
+      //     .catch(function(error) {
+      //       console.log(error)
+      //     })
+      //
+      // },
 
 
     },
@@ -241,10 +224,6 @@
   }
   b{
     color: #2f54eb;
-  }
-
-  .message_title {
-
   }
 
   .card-container {
