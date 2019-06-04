@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="detail">
     <div class="title">{{ title }}</div>
     <div class="separate-line"></div>
@@ -14,44 +14,50 @@
           </div>
         </li>
       </ul>
-      <div class="file-upload">
-        <div class="file-upload-text">附件上传</div>
-        <input name="upfile" id="id" class="file-upload-input" type="file" @change='Change'>
+      <div class="clearfix">
+        <a-upload
+          :fileList="fileList"
+          :remove="handleRemove"
+          :beforeUpload="beforeUpload"
+        >
+          <a-button>
+            <a-icon type="upload" /> 附件上传
+          </a-button>
+        </a-upload>
+        <a-button
+          type="primary"
+          @click="handleUpload"
+          :disabled="fileList.length === 0"
+          :loading="uploading"
+          style="margin-top: 16px"
+        >
+          {{ uploading ? '正在上传' : '提交' }}
+        </a-button>
       </div>
-      <ol class="upload-file">
-        <li v-for="file in upload_files" :key="file.file_name" style="list-style-type:none;">
-          <div class="content-row">
-            <a :href="file.link" class="row-unit">{{ file.file_name }}</a>
-            <div class="row-unit">{{ file.file_size }}</div>
-            <div class="delete-file">删除</div>
-          </div>
-        </li>
-      </ol>
-      <a-button type="primary" @click="submit">提交</a-button>
     </div>
   </div>
 </template>
 
 <script>
-import { axios } from '@/utils/request'
+import { getExperimentDetail,upload } from '@/api/lab'
 export default {
   name: 'ExperimentDetail',
   data () {
     return {
       title: '背包问题',
       description:
-        '背包问题（Knapsack problem）是一种组合优化的NP完全问题。问题可以描述为：给定一组物品，每种物品都有自己的重量和价格，sakjhdkjasdhkjashkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk在限定的总重量内，我们如何选择，才能使得物品的总价格最高。问题的名称来源于如何选择最合适的物品放置于给定背包中。',
+        '背包问题（Knapsack problem）是一种组合优化的NP完全问题。问题可以描述为：给定一组物品，每种物品都有自己的重量和价格，在限定的总重量内，我们如何选择，才能使得物品的总价格最高。问题的名称来源于如何选择最合适的物品放置于给定背包中。',
       additional_questions: [
         { title: '238.背包问题1', score: 66, link: '/problem/detail/?id_problem=1' },
         { title: '239.背包问题2', score: 78, link: '/problem/detail/?id_problem=2' }
       ],
-      upload_files: [],
-      upload:'',
+      fileList: [],
+      uploading: false,
       report_required:false,
     }
   },
   mounted: function () {
-    axios.get('/api/course/lab_course_detail/?id_lab='+this.$router.params.id_lab).then(function (response) 
+    getExperimentDetail({'id_lab':this.$route.params.id_lab}).then(response =>
     {
       this.title = response.data.name
       this.description = response.data.description
@@ -62,56 +68,47 @@ export default {
       }
       this.additional_questions.push(additional)
       this.report_required = response.data.report_required
-      //this.$router.push({name:'course/problem',params:{problem_id:response.data.problem['id_problem']}})
       console.log(response)
+    })
+    .catch(error => {
+      console.log(error)
     })
   },
   methods: {
-    Change (e) {
-      var file = e.target.files[0]
-      var fileName = file.name
-      var fileSize = file.size
-      this.upload = this.getObjectURL(file)
-      if(file.size<1000)
-      {
-        fileSize = fileSize.toFixed(2) + 'b'
-      }
-      else if(file.size<1000*1000)
-      {
-        fileSize = (fileSize/1000).toFixed(2) + 'kb'
-      }
-      else{
-        fileSize = (fileSize/1000000).toFixed(2) + 'mb'
-      }
-      var uploadfile = [{file_name:fileName, file_size:fileSize, link:this.upload}]
-      this.upload_files= uploadfile
-      console.log(this.upload)
+    handleRemove(file) {
+      const index = this.fileList.indexOf(file)
+      const newFileList = this.fileList.slice()
+      newFileList.splice(index, 1)
+      this.fileList = newFileList
     },
-    getObjectURL (file) {
-      let url = null 
-      if (window.createObjectURL!=undefined) { 
-        url = window.createObjectURL(file) 
-      }else if (window.webkitURL!=undefined) { 
-        url = window.webkitURL.createObjectURL(file) 
-      }else if (window.URL!=undefined) { 
-        url = window.URL.createObjectURL(file) 
-      }
-      return url 
+    beforeUpload(file) {
+      this.fileList = [file]
+      return false
     },
-    submit () {
-      axios.post('api/student/lab_attachment_hand_in',{ 
-        id_user:this.$router.params.id_user,
-        id_course:this.$router.params.id_course,
-        id_lab:this.$router.params.id_lab,
-        file:this.file, 
-        })
-        .then(function (response){
-          console.log(response)
-        })
-        .catch(function (error){
-          console.log(error)
-        })
-    }
+    handleUpload() {
+      const { fileList } = this
+      const formData = new FormData()
+      // fileList.forEach((file) => {
+      //   formData.append('files[]', file)
+      // })
+      console.log(fileList)
+      //formData.append('user_id', this.$route.params.id_user)
+      formData.append('user_id', 1)
+      formData.append('lab_id', this.$route.params.id_lab)
+      formData.append('file', fileList[0])
+      this.uploading = true
+      upload(
+        formData
+        ).then(response =>{
+        console.log(response)
+        this.$message.error('上传成功')
+      })
+      .catch(error => {
+        console.log(error)
+        this.$message.error('上传失败')
+      })
+      this.uploading =false
+    },
   },
 }
 </script>
@@ -121,6 +118,14 @@ export default {
 .detail {
   padding: 0 5%;
   margin:10px 10px;
+}
+.additional {
+  font-size: 1rem;
+}
+.additional-title {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
 }
 .title {
   font-weight: bold;
@@ -137,6 +142,7 @@ export default {
 }
 .description {
   min-height:50px;
+  width:
 }
 .additional {
   font-size: 1rem;
