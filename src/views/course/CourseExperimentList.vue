@@ -52,7 +52,7 @@ export default {
 
   methods: {
     checkDetail(id_lab) {
-      this.$router.push({ path: '/course/experiment/experimentdetail', params: { id_lab: id_lab } })
+      this.$router.push({ path: '/course/experiment/experimentdetail', query: { id_lab: id_lab } })
     }
   }
 }
