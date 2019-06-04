@@ -5,6 +5,7 @@
         <a-layout-content>
           <a-card>
             <p>新闻</p>
+            
             <a-list
               class="demo-loadmore-list"
               :loading="loading"
@@ -14,11 +15,11 @@
             >
             
               <a-list-item slot="renderItem" slot-scope="item, index">
-                <a slot="actions">more</a>
+                <a slot="actions" href="https://vue.ant.design/">more</a>
                 <a-list-item-meta
                   description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                 >
-                  <a slot="title" href="https://vue.ant.design/">"{{ item.name.last }}"</a>
+                  <a slot="title">"{{ item.name.last }}"</a>
                   <a-avatar
                     slot="avatar"
                     src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"

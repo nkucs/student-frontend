@@ -3,17 +3,15 @@
     <div align="center" style="height: 100px;">
       <img alt="" style="width: 80px; height: 80px" src="@assets/images/state/accept.png">
     </div>
-    <a-table :columns="columns" :dataSource="data" :model="getdata" @change="onChange" />
+    <a-table :columns="columns" :dataSource="data" @change="onChange" />
   </div>
 
 </template>
 
 <script>
-var getdata = {
-  time:'',
-  run:'',
-  store:''
-}
+
+import { axios } from '@/utils/request'
+
 const columns = [{
   title: '题目编号',
   dataIndex: 'id',
@@ -43,13 +41,13 @@ const columns = [{
 ]
 
 const data = [{
-  key: '1',
-  id: 1001,
-  time: getdata.time,
-  score:getdata.score,
-  run:getdata.run,
-  store:getdata.store,
-  state:'内存超限',
+  key: '',
+  id: '',
+  time: '',
+  score:'',
+  run:'',
+  store:'',
+  state:'',
   
 }]
 
@@ -62,39 +60,50 @@ export default {
   data() {
     return {
       data,
-      getdata:{},
       columns
     }
   },
+  created: function(){
+    this.getTheOneData()
+  },
   methods: {
     onChange,
+    getTheOneData:function(){
+      axios({
+        method:'get',
+        url:'/student/submission/get_user_submission',
+        params:
+        {
+          student_id: 1,
+          problem_id:5
+        }
+      }).then(response =>{
+        console.log(response.data[0])
+        var num = Object.keys(response.data).length
+        
+        for(let index=0;index<num;index++)
+        {
+          this.data.push({
+            key:index,
+            id: response.data[index].problem,
+            time:response.data[index].create_at,
+            score:response.data[index].created_at,
+            run:response.data[index].runtime,
+            store:response.data[index].memory,
+            state:response.data[index].submission_status
+
+          })
+        } 
+        console.log(response.data)
+       
+      }).catch(error=>{
+        window.alert('sorry')
+        console.log(error)
+      })
+    },
+
   },
 
-  onload(){
-    this.$axios.post('api/submission/get_user_submission',JSON.stringify('123,1100').then(res=>{
-        console.log(res)
-    }))
-  
-    this.$axios.get('api/submission/get_user_submission',{
-        params:{
-          content:this.get_user_submission
-        }
-      }).then(res => {
-        console.log(res)
-        this.getdata.time='2019-01-01 23:59:59',
-        this.getdata.score = 20,
-        this.getdata.run = 123,
-        this.getdata.store=2.5
-        // this.getdata = res.data
-        // this.getdata=Object.assign({},{
-        //   time:'2019-01-01 23:59:59',
-        //   score:20,
-        //   run:'123ms',
-        //   store:2.5
-        // })
-
-      })
-  }
 }
 </script>
 

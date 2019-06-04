@@ -3,17 +3,8 @@
 </template>
 
 <script>
-var getdata = {
-  id:'',
-  time:'',
-  run:'',
-  accept:'',
-  store:'',
-  length:'',
-  lenguage:''
-}
-// import classnames from 'classnames'
-// import { ListSize } from 'ant-design-vue/es/list'
+import { axios } from '@/utils/request'
+
 const columns = [{
   title: '题目编号',
   dataIndex: 'id', 
@@ -34,11 +25,6 @@ const columns = [{
   dataIndex: 'score',
   align:'center',
   sorter: (a, b) => a.score - b.score,
-}, {
-  title: '代码长度',
-  dataIndex: 'length',
-  align:'center',
-  sorter: (a, b) => a.length - b.length,
 }, {
   title: '语言',
   dataIndex: 'language',
@@ -63,16 +49,16 @@ const columns = [{
 ]
 
 const data = [{
-  key: '1',
-  id: getdata.problem_id,
-  time: getdata.time,
-  accept: getdata.accept,
-  score:getdata.score,
-  length:getdata.length,
-  language:getdata.language,
-  run:getdata.run,
-  store:getdata.store,
-  state:'内存超限',
+  key: '',
+  id: '',
+  time: '',
+  accept: '',
+  score:'',
+  // length:'',
+  language:'',
+  run:'',
+  store:'',
+  state:'',
   
 }]
 
@@ -85,39 +71,46 @@ export default {
   data() {
     return {
       data,
-      getdata:{},
       columns,
     }
   },
+  created: function(){
+    this.getSubmissionData()
+  },
   methods: {
     onChange,
-  },
-  onload(){
-    this.$axios.post('api/submission/get_all_submission',JSON.stringify('123').then(res=>{
-        console.log(res)
-    }))
-  
-    this.$axios.get('api/submission/get_all_submission',{
-        params:{
-          content:this.get_user_submission
-        }
-      }).then(res => {
-        console.log(res)
-        this.getdata.id = 1100,
-        this.getdata.time='2019-01-01 23:59:59',
-        this.getdata.score = 20,
-        this.getdata.run = 123,
-        this.getdata.store=2.5
-        // this.getdata = res.data
-        // this.getdata=Object.assign({},{
-        //   time:'2019-01-01 23:59:59',
-        //   score:20,
-        //   run:'123ms',
-        //   store:2.5
-        // })
+    getSubmissionData:function(){
+      axios({
+        method:'get',
+        url:'/student/submission/get_all_submission',
+        params:{student_id: 1}
+      }).then(response =>{
+        console.log(response.data[0])
+        var num = Object.keys(response.data).length
+        
+        for(let index=0;index<num;index++)
+        {
+          this.data.push({
+            key:index,
+            id: response.data[index].problem,
+            language: response.data[index].language,
+            time:response.data[index].create_at,
+            run:response.data[index].runtime,
+            accept:response.data[index].status,
+            store:response.data[index].memory,
+            state:response.data[index].submission_status
 
+          })
+        } 
+        console.log(response.data)
+       
+      }).catch(error=>{
+        window.alert('sorry')
+        console.log(error)
       })
-  }
+    },
+  
+}
 }
 </script>
 
@@ -126,6 +119,4 @@ export default {
   font-size: 14px;
 }
 </style>
-
-
 
