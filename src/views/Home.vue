@@ -140,6 +140,7 @@
 </style>
 
 <script>
+import { axios } from '@/utils/request'
 import reqwest from 'reqwest'
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo'
 
@@ -206,43 +207,8 @@ export default {
             },
         }
     },
-
-    onLoad() {
-        // this.axios({
-        //     //从user获取
-        //     method: 'get',
-        //     url: '/api/user/personal_information',
-        //     data: {
-        //         id_user: '',
-        //     },
-        // }).then((response) => {
-        //     if (response != null) {
-        //         this.user.name = response.name
-        //         this.user.id_user_status = response.id_user_status
-        //         this.user.email = response.email
-        //         this.user.id_gender = response.id_gender
-        //         // this.user = response.;
-        //     }
-
-        // })
-        // this.axios({
-        //     //从student获取
-        //     method: 'get',
-        //     url: '/api/student/personal_information',
-        //     data: {
-        //         id_student: '',
-        //     },
-        // }).then((response) => {
-        //     if (response != null) {
-        //         this.user.student_number = response.student_number
-        //         this.user.id_user = response.id_user
-        //         this.user.rank_score = response.rank_score
-        //         this.user.room = response.room
-        //         this.user.province = response.province
-        //         this.user.class = response.class
-        //     }
-
-        // })
+    created: function(){
+      this.getTheSubmissionData()
     },
 
     mounted() {
@@ -263,9 +229,78 @@ export default {
                 }
             })
         },
-        // get_course() {
-        //     const temp = this.user
-        // }
-    }
+        getTheSubmissionData:function(){
+          axios({
+        method:'get',
+        url:'/student/submission/get_all_submission',
+        params:{student_id: 2}
+      }).then(response =>{
+        console.log(response.data[0])
+        var num = Object.keys(response.data).length
+        this.chartData.rows = []
+        var unknown = 0
+        var accept = 0
+        var runtime_error = 0
+        var timelimit_exceed = 0
+        var spacelimit_exceed = 0
+
+        for(let index=0;index<num;index++)
+        {
+          if(response.data[index].status=='unknown')
+          {
+              unknown++
+              this.chartData.rows.push({
+              '日期':response.data[index].status,
+              '访问用户':unknown
+          })
+          }
+          else if(response.data[index].status=='accept')
+          {
+              accept++
+              this.chartData.rows.push({
+              '日期':response.data[index].status,
+              '访问用户':accept
+              })
+          }
+          else if(response.data[index].status=='runtime error')
+          {
+              runtime_error++
+              this.chartData.rows.push({
+              '日期':response.data[index].status,
+              '访问用户':runtime_error
+              })
+          }
+          else if(response.data[index].status=='timelimit exceed')
+          {
+              timelimit_exceed++
+              this.chartData.rows.push({
+              '日期':response.data[index].status,
+              '访问用户':timelimit_exceed
+              })
+
+          }
+          else if(response.data[index].status=='spacelimit exceed')
+          {
+              spacelimit_exceed++
+              this.chartData.rows.push({
+              '日期':response.data[index].status,
+              '访问用户':spacelimit_exceed
+              })
+
+          }
+          
+          
+        } 
+        console.log(response.data)
+       
+      }).catch(error=>{
+        window.alert('sorry')
+        console.log(error)
+      })
+        }
+
+      
+    },
+
 }
 </script>
