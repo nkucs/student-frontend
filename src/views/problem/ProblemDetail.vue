@@ -145,13 +145,10 @@ export default {
         id_problem: 1,
       },
       }).then((response) => {
-        console.log('response.data')
-        console.log(response.data)
-        // this.describelist[0].content = response.data[0].description
-        // this.describelist[1].content = response.data[0].
-        // this.describelist[2].content = response.data[0].
-        // this.describelist[3].content = response.data[0].
-        // this.title = response.data[0].title
+        this.describelist[0].content = response.data[0].description
+        this.describelist[1].content = response.data[0].memory_limit
+        this.describelist[2].content = response.data[0].runtime_limit
+        this.title = response.data[0].name
       })
     },
 		handleChange(value) {
@@ -162,8 +159,8 @@ export default {
           method: 'post',
           url: '/api/student/problem_hand_in',
           data: {
-          user_id: '',
-          problem_id: '',
+          user_id: 1,
+          problem_id: 1,
           code: '',
         },
         }).then(() => {
