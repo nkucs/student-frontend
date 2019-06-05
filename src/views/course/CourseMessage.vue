@@ -1,49 +1,38 @@
 import axios form 'axios'
 <template>
-  <a-list
-    itemLayout="horizontal"
-    :dataSource="data"
-  >
-    <a-list-item slot="renderItem" slot-scope="item">
-      <a-list-item-meta :description="item.content">
-        <a slot="title">{{item.title}}</a>
-      </a-list-item-meta>
-    </a-list-item>
-  </a-list>
+  <div class="container">
+    <div v-for='message in message_data' :key="message.id">
+      <a class='course_name'>
+        {{ message.course_name }}
+      </a>
+      <div class='content'>
+        {{ message.content }}
+      </div>
+    </div>
+  </div>
 </template>
 <script>
+import { getAllMessage } from '@/api/manage'
 
-const data = [
-  {
-	content: 'content 1',
-    title: 'Ant Design Title 1',
-  },
-  {
-	content: 'content 2',
-    title: 'Ant Design Title 2',
-  },
-  {
-	content: 'content 3',
-    title: 'Ant Design Title 3',
-  },
-  {
-	content: 'content 4',
-    title: 'Ant Design Title 4',
-  },
-]
+const message_data=[]
+
 export default {
   data () {
-    axios.get('/api/student/course_message?id_course=12345')
-	.then(function (response) {
-	  console.log(response)
-	})
-	.catch(function (error) {
-	  console.log(error)
-	})
     return {
-      data,
+      message_data,
     }
   },
+  mounted: function(){
+    const obj = getAllMessage({course_id : 1})
+    const self = this
+    obj.then(response => {
+        console.log('seek successfully')
+        self.message_data = response.data//对应后端返回的数据
+      }).catch((fail) => {
+        console.log('seek fail' + fail)
+      })
+    }
+  
 }
 </script>
 <style>

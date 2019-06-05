@@ -29,13 +29,13 @@
       </a-form-item>
     </a-form>                                           
 
-    <a-table :columns="columns" :dataSource="data">
-      <span slot="sourse" slot-scope="text,record">
+    <a-table :columns="columns" :dataSource="lectureData">
+      <span slot="source" slot-scope="text,record">
         <a-dropdown>
           <a class="ant-dropdown-link" href="#">
             课件列表 <a-icon type="down" />
           </a>
-          <a-menu slot="overlay" v-for="sou in record.sourses" :key="sou.id">
+          <a-menu slot="overlay" v-for="sou in record.source" :key="sou.id">
             
             <a-menu-item key="{{sou.id}}">{{ sou.name }}</a-menu-item>
 
@@ -43,12 +43,12 @@
         </a-dropdown>
       </span>
       <span slot="experiment" slot-scope="text,record">
-        <a @click="getExperiment(record.id)">
+        <a @click="getExperiment(record.key)">
           练习题
         </a> 
       </span>
       <span slot="download" slot-scope="text,record">
-        <a @click="download(record.id)">
+        <a @click="download(1)">
           下载
         </a> 
       </span>
@@ -63,7 +63,7 @@ import {getlecturename} from '@/api/lectureaxios'
 const columns = [
   { title: '章节序号', dataIndex: 'key', key: 'key' },
   { title: '章节列表', dataIndex: 'name', key: 'name' },
-  { title: '课件列表', dataIndex: 'sourse', key: 'sourse', scopedSlots: { customRender: 'sourse' }  },
+  { title: '课件列表', dataIndex: 'sourse', key: 'sourse', scopedSlots: { customRender: 'source' }  },
   {title: '章节练习', dataIndex: 'experiment', key: 'experiment', scopedSlots: { customRender: 'experiment' } },
   { title: '课件下载', key: 'download', scopedSlots: { customRender: 'download' } },
 
@@ -71,7 +71,7 @@ const columns = [
 
 const data = [
   { key: 1, name: '数据结构', experiment: '练习题1', 
-    sourses: [
+    source: [
       {id: 1,name: '课件一',size: 9},
       {id: 2,name: '课件二',size: 9},
       {id: 3,name: '课件三',size: 9}
@@ -93,7 +93,7 @@ export default {
       hasErrors,
       form: this.$form.createForm(this),
       data,
-      // data: [],
+      lectureData: [],
       columns,
     }
   },
@@ -120,9 +120,10 @@ export default {
     },
 
     fetch() {
-        getlecture(this.$route.query.course_id).then((response)=>{
-          this.data.push(response.data)
-          console.log(response)
+      // this.$route.query.course_id
+        getlecture(2).then((response)=>{
+          this.lectureData.push(response.data)
+          console.log(response.data)
         })
         .catch((error)=>{
           console.log(error)
@@ -133,8 +134,8 @@ export default {
       console.log(value)
       if(value) {
         getlecturename(value).then((response)=>{
-          this.data=[]
-          this.data.push(response.data)
+          this.lectureData=[]
+          this.lectureData.push(response.data)
           console.log(response)
         })
         .catch((error)=>{
@@ -147,10 +148,16 @@ export default {
     getExperiment(id) {
       // 直接调⽤$router.push 实现携带参数的跳转
       this.$router.push({
-      // path: '/course/CoursePractice/CoursePracticeSummit/${id}',
-      path: '/course/CoursePractice',
-
+        // path: '/course/CoursePractice/CoursePracticeSummit/${id}',
+        // path: '/course/CoursePractice',
+        name: 'CoursePractice',
+        params: {
+          course_id: id
+        }
       })
+    },
+    download(id) {
+      window.open('', '_blank');
     }
   }
 }
