@@ -24,6 +24,7 @@
 
             <div id="container" style="padding: 24px"></div>
           </a-card>
+
           <a-card>
             <p class="title">课程</p>
             <a-divider/>
@@ -32,25 +33,27 @@
               <a-divider type="vertical"/>
               <a href="#">全部</a>
             </div>
-            <div style="margin-top:60px;padding: 50px;">
-              <a-row :gutter="16">
-                <a-col :span="8">
-                  <a-card title="数据结构">
-                    <p>主讲教师：刘明铭</p>
+
+            <div style="margin-top:60px;padding: 50px;"> 
+              <a-row :gutter="16" >
+                <a-col :span="8">  
+                  <a-card :title="this.list[0].name">
+                    <p>课程介绍:{{ this.list[0].value }}</p>
                   </a-card>
                 </a-col>
                 <a-col :span="8">
-                  <a-card title="操作系统">
-                    <p>主讲教师：李旭东</p>
+                  <a-card :title="this.list[1].name">
+                    <p>课程介绍:{{ this.list[1].value }}</p>
                   </a-card>
                 </a-col>
                 <a-col :span="8">
-                  <a-card title="数据库">
-                    <p>主讲教师：李旭东</p>
+                  <a-card :title="this.list[2].name">
+                    <p>课程介绍:{{ this.list[2].value }}</p>
                   </a-card>
                 </a-col>
               </a-row>
-              <a-row :gutter="16">
+
+              <!-- <a-row :gutter="16">
                 <a-col :span="8">
                   <a-card title="面向对象设计">
                     <p>主讲教师：张波</p>
@@ -66,7 +69,8 @@
                     <p>主讲教师：刘明铭</p>
                   </a-card>
                 </a-col>
-              </a-row>
+              </a-row> -->
+
             </div>
           </a-card>
           <a-card>
@@ -89,10 +93,10 @@
         <a-layout-sider>
           <a-card title="个人信息"> 
             <p>姓名：大毛</p>	
-            <p>学号: 1612999</p>
-            <p>院系：软件学院</p>
-            <p>积分：100</p>
-            <p>邮箱：damao@mail.nankai.edu.cn</p>	
+            <p>学号: {{this.info[0].value}}</p>
+            <p>院系：{{this.info[0].name}}</p>
+            <p>积分：{{this.info[0].score}}</p>
+            <p>省份：{{this.info[0].province}}</p>	
           </a-card>
         </a-layout-sider>
       </a-layout>
@@ -138,13 +142,19 @@
 <script>
 import { axios } from '@/utils/request'
 import reqwest from 'reqwest'
+
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo'
 const datas = [{ title: '数据结构课已发布新的作业！', description: '快来看看吧！'}]
-export default {
+const list=[]
+const info = []
 
+export default {
     data() {
         return {
             datas,
+            data: [],
+            list,
+            info,
             chartData: {
                 columns: ['日期', '访问用户'],
                 rows: [{
@@ -205,6 +215,8 @@ export default {
     },
     created: function(){
       this.getTheSubmissionData()
+      this.getNowLessons()
+      this.getUserInfo()
     },
 
     mounted() {
@@ -286,6 +298,56 @@ export default {
           }
           
           
+        } 
+        console.log(response.data)
+       
+      }).catch(error=>{
+        window.alert('sorry')
+        console.log(error)
+      })
+        },
+
+        getUserInfo:function(){
+            axios({
+        method:'get',
+        url:'/student/user/student_get',
+        params:{id_user: 1}
+      }).then(response =>{
+        console.log('222222222')
+        console.log(response.data[0])
+
+        info.push({
+          'name':response.data.class_name,
+          'value':response.data.student_number,
+          'province':response.data.province,
+          'score':response.data.rank_score
+        })
+        
+        console.log(response.data)
+       
+      }).catch(error=>{
+        window.alert('sorry')
+        console.log(error)
+      })
+        },
+
+        getNowLessons:function(){
+          axios({
+        method:'get',
+        url:'/student/course/get-my-course-by-id',
+        params:{studentID: 1}
+      }).then(response =>{
+        console.log('1111111111111')
+        console.log(response.data[0])
+
+        var num = Object.keys(response.data).length
+        
+        for(let index=0;index<num;index++)
+        {
+          list.push({
+            'name':response.data[index].name,
+            'value':response.data[index].description
+          })
         } 
         console.log(response.data)
        

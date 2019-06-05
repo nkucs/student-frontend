@@ -140,7 +140,7 @@ export default {
   //获取某题目详细信息
     this.axios({
         method: 'get',
-        url: 'api/student/problem/get-problem',
+        url: '/student/problem/get-problem',
         params: {
         id_problem: 1,
       },
