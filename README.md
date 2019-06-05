@@ -16,7 +16,6 @@ brew install yarn
 可以通过[安装程序](https://yarnpkg.com/latest.msi)安装
 
 
-
 ## 安装
 
 `yarn install --registry=https://registry.npm.taobao.org`

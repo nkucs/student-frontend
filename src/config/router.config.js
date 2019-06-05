@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView } from '@/components/layouts'
+import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView,HomepageLayout } from '@/components/layouts'
 
 export const asyncRouterMap = [
 
@@ -8,19 +8,25 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: '首页' },
-    redirect: '/problem/list',
+    redirect: '/home',
     children: [
       {
         path: '/problem',
         name: '题目',
         component: PageView,
         redirect: '/problem/list',
-        meta: { title: '题目', icon: 'dashboard', permission: ['dashboard'] },
+        meta: { title: '题目', icon: 'dashboard', permission: [ 'dashboard' ] },
         children: [{
           path: '/problem/list', // todo
           name: '题目列表',
           component: () => import('@/views/problem/ProblemList'),
           meta: { title: '题目列表', permission: ['dashboard'] }
+        },
+        {
+          path: '/problem/detail', // todo
+          name: '题目详情',
+          component: () => import('@/views/problem/ProblemDetail'),
+          meta: { title: '题目详情', permission: [ 'dashboard' ] }
         },
         {
           path: '/problem/result', // todo
@@ -35,7 +41,7 @@ export const asyncRouterMap = [
         name: '个人中心',
         component: PageView,
         redirect: '/center/achievement',
-        meta: { title: '个人中心', icon: 'dashboard', permission: ['dashboard'] },
+        meta: { title: '个人中心', icon: 'dashboard', permission: [ 'dashboard' ] },
         children: [{
           path: '/center/achievement', // todo
           name: '个人成就',
@@ -72,7 +78,7 @@ export const asyncRouterMap = [
         name: '课程中心',
         component: PageView,
         redirect: '/course/announcement',
-        meta: { title: '课程中心', icon: 'dashboard', permission: ['dashboard'] },
+        meta: { title: '课程中心', icon: 'dashboard', permission: [ 'dashboard' ] },
         children: [{
           path: '/course/announcement', // todo
           name: '公告',
@@ -91,32 +97,55 @@ export const asyncRouterMap = [
           path: '/course/experiment', // todo
           name: '实验课',
           component: () => import('@/views/course/CourseExperiment'),
-          meta: { title: '实验课', permission: ['dashboard'] }
+          meta: { title: '实验课', permission: [ 'dashboard' ] }
+          
+        },
+
+        {
+          path: '/course/experiment/experimentdetail', // todo
+          name: '查看详情',
+          hidden: true,
+          component: () => import('@/views/course/ExperimentDetail'),
+          meta: { title: '查看详情', permission: [ 'dashboard' ], hiddenHeaderContent: 'true' }
         },
         {
-          path: '/course/exam', // todo
+          path: '/course/CourseExam', // todo
           name: '考试',
-          component: () => import('@/views/course/exam'),
-          meta: { title: '考试', permission: ['dashboard'] }
+          component: () => import('@/views/exam/CourseExam'),
+          meta: { title: '考试', permission: [ 'dashboard' ] },
         },
-        ]
-      },
-      {
-        path: '/course/CoursePractice',
-        hidden: true,
-        name: 'CoursePractice',
-        component: () => import('@/views/course/CoursePractice'),
-        meta: { title: '练习题', permission: ['dashboard'] },
-      },
-      {
-        path: '/problem/ProblemDetail',
-        hidden: true,
-        name: '练习题详情',
-        component: () => import('@/views/problem/ProblemDetail'),
-        meta: { title: '题目详情', permission: ['dashboard'] },
-      },
-    ]
-  },
+        {
+          path: '/course/ExamInformation',
+          name: 'course/ExamInformation',
+          component: () => import('@/views/exam/ExamInformation'),
+          meta: { title: '开始考试', permission: [ 'dashboard' ] },
+          hidden: true,
+        },
+        {
+          path: '/course/ExamEnd',
+          name: 'course/ExamEnd',
+          component: () => import('@/views/exam/ExamEnd'),
+          meta: { title: '结束考试', permission: [ 'dashboard' ] },
+          hidden: true,
+        },
+        {
+          path: '/course/CoursePractice',
+          hidden: true,
+          name: 'CoursePractice',
+          component: () => import('@/views/course/CoursePractice'),
+          meta: { title: '练习题', permission: ['dashboard'] },
+        },
+        {
+          path: '/problem/ProblemDetail',
+          hidden: true,
+          name: '练习题详情',
+          component: () => import('@/views/problem/ProblemDetail'),
+          meta: { title: '题目详情', permission: ['dashboard'] },
+        },
+      ]
+        
+      }
+    ]},
   {
     path: '*', redirect: '/404', hidden: true
   }
@@ -152,17 +181,19 @@ export const constantRouterMap = [
   },
 
   {
-    path: '/test',
-    component: PageView,
-    redirect: '/test/home',
+    path: '/',
+    component: HomepageLayout,
+    redirect: '/home',
     children: [
       {
         path: 'home',
-        name: 'TestHome',
-        component: () => import('@/views/Home')
+        name: 'Home',
+        component: () => import('@/views/Home'),
+        meta: { title: '首页' , permission: [ 'dashboard' ]}
       }
     ]
   },
+
 
   {
     path: '/404',

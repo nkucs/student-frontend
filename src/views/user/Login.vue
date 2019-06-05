@@ -90,7 +90,7 @@
         >确定</a-button>
       </a-form-item>
 
-      <div class="user-login-other">
+      <!-- <div class="user-login-other">
         <span>其他登录方式</span>
         <a>
           <a-icon class="item-icon" type="alipay-circle"></a-icon>
@@ -102,7 +102,7 @@
           <a-icon class="item-icon" type="weibo-circle"></a-icon>
         </a>
         <router-link class="register" :to="{ name: 'register' }">注册账户</router-link>
-      </div>
+      </div> -->
     </a-form>
 
     <two-step-captcha
@@ -120,6 +120,7 @@ import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
 import { getSmsCaptcha } from '@/api/login'
+import { test } from '@/api/example'
 
 export default {
   components: {
@@ -164,6 +165,11 @@ export default {
       // this.form.resetFields()
     },
     handleSubmit (e) {
+      test({date: '20190529'}) // 测试接口调用
+        .then(res => {
+          console.log('ok')
+          console.log(res)
+        })
       e.preventDefault()
       const {
         form: { validateFields },

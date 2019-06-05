@@ -1,163 +1,186 @@
 <template>
-  <div class="home">
-    <div class="banner">
-      <img alt="Vue logo" style="width: 64px; height: 64px" src="../assets/logo.png">
-      <h3 style="margin-top: 1rem">Welcome to Your Vue.js App</h3>
-    </div>
+  <div id="components-layout-demo-basic">
+    <a-layout>
+      <a-layout-header>导航栏</a-layout-header>
+      <a-layout>
+        <a-layout-content>
+          <a-card>
+            <p>新闻</p>
+            <a-list
+              class="demo-loadmore-list"
+              :loading="loading"
+              itemLayout="horizontal"
+              :dataSource="data"
+              text-align=left;
+            >
+            
+              <a-list-item slot="renderItem" slot-scope="item, index">
+                <a slot="actions">more</a>
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <a slot="title" href="https://vue.ant.design/">"{{ item.name.last }}"</a>
+                  <a-avatar
+                    slot="avatar"
+                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                  />
+                </a-list-item-meta>
+              </a-list-item>
+            </a-list>
 
-    <br/>
-
-    <h2># Trend 组件 </h2>
-
-    <a-divider> 正常 </a-divider>
-
-    <a-card>
-
-      <trend flag="up" style="margin-right: 16px;">
-        <span slot="term">工资</span>
-        5%
-      </trend>
-      <trend flag="up" style="margin-right: 16px;">
-        <span slot="term">工作量</span>
-        50%
-      </trend>
-      <trend flag="down">
-        <span slot="term">身体状态</span>
-        50%
-      </trend>
-
-    </a-card>
-
-    <a-divider> 颜色反转 </a-divider>
-
-    <a-card style="margin-bottom: 3rem">
-
-      <trend flag="up" :reverse-color="true" style="margin-right: 16px;">
-        <span slot="term">工资</span>
-        5%
-      </trend>
-      <trend flag="down" :reverse-color="true" style="margin-right: 16px;">
-        <span slot="term">工作量</span>
-        50%
-      </trend>
-
-    </a-card>
-
-    <h2># AvatarList 组件 </h2>
-
-    <a-divider> AvatarList </a-divider>
-    <a-card style="margin-bottom: 3rem">
-      <avatar-list :max-length="3">
-        <avatar-list-item tips="Jake" src="https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png" />
-        <avatar-list-item tips="Andy" src="https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-
-      </avatar-list>
-
-      <a-divider type="vertical" style="margin: 0 16px" />
-
-      <avatar-list size="mini">
-        <avatar-list-item tips="Jake" src="https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png" />
-        <avatar-list-item tips="Andy" src="https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png" />
-        <avatar-list-item tips="Niko" src="https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png" />
-      </avatar-list>
-    </a-card>
-
-    <h2># CountDown 组件 </h2>
-
-    <a-divider> CountDown </a-divider>
-    <a-card style="margin-bottom: 3rem">
-      <count-down
-        style="font-size: 2rem"
-        :target="new Date().getTime() + 3000000"
-        :on-end="onEndHandle">
-      </count-down>
-
-      <a-divider type="vertical" style="margin: 0 16px" />
-
-      <count-down
-        style="font-size: 2rem"
-        :target="new Date().getTime() + 10000"
-        :on-end="onEndHandle2">
-      </count-down>
-    </a-card>
-
-    <h2># Ellipsis 组件 </h2>
-
-    <a-divider> Ellipsis </a-divider>
-    <a-card style="margin-bottom: 3rem">
-      <ellipsis :length="100" tooltip>
-        There were injuries alleged in three cases in 2015, and a
-        fourth incident in September, according to the safety recall report. After meeting with US regulators in October, the firm decided to issue a voluntary recall.
-      </ellipsis>
-    </a-card>
-
-    <h2># NumberInfo 组件 </h2>
-
-    <a-divider> NumberInfo </a-divider>
-    <a-card>
-      <number-info
-        :sub-title="() => { return 'Visits this week' }"
-        :total="12321"
-        status="up"
-        :sub-total="17.1"></number-info>
-    </a-card>
+            <div id="container" style="padding: 24px"></div>
+          </a-card>
+          <a-card>
+            <p class="title">课程</p>
+            <a-divider/>
+            <div style="float:left;">
+              <a href="#">正在进行</a>
+              <a-divider type="vertical"/>
+              <a href="#">全部</a>
+            </div>
+            <div style="background-color: #ececec; margin-top:60px;padding: 50px;">
+              <a-row :gutter="16">
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+              </a-row>
+              <a-row :gutter="16">
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+                <a-col :span="6">
+                  <a-card title="Card title" :bordered="false">
+                    <p>card content</p>
+                  </a-card>
+                </a-col>
+              </a-row>
+            </div>
+          </a-card>
+          <a-card>
+            <a-divider>提交记录</a-divider>
+            <template>
+              <div style="margin-left:auto; margin-right:auto;width:600px;">
+                <ve-pie :data="chartData"></ve-pie>
+              </div>
+            </template>
+            <a-divider>每日提交情况</a-divider>
+            <template>
+              <div style="margin-left:auto; margin-right:auto;width:600px;">
+                <ve-line :data="chartData2" :settings="chartSettings"></ve-line>
+              </div>
+            </template>
+          </a-card>
+        </a-layout-content>
+        <a-layout-sider>个人信息的侧边栏</a-layout-sider>
+      </a-layout>
+    </a-layout>
   </div>
 </template>
 
+<style scoped>
+.title {
+  font-size: 20px;
+  float: left;
+}
+#components-layout-demo-basic {
+  text-align: center;
+}
+#components-layout-demo-basic .ant-layout-header,
+#components-layout-demo-basic .ant-layout-footer {
+  background: #7dbcea;
+  color: #fff;
+}
+#components-layout-demo-basic .ant-layout-footer {
+  line-height: 1.5;
+}
+#components-layout-demo-basic .ant-layout-sider {
+  background: #3ba0e9;
+  color: #fff;
+  line-height: 120px;
+}
+#components-layout-demo-basic .ant-layout-content {
+  background: rgba(16, 142, 233, 1);
+  color: #fff;
+  min-height: 120px;
+  line-height: 120px;
+}
+#components-layout-demo-basic > .ant-layout {
+  margin-bottom: 48px;
+}
+#components-layout-demo-basic > .ant-layout:last-child {
+  margin: 0;
+}
+</style>
+
 <script>
-  // @ is an alias to /src
+import reqwest from 'reqwest'
+const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo'
 
-  import Trend from '@/components/Trend'
-  import AvatarList from '@/components/AvatarList'
-  import CountDown from '@/components/CountDown/CountDown'
-  import Ellipsis from '@/components/Ellipsis'
-  import NumberInfo from '@/components/NumberInfo'
-
-  const AvatarListItem = AvatarList.AvatarItem
-
-  export default {
-    name: 'Home',
-    components: {
-      NumberInfo,
-      Ellipsis,
-      CountDown,
-      Trend,
-      AvatarList,
-      AvatarListItem
-    },
-    data () {
-      return {
-        targetTime: new Date().getTime() + 3900000
-      }
-    },
-    methods: {
-      onEndHandle () {
-        this.$message.success('CountDown callback!!!')
+export default {
+  data() {
+    return {
+      data: [],
+      chartData: {
+        columns: ['日期', '访问用户'],
+        rows: [
+          { 日期: 'Accept', 访问用户: 1393 },
+          { 日期: '其他', 访问用户: 3530 },
+          { 日期: '答案错误', 访问用户: 2923 },
+          { 日期: '编译错误', 访问用户: 1723 },
+          { 日期: '时间或空间超限', 访问用户: 4593 }
+        ]
       },
-      onEndHandle2 () {
-        this.$notification.open({
-          message: 'Notification Title',
-          description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-        })
+      chartData2: {
+        columns: ['日期', '提交次数'],
+        rows: [
+          { 日期: '1', 提交次数: 1393 },
+          { 日期: '2', 提交次数: 3530 },
+          { 日期: '3', 提交次数: 2923 },
+          { 日期: '4', 提交次数: 1723 },
+          { 日期: '5', 提交次数: 3792 },
+          { 日期: '6', 提交次数: 4593 },
+          { 日期: '7', 提交次数: 4593 }
+        ]
       }
     }
+  },
+  mounted() {
+    this.getData(res => {
+      this.loading = false
+      this.data = res.results
+    })
+  },
+  methods: {
+    getData(callback) {
+      reqwest({
+        url: fakeDataUrl,
+        type: 'json',
+        method: 'get',
+        contentType: 'application/json',
+        success: res => {
+          callback(res)
+        }
+      })
+    }
   }
+}
 </script>
-
-<style scoped>
-  .home {
-    width: 900px;
-    margin: 0 auto;
-    padding: 25px 0;
-  }
-  .home > .banner {
-    text-align: center;
-    padding: 25px 0;
-    margin: 25px 0;
-  }
-</style>

@@ -3,5 +3,6 @@ import BlankLayout from '@/components/layouts/BlankLayout'
 import BasicLayout from '@/components/layouts/BasicLayout'
 import RouteView from '@/components/layouts/RouteView'
 import PageView from '@/components/layouts/PageView'
+import HomepageLayout from '@/components/layouts/HomepageLayout'
 
-export { UserLayout, BasicLayout, BlankLayout, RouteView, PageView }
+export { UserLayout, BasicLayout, BlankLayout, RouteView, PageView,HomepageLayout }

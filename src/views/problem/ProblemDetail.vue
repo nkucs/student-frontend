@@ -102,6 +102,7 @@ th.column-money, td.column-money {
 </style>
 <script>
 import moment from 'moment'
+
 const columns = [{
   title: 'Name',
   dataIndex: 'name',
@@ -114,6 +115,7 @@ const columns = [{
   title: '提交结果',
   dataIndex: 'result',
 }]
+
 const data = [{
   key: '1',
   name: 'John Brown',
@@ -130,6 +132,7 @@ const data = [{
   time: '12:00:03',
   result: 'AC',
 }]
+
 const describelist = [
 	{
 		title: '描述',
@@ -172,7 +175,7 @@ export default {
 			commlist,
 			moment,
 			data,
-            columns
+      columns
 		}
 	},
 	mounted () {
@@ -186,17 +189,17 @@ export default {
 			console.log('confirm!!')
 		},
 		handleTableChange (pagination, filters, sorter) {
-        console.log(pagination)
-        const pager = { ...this.pagination }
-        pager.current = pagination.current
-        this.pagination = pager
-        this.fetch({
-            results: pagination.pageSize,
-            page: pagination.current,
-            sortField: sorter.field,
-            sortOrder: sorter.order,
-            ...filters,
-        })
+      console.log(pagination)
+      const pager = { ...this.pagination }
+      pager.current = pagination.current
+      this.pagination = pager
+      this.fetch({
+        results: pagination.pageSize,
+        page: pagination.current,
+        sortField: sorter.field,
+        sortOrder: sorter.order,
+        ...filters,
+      })
     },
     fetch (params = {}) {
       console.log('params:', params)

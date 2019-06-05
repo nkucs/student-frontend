@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 const listData = []
 for (let i = 0; i < 20; i++) {
     listData.push({
@@ -29,6 +30,7 @@ for (let i = 0; i < 20; i++) {
 				date: '发布时间: 2019-10-25 12:00 截止时间: 2019-11-25 12:00',
     })
 }
+
 export default {
   data () {
     return {
@@ -38,9 +40,10 @@ export default {
       },
     }
   },
+
   methods: {
     checkDetail () {
-      this.$router.push({ path:'/course/ExperimentDetail'  })
+      this.$router.push({ path:'/course/experiment/experimentdetail'  })
     }
   }
 }
