@@ -94,9 +94,9 @@ export const asyncRouterMap = [
           meta: { title: '实验课', permission: ['dashboard'] }
         },
         {
-          path: '/course/experiment', // todo
+          path: '/course/exam', // todo
           name: '考试',
-          component: () => import('@/views/course/CourseExperiment'),
+          component: () => import('@/views/course/exam'),
           meta: { title: '考试', permission: ['dashboard'] }
         },
         ]
