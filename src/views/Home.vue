@@ -9,19 +9,15 @@
             <a-list
               class="demo-loadmore-list"
               itemLayout="horizontal"
-              :dataSource="data"
-              text-align=left;
+              :dataSource="datas"
+              text-align="left"
             >
               <a-list-item slot="renderItem" slot-scope="item, index">
-                <a slot="actions" href="https://vue.ant.design/">more</a>
+                <a slot="actions">more</a>
                 <a-list-item-meta
-                  description="快来查看最新消息吧！"
+                  description="快来看看吧！"
                 >
-                  <a slot="title">本课程又发布新的作业啦！</a>
-                  <a-avatar
-                    slot="avatar"
-                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  />
+                  <a slot="title">数据结构课有更新啦！</a>
                 </a-list-item-meta>
               </a-list-item>
             </a-list>
@@ -143,12 +139,12 @@
 import { axios } from '@/utils/request'
 import reqwest from 'reqwest'
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo'
-
+const datas = [{ title: '数据结构课已发布新的作业！', description: '快来看看吧！'}]
 export default {
 
     data() {
         return {
-            data: [],
+            datas,
             chartData: {
                 columns: ['日期', '访问用户'],
                 rows: [{
