@@ -1,4 +1,4 @@
-import api from './index'
+// import api from './index'
 import { axios } from '@/utils/request'
 
 /**
@@ -14,7 +14,7 @@ import { axios } from '@/utils/request'
  */
 export function login(parameter) {
   return axios({
-    url: '/auth/login',
+    url: '/api/auth/login',
     method: 'post',
     data: parameter
   })
@@ -22,7 +22,7 @@ export function login(parameter) {
 
 export function getSmsCaptcha(parameter) {
   return axios({
-    url: api.SendSms,
+    url: '/api/account/sms',
     method: 'post',
     data: parameter
   })
@@ -30,7 +30,7 @@ export function getSmsCaptcha(parameter) {
 
 export function getInfo() {
   return axios({
-    url: '/user/info',
+    url: '/api/user/info',
     method: 'get',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'
@@ -40,7 +40,7 @@ export function getInfo() {
 
 export function logout() {
   return axios({
-    url: '/auth/logout',
+    url: '/api/auth/logout',
     method: 'post',
     headers: {
       'Content-Type': 'application/json;charset=UTF-8'

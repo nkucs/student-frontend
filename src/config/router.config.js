@@ -94,27 +94,26 @@ export const asyncRouterMap = [
           meta: { title: '实验课', permission: ['dashboard'] }
         },
         {
-          path: '/course/resource', // todo
-          name: '课程资料',
-          component: () => import('@/views/course/CourseResource'),
-          meta: { title: '课程资料', permission: ['dashboard'] }
+          path: '/course/experiment', // todo
+          name: '考试',
+          component: () => import('@/views/course/CourseExperiment'),
+          meta: { title: '考试', permission: ['dashboard'] }
         },
-
         ]
       },
       {
-        path: '/course/CoursePractice/CoursePracticeSummit/:check',
+        path: '/course/CoursePractice',
         hidden: true,
-        name: '练习提交结果',
-        component: () => import('@/views/course/CoursePractice/CoursePracticeSummit'),
-        meta: { title: '练习提交结果', permission: ['dashboard'], keepAlive: true },
+        name: 'CoursePractice',
+        component: () => import('@/views/course/CoursePractice'),
+        meta: { title: '练习题', permission: ['dashboard'] },
       },
       {
-        path: '/course/CoursePractice/CoursePracticeExample/:id',
+        path: '/problem/ProblemDetail',
         hidden: true,
-        name: '测试样例',
-        component: () => import('@/views/course/CoursePractice/CoursePracticeExample'),
-        meta: { title: '测试样例', permission: ['dashboard'] },
+        name: '练习题详情',
+        component: () => import('@/views/problem/ProblemDetail'),
+        meta: { title: '题目详情', permission: ['dashboard'] },
       },
     ]
   },
